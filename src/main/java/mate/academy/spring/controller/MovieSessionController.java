@@ -3,6 +3,7 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.request.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
@@ -50,8 +51,11 @@ public class MovieSessionController {
     }
 
     @PutMapping("{id}")
-    public MovieSessionResponseDto update(@PathVariable Long id) {
-        return movieSessionMapper.parse(movieSessionService.update(id));
+    public MovieSessionResponseDto update(@PathVariable Long id,
+                                          @RequestBody MovieSessionRequestDto movieSessionUpdate) {
+        MovieSession movieSession = movieSessionMapper.toModel(movieSessionUpdate);
+        movieSession.setId(id);
+        return movieSessionMapper.parse(movieSessionService.update(movieSession));
     }
 
     @DeleteMapping("{id}")
