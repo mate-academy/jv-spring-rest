@@ -56,17 +56,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public List<MovieSession> getAll() {
-        try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from MovieSession ms "
-                    + "left join fetch ms.cinemaHall "
-                    + "left join fetch ms.movie", MovieSession.class).getResultList();
-        } catch (Exception e) {
-            throw new DataProcessingException("Can't get all movie sessions", e);
-        }
-    }
-
-    @Override
     public void delete(Long id) {
         Session session = null;
         Transaction transaction = null;
@@ -100,7 +89,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Cannot create shopping cart ", e);
+            throw new DataProcessingException("Cannot update movie session ", e);
         }
     }
 }
