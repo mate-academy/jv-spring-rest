@@ -11,14 +11,14 @@ import mate.academy.spring.service.MovieSessionService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MockDataController {
+public class DataInitializer {
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
     private final MovieSessionService movieSessionService;
 
-    public MockDataController(MovieService movieService,
-                              CinemaHallService cinemaHallService,
-                              MovieSessionService movieSessionService) {
+    public DataInitializer(MovieService movieService,
+                           CinemaHallService cinemaHallService,
+                           MovieSessionService movieSessionService) {
         this.movieService = movieService;
         this.cinemaHallService = cinemaHallService;
         this.movieSessionService = movieSessionService;
