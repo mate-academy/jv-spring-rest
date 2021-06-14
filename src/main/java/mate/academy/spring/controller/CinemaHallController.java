@@ -8,7 +8,6 @@ import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallMapper;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {

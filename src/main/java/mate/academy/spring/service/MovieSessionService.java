@@ -2,6 +2,8 @@ package mate.academy.spring.service;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 
 public interface MovieSessionService {
@@ -10,4 +12,8 @@ public interface MovieSessionService {
     MovieSession get(Long id);
 
     MovieSession add(MovieSession session);
+
+    MovieSession update(MovieSession movieSession);
+
+    void remove(Long id);
 }
