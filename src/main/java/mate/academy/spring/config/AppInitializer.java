@@ -1,29 +1,29 @@
-package mate.academy.spring.controller;
+package mate.academy.spring.config;
 
 import java.time.LocalDateTime;
+import javax.annotation.PostConstruct;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.MovieSessionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
-@RestController
-public class AppController {
+@Component
+public class AppInitializer {
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
     private final MovieSessionService movieSessionService;
 
-    public AppController(MovieService movieService, CinemaHallService cinemaHallService,
-                         MovieSessionService movieSessionService) {
+    public AppInitializer(MovieService movieService, CinemaHallService cinemaHallService,
+                          MovieSessionService movieSessionService) {
         this.movieService = movieService;
         this.cinemaHallService = cinemaHallService;
         this.movieSessionService = movieSessionService;
     }
 
-    @GetMapping("/initialize")
+    @PostConstruct
     public String initialize() {
         Movie fastAndFurious = new Movie("Fast and Furious");
         fastAndFurious.setDescription("An action film about street racing, heists, and spies.");
