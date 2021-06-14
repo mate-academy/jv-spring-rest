@@ -1,18 +1,16 @@
 package mate.academy.spring.controller;
 
 import java.time.LocalDateTime;
+import javax.annotation.PostConstruct;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.MovieSessionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
-@RestController
-@RequestMapping("inject")
+@Component
 public class MockDataController {
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
@@ -26,7 +24,7 @@ public class MockDataController {
         this.movieSessionService = movieSessionService;
     }
 
-    @GetMapping
+    @PostConstruct
     public void inject() {
         Movie movie = new Movie();
         movie.setTitle("MIB");
