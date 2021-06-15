@@ -25,7 +25,7 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
             query.setParameter("user", user);
             return query.uniqueResult();
         } catch (Exception e) {
-            throw new DataProcessingException("Cannot find shopping cart using user ", e);
+            throw new DataProcessingException("Cannot find shopping cart of user " + user, e);
         }
     }
 
@@ -40,7 +40,7 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Cannot create shopping cart ", e);
+            throw new DataProcessingException("Cannot update shopping cart " + shoppingCart, e);
         }
     }
 }
