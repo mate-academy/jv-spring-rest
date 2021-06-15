@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class EntityInitializer {
+public class DataGenerator {
     private final CinemaHallService cinemaHallService;
     private final MovieService movieService;
     private final MovieSessionService movieSessionService;
 
-    public EntityInitializer(CinemaHallService cinemaHallService,
-                             MovieService movieService, MovieSessionService movieSessionService) {
+    public DataGenerator(CinemaHallService cinemaHallService,
+                         MovieService movieService, MovieSessionService movieSessionService) {
         this.cinemaHallService = cinemaHallService;
         this.movieService = movieService;
         this.movieSessionService = movieSessionService;
