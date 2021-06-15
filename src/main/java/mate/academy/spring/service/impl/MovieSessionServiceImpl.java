@@ -17,6 +17,8 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
+        System.out.println(movieId);
+        System.out.println(date.toString());
         return sessionDao.findAvailableSessions(movieId, date);
     }
 
@@ -28,5 +30,20 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     @Override
     public MovieSession add(MovieSession session) {
         return sessionDao.add(session);
+    }
+
+    @Override
+    public List<MovieSession> getAll() {
+        return sessionDao.getAll();
+    }
+
+    @Override
+    public MovieSession update(MovieSession movieSession) {
+        return sessionDao.update(movieSession);
+    }
+
+    @Override
+    public void delete(Long id) {
+        sessionDao.delete(id);
     }
 }
