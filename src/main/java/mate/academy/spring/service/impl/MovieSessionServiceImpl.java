@@ -17,8 +17,6 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
-        System.out.println(movieId);
-        System.out.println(date.toString());
         return sessionDao.findAvailableSessions(movieId, date);
     }
 
