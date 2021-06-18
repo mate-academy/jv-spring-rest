@@ -56,12 +56,13 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public MovieSession update(MovieSession movieSession) {
+    public MovieSession update(Long id) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
+            MovieSession movieSession = get(id).get();
             session.update(movieSession);
             transaction.commit();
             return movieSession;
@@ -70,7 +71,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                 transaction.rollback();
             }
             throw new DataProcessingException("Can't update movie session by id: "
-                    + movieSession.getId(), e);
+                    + id, e);
         } finally {
             if (session != null) {
                 session.close();
