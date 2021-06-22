@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
+import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -46,10 +47,11 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public MovieSessionResponseDto update(@RequestBody MovieSessionRequestDto
-                                                      movieSessionRequestDto) {
-        return movieSessionDtoMapper.parseToDto(movieSessionService.update(movieSessionDtoMapper
-                .parseToModel(movieSessionRequestDto)));
+    public MovieSessionResponseDto update(@PathVariable Long id, @RequestBody
+            MovieSessionRequestDto movieSessionRequestDto) {
+        MovieSession movieSession = movieSessionDtoMapper.parseToModel(movieSessionRequestDto);
+        movieSession.setId(id);
+        return movieSessionDtoMapper.parseToDto(movieSessionService.update(movieSession));
     }
 
     @DeleteMapping("/{id}")
