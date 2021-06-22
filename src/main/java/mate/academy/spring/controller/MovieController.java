@@ -36,5 +36,4 @@ public class MovieController {
                 .map(movieDtoMapper::parseToDto)
                 .collect(Collectors.toList());
     }
-
 }
