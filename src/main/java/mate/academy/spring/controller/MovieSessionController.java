@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,9 +39,18 @@ public class MovieSessionController {
         return movieSessionDtoMapper.parse(movieSessionFromDb);
     }
 
+    @PutMapping("/{id}")
+    public MovieSessionResponseDto update(
+            @PathVariable Long id,
+            @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+        MovieSession movieSessionModel = movieSessionDtoMapper.toModel(movieSessionRequestDto);
+        movieSessionModel.setId(id);
+        return movieSessionDtoMapper.parse(movieSessionModel);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-
+        movieSessionService.delete(movieSessionService.get(id));
     }
 
     @GetMapping(path = "/available")
