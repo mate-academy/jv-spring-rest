@@ -1,13 +1,13 @@
 package mate.academy.spring.model.dto;
 
 import java.time.LocalDateTime;
+import mate.academy.spring.model.CinemaHall;
+import mate.academy.spring.model.Movie;
 
 public class MovieSessionResponseDto {
     private Long id;
-    private Long movieId;
-    private String movieTitle;
-    private Long cinemaHallId;
-    private String cinemaHallTitle;
+    private Movie movie;
+    private CinemaHall cinemaHall;
     private LocalDateTime showTime;
 
     public Long getId() {
@@ -18,36 +18,20 @@ public class MovieSessionResponseDto {
         this.id = id;
     }
 
-    public Long getMovieId() {
-        return movieId;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public void setMovieId(Long movieId) {
-        this.movieId = movieId;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
-    public String getMovieTitle() {
-        return movieTitle;
+    public CinemaHall getCinemaHall() {
+        return cinemaHall;
     }
 
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
-    }
-
-    public Long getCinemaHallId() {
-        return cinemaHallId;
-    }
-
-    public void setCinemaHallId(Long cinemaHallId) {
-        this.cinemaHallId = cinemaHallId;
-    }
-
-    public String getCinemaHallTitle() {
-        return cinemaHallTitle;
-    }
-
-    public void setCinemaHallTitle(String cinemaHallTitle) {
-        this.cinemaHallTitle = cinemaHallTitle;
+    public void setCinemaHall(CinemaHall cinemaHall) {
+        this.cinemaHall = cinemaHall;
     }
 
     public LocalDateTime getShowTime() {

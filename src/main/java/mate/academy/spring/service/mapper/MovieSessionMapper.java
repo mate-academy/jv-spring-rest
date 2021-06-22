@@ -20,10 +20,8 @@ public class MovieSessionMapper {
     public MovieSessionResponseDto parse(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
-        movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
-        movieSessionResponseDto.setMovieTitle(movieSession.getMovie().getTitle());
-        movieSessionResponseDto.setCinemaHallId(movieSession.getCinemaHall().getId());
-        movieSessionResponseDto.setCinemaHallTitle(movieSession.getCinemaHall().getDescription());
+        movieSessionResponseDto.setMovie(movieSession.getMovie());
+        movieSessionResponseDto.setCinemaHall(movieSession.getCinemaHall());
         movieSessionResponseDto.setShowTime(movieSession.getShowTime());
         return movieSessionResponseDto;
     }
