@@ -53,4 +53,27 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
         }
     }
+
+    @Override
+    public Optional<MovieSession> update(Long id, MovieSession movieSession) {
+        try (Session session = sessionFactory.openSession()) {
+            MovieSession temp = session.get(MovieSession.class, id);
+            temp.setShowTime(movieSession.getShowTime());
+            temp.setMovie(movieSession.getMovie());
+            temp.setCinemaHall(movieSession.getCinemaHall());
+            session.update(temp);
+            return Optional.ofNullable(temp);
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't update a movie session by id: " + id, e);
+        }
+    }
+
+    @Override
+    public void delete(MovieSession movieSession) {
+        try (Session session = sessionFactory.openSession()) {
+            session.delete(movieSession);
+        } catch (Exception e) {
+            throw new DataProcessingException("Can't delete a movie session: " + movieSession, e);
+        }
+    }
 }
