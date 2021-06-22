@@ -14,7 +14,7 @@ public class CinemaHallMapper {
         return cinemaHallDto;
     }
 
-    public CinemaHall parseToModel(CinemaHallDto cinemaHallDto) {
+    public CinemaHall mapToModel(CinemaHallDto cinemaHallDto) {
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setId(cinemaHallDto.getId());
         cinemaHall.setDescription(cinemaHallDto.getDescription());
