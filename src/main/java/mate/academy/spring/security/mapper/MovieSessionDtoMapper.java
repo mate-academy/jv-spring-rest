@@ -10,8 +10,8 @@ public class MovieSessionDtoMapper {
     public MovieSessionResponseDto parse(MovieSession movieSession) {
         MovieSessionResponseDto response = new MovieSessionResponseDto();
         response.setId(movieSession.getId());
-        response.setMovie(movieSession.getMovie());
-        response.setCinemaHall(movieSession.getCinemaHall());
+        response.setMovieId(movieSession.getMovie().getId());
+        response.setCinemaHallId(movieSession.getCinemaHall().getId());
         response.setShowTime(String.valueOf(movieSession.getShowTime()));
         return response;
     }
