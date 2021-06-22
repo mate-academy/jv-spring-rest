@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("movies")
 public class MovieController {
-
     private MovieService movieService;
     private MovieMapper movieMapper;
 
