@@ -1,15 +1,15 @@
 package mate.academy.spring.service.impl;
 
 import java.util.List;
-import mate.academy.spring.dao.CinemaHallService;
+import mate.academy.spring.dao.CinemaHallDao;
 import mate.academy.spring.model.CinemaHall;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CinemaHallServiceImpl implements mate.academy.spring.service.CinemaHallService {
-    private final CinemaHallService cinemaHallDao;
+    private final CinemaHallDao cinemaHallDao;
 
-    public CinemaHallServiceImpl(CinemaHallService cinemaHallDao) {
+    public CinemaHallServiceImpl(CinemaHallDao cinemaHallDao) {
         this.cinemaHallDao = cinemaHallDao;
     }
 

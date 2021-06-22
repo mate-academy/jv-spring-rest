@@ -2,7 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dao.MovieService;
+import mate.academy.spring.dao.MovieDao;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
 import mate.academy.spring.service.mapper.MovieMapper;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
-    private MovieService movieServise;
+    private MovieDao movieServise;
     private MovieMapper movieMapper;
 
-    public MovieController(MovieService movieDao, MovieMapper movieMapper) {
+    public MovieController(MovieDao movieDao, MovieMapper movieMapper) {
         this.movieServise = movieDao;
         this.movieMapper = movieMapper;
     }

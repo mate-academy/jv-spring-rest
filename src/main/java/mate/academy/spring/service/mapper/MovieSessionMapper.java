@@ -1,8 +1,8 @@
 package mate.academy.spring.service.mapper;
 
 import java.time.LocalDateTime;
-import mate.academy.spring.dao.CinemaHallService;
-import mate.academy.spring.dao.MovieService;
+import mate.academy.spring.dao.CinemaHallDao;
+import mate.academy.spring.dao.MovieDao;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
-    private MovieService movieDao;
-    private CinemaHallService cinemaHallDao;
+    private MovieDao movieDao;
+    private CinemaHallDao cinemaHallDao;
 
-    public MovieSessionMapper(MovieService movieDao, CinemaHallService cinemaHallDao) {
+    public MovieSessionMapper(MovieDao movieDao, CinemaHallDao cinemaHallDao) {
         this.movieDao = movieDao;
         this.cinemaHallDao = cinemaHallDao;
     }
