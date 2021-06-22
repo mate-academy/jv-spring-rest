@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 
 @Entity
+@AllArgsConstructor
 @Table(name = "cinema_halls")
 public class CinemaHall {
     @Id
@@ -16,6 +18,11 @@ public class CinemaHall {
     private String description;
 
     public CinemaHall() {
+    }
+    
+    public CinemaHall(int capacity, String description) {
+        this.capacity = capacity;
+        this.description = description;
     }
 
     public Long getId() {
