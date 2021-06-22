@@ -1,10 +1,8 @@
 package mate.academy.spring.model.dto;
 
-import lombok.Getter;
 import lombok.Setter;
 
 @Setter
-@Getter
 public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
