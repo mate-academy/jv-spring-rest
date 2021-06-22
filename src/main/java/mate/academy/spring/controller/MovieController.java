@@ -34,5 +34,4 @@ public class MovieController {
     public Long add(@RequestBody MovieRequestDto movieRequestDto) {
         return movieService.add(movieDtoMapper.parseToModel(movieRequestDto)).getId();
     }
-
 }

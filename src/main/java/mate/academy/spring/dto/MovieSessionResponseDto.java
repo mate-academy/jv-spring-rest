@@ -1,6 +1,5 @@
 package mate.academy.spring.dto;
 
-import java.time.LocalDateTime;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
 
@@ -8,7 +7,7 @@ public class MovieSessionResponseDto {
     private Long id;
     private Movie movie;
     private CinemaHall cinemaHall;
-    private LocalDateTime showTime;
+    private String showTime;
 
     public Long getId() {
         return id;
@@ -34,11 +33,7 @@ public class MovieSessionResponseDto {
         this.cinemaHall = cinemaHall;
     }
 
-    public LocalDateTime getShowTime() {
-        return showTime;
-    }
-
-    public void setShowTime(LocalDateTime showTime) {
+    public void setShowTime(String showTime) {
         this.showTime = showTime;
     }
 }
