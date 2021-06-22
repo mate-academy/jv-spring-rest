@@ -2,7 +2,6 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
@@ -32,7 +31,7 @@ public class CinemaHallController {
     @PostMapping
     public CinemaHallResponseDto add(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallMapper.mapToDto(cinemaHallService
-                .add(cinemaHallMapper.toModel(cinemaHallRequestDto)));
+                .add(cinemaHallMapper.mapToModel(cinemaHallRequestDto)));
     }
 
     @GetMapping
@@ -40,24 +39,5 @@ public class CinemaHallController {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallMapper::mapToDto)
                 .collect(Collectors.toList());
-    }
-
-    @GetMapping("/inject")
-    public String injectCinemaHall() {
-        CinemaHall redCinemaHall = new CinemaHall();
-        redCinemaHall.setCapacity(50);
-        redCinemaHall.setDescription("Red cinema hall with comfy armchairs");
-        cinemaHallService.add(redCinemaHall);
-
-        CinemaHall greenCinemaHall = new CinemaHall();
-        greenCinemaHall.setCapacity(50);
-        greenCinemaHall.setDescription("Green cinema hall with big screen");
-        cinemaHallService.add(greenCinemaHall);
-
-        CinemaHall blueCinemaHall = new CinemaHall();
-        blueCinemaHall.setCapacity(70);
-        blueCinemaHall.setDescription("blue cinema hall with comfy armchairs, big screen and IMAX");
-        cinemaHallService.add(blueCinemaHall);
-        return "Added mock cinema halls to DB!";
     }
 }
