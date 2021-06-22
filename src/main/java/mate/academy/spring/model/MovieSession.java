@@ -20,7 +20,7 @@ public class MovieSession {
     @ManyToOne(fetch = FetchType.LAZY)
     private CinemaHall cinemaHall;
     private LocalDateTime showTime;
-    private boolean delete;
+    private boolean isDelete;
 
     public MovieSession() {
     }
@@ -58,11 +58,11 @@ public class MovieSession {
     }
 
     public boolean isDelete() {
-        return delete;
+        return isDelete;
     }
 
     public void setDelete(boolean delete) {
-        this.delete = delete;
+        isDelete = delete;
     }
 
     @Override

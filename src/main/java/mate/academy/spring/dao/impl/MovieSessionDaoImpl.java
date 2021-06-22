@@ -33,7 +33,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                     criteriaBuilder.createQuery(MovieSession.class);
             Root<MovieSession> root = criteriaQuery.from(MovieSession.class);
             Predicate moviePredicate = criteriaBuilder.equal(root.get("movie"), movieId);
-            Predicate deletePredicate = criteriaBuilder.equal(root.get("Deleted"), false);
+            Predicate deletePredicate = criteriaBuilder.equal(root.get("isDelete"), false);
             Predicate datePredicate = criteriaBuilder.between(root.get("showTime"),
                     date.atStartOfDay(), date.atTime(END_OF_DAY));
             Predicate allConditions = criteriaBuilder.and(moviePredicate,
@@ -51,7 +51,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     @Override
     public Optional<MovieSession> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from MovieSession where id = :id and isDeleted = false",
+            return session.createQuery("from MovieSession where id = :id and isDelete = false",
                     MovieSession.class)
                     .setParameter("id", id)
                     .uniqueResultOptional();
@@ -67,7 +67,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.createQuery("update MovieSession set Deleted = true where id = :id")
+            session.createQuery("update MovieSession set isDelete = true where id = :id")
                     .setParameter("id", id)
                     .executeUpdate();
             transaction.commit();

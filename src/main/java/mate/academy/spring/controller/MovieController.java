@@ -2,7 +2,6 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
@@ -24,26 +23,11 @@ public class MovieController {
         this.movieDtoMapper = movieDtoMapper;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<MovieResponseDto> getAllCinemaHall() {
         return movieService.getAll().stream()
                 .map(movieDtoMapper::parseToDto)
                 .collect(Collectors.toList());
-    }
-
-    @GetMapping("/inject")
-    public String injectMockData() {
-        Movie terminator = new Movie();
-        terminator.setTitle("Terminator 5");
-        terminator.setDescription("Awesome movie");
-
-        Movie avatar = new Movie();
-        avatar.setTitle("Avatar");
-        avatar.setDescription("Sci-fi movie");
-
-        movieService.add(terminator);
-        movieService.add(avatar);
-        return "Done!";
     }
 
     @PostMapping

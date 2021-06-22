@@ -8,6 +8,7 @@ public class MovieSessionRequestDto {
     private Movie movie;
     private CinemaHall cinemaHall;
     private LocalDateTime showTime;
+    private boolean delete;
 
     public Movie getMovie() {
         return movie;
@@ -19,6 +20,14 @@ public class MovieSessionRequestDto {
 
     public CinemaHall getCinemaHall() {
         return cinemaHall;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
     }
 
     public void setCinemaHall(CinemaHall cinemaHall) {

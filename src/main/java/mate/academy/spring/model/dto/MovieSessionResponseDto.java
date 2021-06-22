@@ -9,6 +9,7 @@ public class MovieSessionResponseDto {
     private Movie movie;
     private CinemaHall cinemaHall;
     private LocalDateTime showTime;
+    private boolean delete;
 
     public Long getId() {
         return id;
@@ -40,5 +41,13 @@ public class MovieSessionResponseDto {
 
     public void setShowTime(LocalDateTime showTime) {
         this.showTime = showTime;
+    }
+
+    public boolean isDelete() {
+        return delete;
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
     }
 }
