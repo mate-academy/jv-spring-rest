@@ -19,4 +19,10 @@ public class User {
     private String email;
     private String password;
     private byte[] salt;
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id
+                + ", email='" + email + '\'' + '}';
+    }
 }
