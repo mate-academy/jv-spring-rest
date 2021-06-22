@@ -1,16 +1,15 @@
 package mate.academy.spring.service.impl;
 
 import java.util.List;
-import mate.academy.spring.dao.MovieServise;
+import mate.academy.spring.dao.MovieService;
 import mate.academy.spring.model.Movie;
-import mate.academy.spring.service.MovieService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MovieServiceImpl implements MovieService {
-    private final MovieServise movieDao;
+public class MovieServiceImpl implements mate.academy.spring.service.MovieService {
+    private final MovieService movieDao;
 
-    public MovieServiceImpl(MovieServise movieDao) {
+    public MovieServiceImpl(MovieService movieDao) {
         this.movieDao = movieDao;
     }
 

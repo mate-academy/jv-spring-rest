@@ -2,7 +2,7 @@ package mate.academy.spring.service.mapper;
 
 import java.time.LocalDateTime;
 import mate.academy.spring.dao.CinemaHallService;
-import mate.academy.spring.dao.MovieServise;
+import mate.academy.spring.dao.MovieService;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
-    private MovieServise movieDao;
+    private MovieService movieDao;
     private CinemaHallService cinemaHallDao;
 
-    public MovieSessionMapper(MovieServise movieDao, CinemaHallService cinemaHallDao) {
+    public MovieSessionMapper(MovieService movieDao, CinemaHallService cinemaHallDao) {
         this.movieDao = movieDao;
         this.cinemaHallDao = cinemaHallDao;
     }
 
-    public MovieSessionResponseDto toDto(MovieSession movieSession) {
+    public MovieSessionResponseDto mapToDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
         movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
@@ -27,7 +27,7 @@ public class MovieSessionMapper {
         return movieSessionResponseDto;
     }
 
-    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSession mapToModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieDao.get(
                 movieSessionRequestDto.getMovieId()).get());
