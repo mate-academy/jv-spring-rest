@@ -1,24 +1,11 @@
 package mate.academy.spring.model.dto;
 
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
-@AllArgsConstructor
 public class MovieSessionRequestDto {
-    private Long id;
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getMovieId() {
         return movieId;
