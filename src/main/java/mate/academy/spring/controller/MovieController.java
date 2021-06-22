@@ -25,13 +25,13 @@ public class MovieController {
 
     @PostMapping
     public MovieResponseDto create(@RequestBody MovieRequestDto requestDto) {
-        return movieMapper.parse(movieService.add(movieMapper.toModel(requestDto)));
+        return movieMapper.mapToDto(movieService.add(movieMapper.toModel(requestDto)));
     }
 
     @GetMapping
     public List<MovieResponseDto> getAllMovies() {
         return movieService.getAll().stream()
-                .map(movieMapper::parse)
+                .map(movieMapper::mapToDto)
                 .collect(Collectors.toList());
     }
 }
