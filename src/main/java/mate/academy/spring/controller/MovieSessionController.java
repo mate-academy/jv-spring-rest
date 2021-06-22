@@ -1,5 +1,7 @@
 package mate.academy.spring.controller;
 
+import mate.academy.spring.model.dto.MovieSessionRequestDto;
+import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
