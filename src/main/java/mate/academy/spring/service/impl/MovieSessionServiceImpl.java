@@ -32,11 +32,11 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     public MovieSession update(MovieSession movieSession) {
-        return null;
+        return sessionDao.update(movieSession);
     }
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        return sessionDao.delete(id);
     }
 }
