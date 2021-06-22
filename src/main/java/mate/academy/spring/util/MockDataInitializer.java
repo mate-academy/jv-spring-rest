@@ -1,4 +1,4 @@
-package mate.academy.spring.controller;
+package mate.academy.spring.util;
 
 import java.time.LocalDateTime;
 import javax.annotation.PostConstruct;
@@ -17,8 +17,8 @@ public class MockDataInitializer {
     private final MovieSessionService movieSessionService;
 
     public MockDataInitializer(MovieService movieService,
-                           CinemaHallService cinemaHallService,
-                           MovieSessionService movieSessionService) {
+            CinemaHallService cinemaHallService,
+            MovieSessionService movieSessionService) {
         this.movieService = movieService;
         this.cinemaHallService = cinemaHallService;
         this.movieSessionService = movieSessionService;
