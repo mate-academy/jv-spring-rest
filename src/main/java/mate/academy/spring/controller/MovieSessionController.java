@@ -8,10 +8,12 @@ import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +29,7 @@ public class MovieSessionController {
         this.movieSessionDtoMapper = movieSessionDtoMapper;
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public MovieSessionResponseDto add(MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionDtoMapper.parse(movieSessionService
                 .add(movieSessionDtoMapper.toModel(movieSessionRequestDto)));
@@ -42,12 +44,12 @@ public class MovieSessionController {
                 .map(movieSessionDtoMapper::parse).collect(Collectors.toList());
     }
     
-    @RequestMapping(name = "/{id}", method = RequestMethod.PUT)
+    @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id) {
         return movieSessionDtoMapper.parse(movieSessionService.update(movieSessionService.get(id)));
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public MovieSessionResponseDto remove(@PathVariable Long id) {
         return movieSessionDtoMapper.parse(movieSessionService.delete(movieSessionService.get(id)));
     }

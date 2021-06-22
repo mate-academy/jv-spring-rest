@@ -7,8 +7,8 @@ import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallDtoMapper;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,7 +23,7 @@ public class CinemaHallController {
         this.cinemaHallDtoMapper = cinemaHallDtoMapper;
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public CinemaHallResponseDto save(CinemaHallRequestDto cinemaHall) {
         return cinemaHallDtoMapper
                 .parse(cinemaHallservice.add(cinemaHallDtoMapper.toModel(cinemaHall)));

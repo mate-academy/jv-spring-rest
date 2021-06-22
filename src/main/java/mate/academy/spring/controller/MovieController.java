@@ -7,8 +7,8 @@ import mate.academy.spring.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.mapper.MovieDtoMapper;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,7 +22,7 @@ public class MovieController {
         this.movieService = movieService;
     }
     
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public MovieResponseDto add(MovieRequestDto movie) {
         return movieDtoMapper.parse(movieDtoMapper.toModel(movie));
     }
