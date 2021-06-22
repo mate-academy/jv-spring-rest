@@ -3,6 +3,7 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
@@ -60,8 +61,9 @@ public class MovieSessionController {
     public MovieSessionResponseDto updateMovieSession(
             @PathVariable Long id,
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+        MovieSession movieSession = movieSessionDtoMapper.parseToModel(movieSessionRequestDto);
+        movieSession.setId(id);
         return movieSessionDtoMapper.parseToDto(
-                movieSessionService.update(
-                        movieSessionDtoMapper.parseToModel(movieSessionRequestDto)));
+                movieSessionService.update(movieSession));
     }
 }
