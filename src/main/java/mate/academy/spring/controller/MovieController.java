@@ -31,7 +31,8 @@ public class MovieController {
     }
 
     @PostMapping
-    public Long add(@RequestBody MovieRequestDto movieRequestDto) {
-        return movieService.add(movieDtoMapper.parseToModel(movieRequestDto)).getId();
+    public MovieResponseDto add(@RequestBody MovieRequestDto movieRequestDto) {
+        return movieDtoMapper.parseToDto(movieService.add(movieDtoMapper
+                .parseToModel(movieRequestDto)));
     }
 }

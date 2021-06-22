@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
-import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,26 +31,28 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public Long add(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        return movieSessionService.add(movieSessionDtoMapper.parseToModel(movieSessionRequestDto))
-                .getId();
+    public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto
+                                                   movieSessionRequestDto) {
+        return movieSessionDtoMapper.parseToDto(movieSessionService.add(movieSessionDtoMapper
+                .parseToModel(movieSessionRequestDto)));
     }
 
     @GetMapping("/available")
     public List<MovieSessionResponseDto> getAllAvailable(
-            @RequestParam Long id, @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
-        return movieSessionService.findAvailableSessions(id, date).stream()
+            @RequestParam Long movieId, @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
+        return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionDtoMapper::parseToDto)
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/${id}")
-    public MovieSession update(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        return movieSessionService.update(movieSessionDtoMapper.parseToModel(
-                movieSessionRequestDto));
+    @PutMapping("/{id}")
+    public MovieSessionResponseDto update(@RequestBody MovieSessionRequestDto
+                                                      movieSessionRequestDto) {
+        return movieSessionDtoMapper.parseToDto(movieSessionService.update(movieSessionDtoMapper
+                .parseToModel(movieSessionRequestDto)));
     }
 
-    @DeleteMapping("/${id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
     }
