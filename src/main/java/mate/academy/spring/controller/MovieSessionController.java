@@ -1,12 +1,10 @@
 package mate.academy.spring.controller;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
-import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.security.mapper.MovieSessionDtoMapper;
 import mate.academy.spring.service.MovieSessionService;
@@ -60,17 +58,6 @@ public class MovieSessionController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(movieSessionService.get(id));
-    }
-
-    @GetMapping("/inject")
-    public String create() {
-        MovieSession movieSession = new MovieSession();
-        Movie movie = new Movie();
-        movie.setTitle("Frozen");
-        movie.setDescription("Some description");
-        movieSession.setMovie(movie);
-        movieSession.setShowTime(LocalDateTime.now());
-        return "Done";
     }
 }
 

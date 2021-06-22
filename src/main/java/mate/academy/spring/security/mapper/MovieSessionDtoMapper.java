@@ -12,7 +12,7 @@ public class MovieSessionDtoMapper {
         response.setId(movieSession.getId());
         response.setMovie(movieSession.getMovie());
         response.setCinemaHall(movieSession.getCinemaHall());
-        response.setShowTime(movieSession.getShowTime());
+        response.setShowTime(String.valueOf(movieSession.getShowTime()));
         return response;
     }
 
