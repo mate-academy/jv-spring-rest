@@ -3,9 +3,9 @@ package mate.academy.spring.service.mapper;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
-@Controller
+@Component
 public class MovieDtoMapper {
     public MovieResponseDto parseToDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
