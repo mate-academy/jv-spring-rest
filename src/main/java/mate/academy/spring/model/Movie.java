@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 
 @Entity
+@AllArgsConstructor
 @Table(name = "movies")
 public class Movie {
     @Id
@@ -17,7 +19,12 @@ public class Movie {
 
     public Movie() {
     }
-
+    
+    public Movie(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+    
     public Movie(String title) {
         this.title = title;
     }
