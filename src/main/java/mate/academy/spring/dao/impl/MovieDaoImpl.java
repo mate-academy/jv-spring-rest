@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.persistence.criteria.CriteriaQuery;
 import mate.academy.spring.dao.AbstractDao;
-import mate.academy.spring.dao.MovieDao;
+import mate.academy.spring.dao.MovieServise;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Movie;
 import org.hibernate.Session;
@@ -12,7 +12,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MovieDaoImpl extends AbstractDao<Movie> implements MovieDao {
+public class MovieDaoImpl extends AbstractDao<Movie> implements MovieServise {
     public MovieDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
