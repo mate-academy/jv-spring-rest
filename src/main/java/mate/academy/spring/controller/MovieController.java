@@ -32,14 +32,14 @@ public class MovieController {
     public List<MovieResponseDto> getAll() {
         return movieService.getAll()
                 .stream()
-                .map(movieMapper::parseToDto)
+                .map(movieMapper::mapToDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MovieResponseDto add(@RequestBody MovieRequestDto movieRequestDto) {
-        Movie movie = movieMapper.parseToEntity(movieRequestDto);
-        return movieMapper.parseToDto(movieService.add(movie));
+        Movie movie = movieMapper.mapToEntity(movieRequestDto);
+        return movieMapper.mapToDto(movieService.add(movie));
     }
 }
