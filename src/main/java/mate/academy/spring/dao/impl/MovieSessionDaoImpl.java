@@ -14,6 +14,7 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -56,11 +57,50 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
 
     @Override
     public MovieSession update(MovieSession movieSession) {
-        return null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.update(movieSession);
+            transaction.commit();
+            return movieSession;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't update movie session"
+                    + movieSession, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.createQuery("DELETE MovieSession ms "
+                    + "WHERE ms.id =: id", MovieSession.class)
+                    .setParameter("id", id)
+                    .executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't delete movie session by id "
+                    + id, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 }
