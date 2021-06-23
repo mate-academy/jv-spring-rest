@@ -8,7 +8,6 @@ import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.dto.MovieSessionRequestDto;
 import mate.academy.spring.service.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.mappers.MovieSessionMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +27,6 @@ public class MovieSessionController {
     private MovieSessionService movieSessionService;
     private MovieSessionMapper movieSessionMapper;
 
-    @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionMapper movieSessionMapper) {
         this.movieSessionService = movieSessionService;
@@ -49,7 +47,7 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public MovieSessionResponseDto update(@PathVariable Long id,
+    public MovieSessionResponseDto update(@PathVariable @RequestBody Long id,
                                           MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.parseDtoToEntity(movieSessionRequestDto);
         movieSession.setId(id);

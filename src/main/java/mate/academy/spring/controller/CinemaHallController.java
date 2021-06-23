@@ -6,7 +6,6 @@ import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.dto.CinemaHallRequestDto;
 import mate.academy.spring.service.dto.CinemaHallResponseDto;
 import mate.academy.spring.service.mappers.CinemaHallMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +20,6 @@ public class CinemaHallController {
     private CinemaHallService cinemaHallService;
     private CinemaHallMapper cinemaHallMapper;
 
-    @Autowired
     public CinemaHallController(CinemaHallService cinemaHallService,
                                 CinemaHallMapper cinemaHallMapper) {
         this.cinemaHallService = cinemaHallService;
