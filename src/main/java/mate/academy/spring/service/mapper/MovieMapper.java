@@ -13,7 +13,6 @@ public class MovieMapper {
         responseDto.setTitle(movie.getTitle());
         responseDto.setDescription(movie.getDescription());
         return responseDto;
-
     }
 
     public Movie parseToModel(MovieRequestDto requestDto) {
