@@ -1,12 +1,12 @@
 package mate.academy.spring.mapper;
 
 import mate.academy.spring.model.Movie;
-import mate.academy.spring.model.User;
+import mate.academy.spring.model.dto.request.MovieRequestDto;
 import mate.academy.spring.model.dto.response.MovieResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieDtoMapper {
+public class MovieMapper {
 
     public MovieResponseDto parse(Movie movie) {
         MovieResponseDto responseDto = new MovieResponseDto();
@@ -14,6 +14,12 @@ public class MovieDtoMapper {
         responseDto.setTitle(movie.getTitle());
         responseDto.setDescription(movie.getDescription());
         return responseDto;
+    }
+    public Movie toModel(MovieRequestDto requestDto) {
+        Movie movie = new Movie();
+        movie.setTitle(requestDto.getTitle());
+        movie.setDescription(requestDto.getDescription());
+        return movie;
     }
 
 }
