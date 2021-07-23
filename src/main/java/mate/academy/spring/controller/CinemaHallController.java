@@ -26,7 +26,7 @@ public class CinemaHallController {
 
 
     @GetMapping
-    public List<CinemaHallResponseDto> getAllUsers() {
+    public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService
                 .getAll()
                 .stream()

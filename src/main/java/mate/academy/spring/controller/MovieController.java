@@ -22,7 +22,7 @@ public class MovieController {
 
 
     @GetMapping
-    public List<MovieResponseDto> getAllUsers() {
+    public List<MovieResponseDto> getAll() {
         return movieService
                 .getAll()
                 .stream()
