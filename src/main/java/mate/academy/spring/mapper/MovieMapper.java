@@ -15,6 +15,7 @@ public class MovieMapper {
         responseDto.setDescription(movie.getDescription());
         return responseDto;
     }
+
     public Movie toModel(MovieRequestDto requestDto) {
         Movie movie = new Movie();
         movie.setTitle(requestDto.getTitle());
