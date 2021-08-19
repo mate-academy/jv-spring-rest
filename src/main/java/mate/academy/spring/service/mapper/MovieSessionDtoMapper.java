@@ -19,7 +19,7 @@ public class MovieSessionDtoMapper {
         this.cinemaHallService = cinemaHallService;
     }
 
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto dto = new MovieSessionResponseDto();
         dto.setId(movieSession.getId());
         dto.setMovieId(movieSession.getMovie().getId());
@@ -32,7 +32,8 @@ public class MovieSessionDtoMapper {
         MovieSession session = new MovieSession();
         session.setMovie(movieService.get(dto.getMovieId()));
         session.setCinemaHall(cinemaHallService.get(dto.getCinemaHallId()));
-        session.setShowTime(LocalDateTime.parse(dto.getDate(), DateTimeFormatter.ofPattern("dd.MM.yyyy HH-mm")));
+        session.setShowTime(LocalDateTime.parse(dto.getDate(),
+                DateTimeFormatter.ofPattern("dd.MM.yyyy HH-mm")));
         return session;
     }
 }

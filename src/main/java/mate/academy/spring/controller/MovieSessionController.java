@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
@@ -33,29 +32,29 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public MovieSessionResponseDto post(@RequestBody MovieSessionRequestDto dto) {
+    public MovieSessionResponseDto addMovieSession(@RequestBody MovieSessionRequestDto dto) {
         MovieSession session = service.add(mapper.toMovieSession(dto));
-        return mapper.parse(session);
+        return mapper.toDto(session);
     }
 
     @GetMapping
-    public List<MovieSessionResponseDto> get(@RequestParam Long id, @RequestParam
+    public List<MovieSessionResponseDto> getAllMovieSessions(@RequestParam Long id, @RequestParam
             @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return service.findAvailableSessions(id, date).stream()
-                .map(mapper::parse)
+                .map(mapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
-    public MovieSessionResponseDto update(@RequestBody MovieSessionRequestDto dto,
+    public MovieSessionResponseDto updateMovieSession(@RequestBody MovieSessionRequestDto dto,
                                           @PathVariable Long id) {
         MovieSession session = mapper.toMovieSession(dto);
         session.setId(id);
-        return mapper.parse(service.update(session));
+        return mapper.toDto(service.update(session));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void deleteMovieSession(@PathVariable Long id) {
         service.delete(id);
     }
 }
