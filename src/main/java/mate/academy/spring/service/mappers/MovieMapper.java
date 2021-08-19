@@ -1,4 +1,4 @@
-package mate.academy.spring.service;
+package mate.academy.spring.service.mappers;
 
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.MovieRequestDto;

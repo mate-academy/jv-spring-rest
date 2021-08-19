@@ -1,4 +1,4 @@
-package mate.academy.spring.service;
+package mate.academy.spring.service.mappers;
 
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
