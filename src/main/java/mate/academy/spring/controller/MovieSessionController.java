@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.model.MovieSession;
