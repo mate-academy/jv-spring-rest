@@ -98,6 +98,4 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             }
         }
     }
-
-
 }
