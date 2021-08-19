@@ -1,0 +1,39 @@
+package mate.academy.spring.controller;
+
+import mate.academy.spring.model.Movie;
+import mate.academy.spring.model.dto.MovieRequestDto;
+import mate.academy.spring.model.dto.MovieResponseDto;
+import mate.academy.spring.service.MovieService;
+import mate.academy.spring.service.mapper.MovieMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/movies")
+public class MovieController {
+    private final MovieService movieService;
+    private final MovieMapper movieMapper;
+
+    @Autowired
+    public MovieController(MovieService movieService, MovieMapper movieMapper) {
+        this.movieService = movieService;
+        this.movieMapper = movieMapper;
+    }
+
+    @PostMapping
+    public MovieResponseDto createMovie(@RequestBody MovieRequestDto movieRequestDto) {
+        Movie movie = movieMapper.toModel(movieRequestDto);
+        movieService.add(movie);
+        return movieMapper.toDto(movie);
+    }
+
+    @GetMapping
+    public List<MovieResponseDto> getAllMovies() {
+        return movieService.getAll().stream()
+                .map(movieMapper::toDto)
+                .collect(Collectors.toList());
+    }
+}
