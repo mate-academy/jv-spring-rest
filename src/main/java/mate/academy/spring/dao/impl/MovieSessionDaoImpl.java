@@ -62,7 +62,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.delete(get(id));
+            session.delete(id);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
