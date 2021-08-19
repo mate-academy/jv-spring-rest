@@ -30,7 +30,7 @@ public class CinemaHallController {
 
     @GetMapping
     @ResponseBody
-    public List<CinemaHallResponseDto> get() {
+    public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallMapper::toResponseDto)
                 .collect(Collectors.toList());
