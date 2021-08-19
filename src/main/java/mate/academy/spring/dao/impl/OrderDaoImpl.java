@@ -8,7 +8,6 @@ import mate.academy.spring.model.Order;
 import mate.academy.spring.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,14 +17,17 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     }
 
     @Override
-    public List<Order> getOrdersHistory(User user) {
+    public List<Order> getByUser(User user) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Order> query = session.createQuery("FROM Order o "
-                    + "left join fetch o.tickets "
-                    + "left join fetch o.user "
-                    + "WHERE o.user = :user", Order.class);
-            query.setParameter("user", user);
-            return query.getResultList();
+            return session.createQuery("FROM Order o "
+                    + "JOIN FETCH o.user "
+                    + "JOIN FETCH o.tickets t "
+                    + "JOIN FETCH t.movieSession ms "
+                    + "JOIN FETCH ms.movie "
+                    + "JOIN FETCH ms.cinemaHall "
+                    + "WHERE o.user = :user", Order.class)
+                    .setParameter("user", user)
+                    .getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Cannot find orders of user by user: " + "user", e);
         }
