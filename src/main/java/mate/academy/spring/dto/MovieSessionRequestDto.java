@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 public class MovieSessionRequestDto {
     private Long movieId;
     private Long cinemaHallId;
-    private LocalDateTime date;
+    private String date;
 
     public MovieSessionRequestDto() {
     }
 
-    public MovieSessionRequestDto(Long movieId, Long cinemaHallId, LocalDateTime date) {
+    public MovieSessionRequestDto(Long movieId, Long cinemaHallId, String date) {
         this.movieId = movieId;
         this.cinemaHallId = cinemaHallId;
         this.date = date;
@@ -32,11 +32,11 @@ public class MovieSessionRequestDto {
         this.cinemaHallId = cinemaHallId;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
