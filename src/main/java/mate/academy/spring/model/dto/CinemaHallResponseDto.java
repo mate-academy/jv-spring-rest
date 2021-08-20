@@ -1,5 +1,7 @@
 package mate.academy.spring.model.dto;
 
+import org.springframework.stereotype.Component;
+
 public class CinemaHallResponseDto {
     private Long id;
     private int capacity;

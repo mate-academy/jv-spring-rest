@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("movies")
+@RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
     private final MovieMapper movieMapper;
@@ -31,7 +31,7 @@ public class MovieController {
     }
 
     @PostMapping
-    public MovieResponseDto addMovie(@RequestBody MovieRequestDto requestDto) {
+    public MovieResponseDto add(@RequestBody MovieRequestDto requestDto) {
         return movieMapper.toDto(movieService.add(movieMapper.toModel(requestDto)));
     }
 }

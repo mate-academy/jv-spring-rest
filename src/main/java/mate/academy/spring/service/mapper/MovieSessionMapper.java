@@ -30,6 +30,7 @@ public class MovieSessionMapper {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(requestDto.getMovieId()));
         movieSession.setCinemaHall(cinemaHallService.get(requestDto.getCinemaHallId()));
+        movieSession.setShowTime(requestDto.getShowTime());
         return movieSession;
     }
 }
