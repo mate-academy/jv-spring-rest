@@ -32,8 +32,8 @@ public class MovieSessionResponseDto {
         this.cinemaHallId = cinemaHallId;
     }
 
-    public LocalDateTime getShowTime(LocalDateTime showTime) {
-        return this.showTime;
+    public LocalDateTime getShowTime() {
+        return showTime;
     }
 
     public void setShowTime(LocalDateTime showTime) {
