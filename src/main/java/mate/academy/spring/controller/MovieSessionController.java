@@ -37,7 +37,7 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public MovieSessionResponseDto add(@PathVariable Long id,
+    public MovieSessionResponseDto update(@PathVariable Long id,
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = mapper.parse(movieSessionRequestDto);
         movieSession.setId(id);
@@ -46,12 +46,13 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public Long delete(@PathVariable Long id) {
         service.delete(id);
+        return id;
     }
 
     @GetMapping("/")
-    public List<MovieSessionResponseDto> getAll(@RequestParam Long movieId,
+    public List<MovieSessionResponseDto> getAvailable(@RequestParam Long movieId,
             @RequestParam
             @DateTimeFormat(pattern = "dd.MM.yyyy")
                     LocalDate date) {
