@@ -22,11 +22,11 @@ public class MovieSessionMapperDto {
                 session.getCinemaHall(), session.getShowTime());
     }
 
-    public MovieSession toModel(MovieSessionRequestDto req) {
+    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession session = new MovieSession();
-        session.setMovie(movieService.get(req.getMovieId()));
-        session.setCinemaHall(cinemaHallService.get(req.getCinemaHallId()));
-        session.setShowTime(req.getShowTime());
+        session.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
+        session.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
+        session.setShowTime(movieSessionRequestDto.getShowTime());
         return session;
     }
 }

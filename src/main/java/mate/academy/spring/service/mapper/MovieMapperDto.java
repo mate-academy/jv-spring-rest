@@ -11,7 +11,7 @@ public class MovieMapperDto {
         return new MovieResponseDto(movie.getId(),movie.getTitle(), movie.getDescription());
     }
 
-    public Movie toModel(MovieRequestDto req) {
-        return new Movie(req.getTitle(), req.getDescription());
+    public Movie toModel(MovieRequestDto movieRequestDto) {
+        return new Movie(movieRequestDto.getTitle(), movieRequestDto.getDescription());
     }
 }

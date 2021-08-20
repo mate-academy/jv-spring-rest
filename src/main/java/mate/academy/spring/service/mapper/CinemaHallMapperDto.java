@@ -11,7 +11,7 @@ public class CinemaHallMapperDto {
         return new CinemaHallResponseDto(hall.getId(), hall.getCapacity(), hall.getDescription());
     }
 
-    public CinemaHall toModel(CinemaHallRequestDto req) {
-        return new CinemaHall(req.getCapacity(), req.getDescription());
+    public CinemaHall toModel(CinemaHallRequestDto cinemaHallRequestDto) {
+        return new CinemaHall(cinemaHallRequestDto.getCapacity(), cinemaHallRequestDto.getDescription());
     }
 }
