@@ -8,13 +8,6 @@ public class MovieSessionResponseDto {
     private Long cinemaHallId;
     private LocalDateTime date;
 
-    public MovieSessionResponseDto(Long id, Long movieId, Long cinemaHallId, LocalDateTime date) {
-        this.id = id;
-        this.movieId = movieId;
-        this.cinemaHallId = cinemaHallId;
-        this.date = date;
-    }
-
     public Long getId() {
         return id;
     }
