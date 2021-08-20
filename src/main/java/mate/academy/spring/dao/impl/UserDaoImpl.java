@@ -6,7 +6,6 @@ import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,10 +17,9 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     @Override
     public Optional<User> findByEmail(String email) {
         try (Session session = sessionFactory.openSession()) {
-            Query<User> query = session.createQuery("FROM User u "
-                    + "WHERE u.email = :email", User.class);
-            query.setParameter("email", email);
-            return query.uniqueResultOptional();
+            return session.createQuery("FROM User u WHERE u.email = :email ", User.class)
+                    .setParameter("email", email)
+                    .uniqueResultOptional();
         }
     }
 }
