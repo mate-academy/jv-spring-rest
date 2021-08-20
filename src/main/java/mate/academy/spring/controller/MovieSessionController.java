@@ -10,6 +10,7 @@ import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -49,6 +50,7 @@ public class MovieSessionController {
         service.delete(id);
     }
 
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> getAvailable(@RequestParam Long movieId,
             @RequestParam
             @DateTimeFormat(pattern = "dd.MM.yyyy")
