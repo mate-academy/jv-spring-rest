@@ -1,7 +1,5 @@
 package mate.academy.spring.model.dto;
 
-import org.springframework.stereotype.Component;
-
 public class MovieResponseDto {
     private Long id;
     private String title;
