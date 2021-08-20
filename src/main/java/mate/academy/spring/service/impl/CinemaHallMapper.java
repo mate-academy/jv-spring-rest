@@ -6,7 +6,7 @@ import mate.academy.spring.model.CinemaHall;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CinemaHallMapperImpl {
+public class CinemaHallMapper {
     public CinemaHallResponseDto parseFromModelToDto(CinemaHall cinemaHall) {
         CinemaHallResponseDto cinemaHallResponseDto = new CinemaHallResponseDto();
         cinemaHallResponseDto.setCapacity(cinemaHall.getCapacity());

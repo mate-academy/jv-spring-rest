@@ -6,7 +6,7 @@ import mate.academy.spring.model.Movie;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieMapperImpl {
+public class MovieMapper {
     public MovieResponseDto parseFromModelToDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
         movieResponseDto.setDescription(movie.getDescription());

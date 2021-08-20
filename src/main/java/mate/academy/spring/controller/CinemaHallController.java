@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import mate.academy.spring.dto.CinemaHallRequestDto;
 import mate.academy.spring.dto.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
-import mate.academy.spring.service.impl.CinemaHallMapperImpl;
+import mate.academy.spring.service.impl.CinemaHallMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private CinemaHallService cinemaHallService;
-    private CinemaHallMapperImpl cinemaHallMapper;
+    private CinemaHallMapper cinemaHallMapper;
 
     @Autowired
     public CinemaHallController(CinemaHallService cinemaHallService,
-                                CinemaHallMapperImpl cinemaHallMapper) {
+                                CinemaHallMapper cinemaHallMapper) {
         this.cinemaHallService = cinemaHallService;
         this.cinemaHallMapper = cinemaHallMapper;
     }
