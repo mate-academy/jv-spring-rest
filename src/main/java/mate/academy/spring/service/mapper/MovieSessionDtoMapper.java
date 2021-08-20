@@ -22,7 +22,7 @@ public class MovieSessionDtoMapper {
         this.cinemaHallService = cinemaHallService;
     }
 
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         return new MovieSessionResponseDto()
                 .setId(movieSession.getId())
                 .setMovieId(movieSession.getMovie().getId())

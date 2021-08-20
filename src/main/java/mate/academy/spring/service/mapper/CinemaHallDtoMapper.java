@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CinemaHallDtoMapper {
-    public CinemaHallResponseDto parse(CinemaHall cinemaHall) {
+    public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
         return new CinemaHallResponseDto()
                 .setId(cinemaHall.getId())
                 .setCapacity(cinemaHall.getCapacity())

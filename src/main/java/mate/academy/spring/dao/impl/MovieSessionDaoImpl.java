@@ -26,28 +26,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public MovieSession add(MovieSession movieSession) {
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.save(movieSession);
-            transaction.commit();
-            return movieSession;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can't insert movie session: " + movieSession, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-    }
-
-    @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -106,13 +84,13 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.delete(id);
+            session.delete(session.load(MovieSession.class, id));
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't delete movie session ", e);
+            throw new DataProcessingException("Can't delete movie session by id = " + id, e);
         } finally {
             if (session != null) {
                 session.close();
