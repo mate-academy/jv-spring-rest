@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "movies")
@@ -15,7 +16,13 @@ public class Movie {
     private String title;
     private String description;
 
+    @Autowired
     public Movie() {
+    }
+
+    public Movie(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public Movie(String title) {
