@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("movies")
 public class MovieController {
-    private MovieService movieService;
-    private MovieMapper movieMapper;
+    private final MovieService movieService;
+    private final MovieMapper movieMapper;
 
     public MovieController(MovieService movieService, MovieMapper movieMapper) {
         this.movieService = movieService;
@@ -32,9 +32,6 @@ public class MovieController {
 
     @PostMapping
     public MovieResponseDto addMovie(@RequestBody MovieRequestDto requestDto) {
-        return movieMapper.parse(
-                movieService.add(
-                        movieMapper.parseToModel(requestDto))
-        );
+        return movieMapper.parse(movieService.add(movieMapper.parseToModel(requestDto)));
     }
 }
