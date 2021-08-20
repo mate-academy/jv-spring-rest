@@ -34,16 +34,16 @@ public class MovieSessionController {
     @PostMapping
     public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto
                                                       movieSessionRequestDto) {
-        return movieSessionMapper.parse(movieSessionService
+        return movieSessionMapper.toDto(movieSessionService
                 .add(movieSessionMapper.toModel(movieSessionRequestDto)));
     }
 
     @GetMapping("/availaible")
-    public List<MovieSessionResponseDto> getAll(@RequestParam Long id,
+    public List<MovieSessionResponseDto> getAll(@RequestParam Long movieId,
                                                 @RequestParam @DateTimeFormat(
                                                         pattern = "dd.MM.yyyy") LocalDate date) {
-        return movieSessionService.findAvailableSessions(id, date)
-                .stream().map(movieSessionMapper::parse)
+        return movieSessionService.findAvailableSessions(movieId, date)
+                .stream().map(movieSessionMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -52,7 +52,7 @@ public class MovieSessionController {
             @RequestBody MovieSessionRequestDto movieSessionRequestDto, @PathVariable Long id) {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
-        return movieSessionMapper.parse(movieSessionService.update(movieSession));
+        return movieSessionMapper.toDto(movieSessionService.update(movieSession));
     }
 
     @DeleteMapping("/{id}")
