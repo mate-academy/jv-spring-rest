@@ -32,7 +32,7 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     public MovieSession update(MovieSession movieSession) {
-        return sessionDao.update(movieSession).orElseThrow();
+        return sessionDao.update(movieSession);
     }
 
     @Override

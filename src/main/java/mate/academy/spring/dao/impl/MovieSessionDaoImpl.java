@@ -56,7 +56,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public Optional<MovieSession> update(MovieSession newMovieSession) {
+    public MovieSession update(MovieSession newMovieSession) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -64,7 +64,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             transaction = session.beginTransaction();
             session.update(newMovieSession);
             transaction.commit();
-            return Optional.ofNullable(newMovieSession);
+            return newMovieSession;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
