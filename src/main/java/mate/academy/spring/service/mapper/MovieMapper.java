@@ -1,13 +1,8 @@
 package mate.academy.spring.service.mapper;
 
 import mate.academy.spring.model.Movie;
-import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.movie.MovieRequestDto;
 import mate.academy.spring.model.dto.movie.MovieResponseDto;
-import mate.academy.spring.model.dto.moviesession.MovieSessionRequestDto;
-import mate.academy.spring.model.dto.moviesession.MovieSessionResponseDto;
-import mate.academy.spring.service.CinemaHallService;
-import mate.academy.spring.service.MovieService;
 import org.springframework.stereotype.Component;
 
 @Component
