@@ -33,7 +33,8 @@ public class MovieSessionController {
     @PostMapping
     public MovieSessionResponseDto create(
             @RequestBody MovieSessionRequestDto requestDto) {
-        return mapper.toDto(service.add(mapper.toModel(requestDto)));
+        MovieSession movieSession = service.add(mapper.toModel(requestDto));
+        return mapper.toDto(movieSession);
     }
 
     @GetMapping("/available")
