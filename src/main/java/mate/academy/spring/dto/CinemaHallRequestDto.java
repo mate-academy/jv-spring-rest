@@ -1,11 +1,8 @@
 package mate.academy.spring.dto;
 
-public class CinemaHalRequestDto {
+public class CinemaHallRequestDto {
     private int capacity;
     private String description;
-
-    public CinemaHalRequestDto() {
-    }
 
     public int getCapacity() {
         return capacity;

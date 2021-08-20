@@ -5,9 +5,6 @@ public class MovieSessionRequestDto {
     private Long cinemaHallId;
     private String date;
 
-    public MovieSessionRequestDto() {
-    }
-
     public MovieSessionRequestDto(Long movieId, Long cinemaHallId, String date) {
         this.movieId = movieId;
         this.cinemaHallId = cinemaHallId;

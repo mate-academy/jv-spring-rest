@@ -4,9 +4,6 @@ public class MovieRequestDto {
     private String title;
     private String description;
 
-    public MovieRequestDto() {
-    }
-
     public MovieRequestDto(String title, String description) {
         this.title = title;
         this.description = description;
