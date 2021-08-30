@@ -53,8 +53,3 @@ public class MovieSessionController {
         sessionService.delete(id);
     }
 }
-
-
-/*
-Get all available movie sessions - GET: /movie-sessions/available?movieId=1&date=29.02.2020
- */
