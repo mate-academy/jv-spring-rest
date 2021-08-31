@@ -1,12 +1,11 @@
 package mate.academy.spring.model.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 public class CinemaHallResponseDto {
     private Long id;
     private int capacity;

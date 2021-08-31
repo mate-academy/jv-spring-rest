@@ -3,7 +3,7 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/movie-sessions")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MovieSessionController {
     private MovieSessionService sessionService;
     private MovieSessionDtoMapper sessionMapper;

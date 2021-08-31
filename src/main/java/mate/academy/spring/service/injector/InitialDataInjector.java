@@ -2,7 +2,7 @@ package mate.academy.spring.service.injector;
 
 import java.time.LocalDate;
 import javax.annotation.PostConstruct;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
@@ -12,14 +12,14 @@ import mate.academy.spring.service.MovieSessionService;
 import org.springframework.stereotype.Component;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class InitialDataInjector {
     private final CinemaHallService cinemaHallService;
     private final MovieService movieService;
     private final MovieSessionService movieSessionService;
 
     @PostConstruct
-    public void injectInitialData() {
+    private void injectInitialData() {
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setCapacity(150);
         cinemaHall.setDescription("Cinetech+");

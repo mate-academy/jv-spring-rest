@@ -2,7 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cinema-halls")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
     private final CinemaHallDtoMapper cinemaHallMapper;

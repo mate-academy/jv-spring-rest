@@ -2,7 +2,7 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/movies")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MovieController {
     private MovieService movieService;
     private MovieDtoMapper movieMapper;
