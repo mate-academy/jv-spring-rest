@@ -2,7 +2,6 @@ package mate.academy.spring.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
-
 import lombok.Data;
 
 @Data
