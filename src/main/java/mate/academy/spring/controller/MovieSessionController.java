@@ -32,9 +32,9 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available?movieId={movieId}&date={date}")
-    public List<MovieSessionResponseDto> getAvailableMovieSessions
-            (@PathVariable Long movieId, @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")
-                    LocalDate date) {
+    public List<MovieSessionResponseDto> getAvailableMovieSessions(
+            @PathVariable Long movieId, @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")
+            LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionDtoMapper::toDto)
                 .collect(Collectors.toList());
