@@ -42,7 +42,9 @@ public class MovieSessionController {
 
     @PostMapping
     public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto requestDto) {
-        return movieSessionDtoMapper.toDto(movieSessionDtoMapper.toModel(requestDto));
+        MovieSession movieSession = movieSessionDtoMapper.toModel(requestDto);
+        movieSessionService.add(movieSession);
+        return movieSessionDtoMapper.toDto(movieSession);
     }
 
     @PutMapping("/{id}")
