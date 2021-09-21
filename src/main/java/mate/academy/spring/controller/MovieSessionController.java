@@ -1,11 +1,8 @@
 package mate.academy.spring.controller;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.model.CinemaHall;
-import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
@@ -69,56 +66,5 @@ public class MovieSessionController {
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {
         movieSessionService.delete(id);
-    }
-
-    @GetMapping("/inject")
-    public String injectMockData() {
-        Movie fastAndFurious = new Movie("Fast and Furious");
-        fastAndFurious.setDescription("An action film about street racing, heists, and spies.");
-        movieService.add(fastAndFurious);
-
-        Movie movieTerminator = new Movie("The Terminator");
-        movieTerminator.setDescription("Action with Arnold Schwarzenegger. 1984");
-        movieService.add(movieTerminator);
-
-        CinemaHall yellow = new CinemaHall();
-        yellow.setCapacity(20);
-        yellow.setDescription("Yellow hall");
-        cinemaHallService.add(yellow);
-
-        CinemaHall green = new CinemaHall();
-        green.setCapacity(80);
-        green.setDescription("Green hall");
-        cinemaHallService.add(green);
-
-        MovieSession msFastAndFurious1 = new MovieSession(fastAndFurious, yellow,
-                LocalDateTime.of(2021, 9, 12, 9, 0));
-        movieSessionService.add(msFastAndFurious1);
-
-        MovieSession msFastAndFurious2 = new MovieSession(fastAndFurious, yellow,
-                LocalDateTime.of(2021, 9, 12, 12, 0));
-        movieSessionService.add(msFastAndFurious2);
-
-        MovieSession msFastAndFurious3 = new MovieSession(fastAndFurious, green,
-                LocalDateTime.of(2021, 9, 12, 18, 0));
-        movieSessionService.add(msFastAndFurious3);
-
-        MovieSession msFastAndFurious4 = new MovieSession(fastAndFurious, yellow,
-                LocalDateTime.of(2021, 9, 14, 9, 0));
-        movieSessionService.add(msFastAndFurious4);
-
-        MovieSession msFastAndFurious5 = new MovieSession(fastAndFurious, green,
-                LocalDateTime.of(2021, 9, 14, 9, 0));
-        movieSessionService.add(msFastAndFurious5);
-
-        MovieSession msTerminator1 = new MovieSession(movieTerminator, green,
-                LocalDateTime.of(2021, 9, 12, 9, 0));
-        movieSessionService.add(msTerminator1);
-
-        MovieSession msTerminator2 = new MovieSession(movieTerminator, yellow,
-                LocalDateTime.of(2021, 9, 12, 18, 0));
-        movieSessionService.add(msTerminator2);
-
-        return "The testing data was injected!";
     }
 }
