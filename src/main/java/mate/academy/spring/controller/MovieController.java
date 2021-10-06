@@ -29,7 +29,7 @@ public class MovieController {
                 .toModel(movieRequestDto)));
     }
 
-    @GetMapping("/get-all")
+    @GetMapping
     public List<MovieResponseDto> getAll() {
         return movieService.getAll()
                 .stream()

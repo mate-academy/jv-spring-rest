@@ -37,8 +37,8 @@ public class MovieSessionController {
                 .toModel(movieSessionRequestDto)));
     }
 
-    @GetMapping("/get-all")
-    public List<MovieSessionResponseDto> getAll(
+    @GetMapping("/available")
+    public List<MovieSessionResponseDto> getAvailable(
             @PathVariable Long id, @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")
             LocalDate date) {
         return movieSessionService.findAvailableSessions(1L, date)
