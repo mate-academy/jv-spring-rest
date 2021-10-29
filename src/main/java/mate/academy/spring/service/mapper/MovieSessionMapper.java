@@ -3,7 +3,6 @@ package mate.academy.spring.service.mapper;
 import java.time.LocalDateTime;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
-import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
