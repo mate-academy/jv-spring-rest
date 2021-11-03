@@ -28,7 +28,7 @@ public class CinemaHallController {
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll()
                 .stream()
-                .map(ch -> cinemaHallMapper.parseToDto(ch))
+                .map(cinemaHallMapper::parseToDto)
                 .collect(Collectors.toList());
     }
 
