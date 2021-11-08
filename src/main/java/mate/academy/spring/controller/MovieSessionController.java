@@ -38,22 +38,23 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> getAllAvailable(@RequestParam Long movieId,
+    public List<MovieSessionResponseDto> getAllAvailable(@RequestParam("movieId") Long movieId,
                                                          @RequestParam @DateTimeFormat(pattern
                                                                  = "dd.MM.yyyy") LocalDate date) {
+        System.out.println(date);
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
-    public MovieSessionResponseDto update(@PathVariable Long id) {
+    public MovieSessionResponseDto update(@PathVariable("id") Long id) {
         return movieSessionMapper.toDto(movieSessionService
                 .update(movieSessionService.get(id)));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        movieSessionService.delete(movieSessionService.get(id));
+    public void delete(@PathVariable("id") Long id) {
+       movieSessionService.delete(movieSessionService.get(id));
     }
 }
