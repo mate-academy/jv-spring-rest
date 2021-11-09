@@ -2,6 +2,7 @@ package mate.academy.spring.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
@@ -49,7 +50,9 @@ public class MovieSessionController {
 
     @PutMapping("/movie-sessions/{id}")
     public void update(@PathVariable Long id, @RequestBody MovieSessionRequestDto dto) {
-        supportMapper.update(id, dto);
+        MovieSession movieSession = supportMapper.movieSessionRequestDtoToMovieSession(dto);
+        movieSession.setId(id);
+        movieSessionService.update(movieSession);
     }
 
     @DeleteMapping("/movie-sessions/{id}")

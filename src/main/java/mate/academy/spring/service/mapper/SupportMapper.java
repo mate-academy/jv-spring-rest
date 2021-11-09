@@ -27,15 +27,6 @@ public class SupportMapper {
         session.setMovie(movieService.get(dto.getMovieId()));
         session.setCinemaHall(cinemaHallService.get(dto.getCinemaHallId()));
         session.setShowTime(dto.getShowTime());
-        return movieSessionService.add(session);
-    }
-
-    public void update(Long id, MovieSessionRequestDto dto) {
-        MovieSession movieSession = new MovieSession();
-        movieSession.setId(id);
-        movieSession.setMovie(movieService.get(dto.getMovieId()));
-        movieSession.setCinemaHall(cinemaHallService.get(dto.getCinemaHallId()));
-        movieSession.setShowTime(dto.getShowTime());
-        movieSessionService.update(movieSession);
+        return session;
     }
 }
