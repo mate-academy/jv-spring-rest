@@ -9,7 +9,6 @@ import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,6 +58,6 @@ public class MovieSessionController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-         movieSessionService.delete(id);
+        movieSessionService.delete(id);
     }
 }
