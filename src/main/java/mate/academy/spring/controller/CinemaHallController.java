@@ -2,8 +2,8 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.cinema_hall.CinemaHallRequestDto;
-import mate.academy.spring.dto.cinema_hall.CinemaHallResponseDto;
+import mate.academy.spring.dto.cinemahall.CinemaHallRequestDto;
+import mate.academy.spring.dto.cinemahall.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallDtoMapper;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +32,8 @@ public class CinemaHallController {
     }
 
     @PostMapping
-    public CinemaHallResponseDto createCinemaHall(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
+    public CinemaHallResponseDto createCinemaHall(
+            @RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallDtoMapper.toDto(cinemaHallService
                 .add(cinemaHallDtoMapper
                         .toModel(cinemaHallRequestDto)));

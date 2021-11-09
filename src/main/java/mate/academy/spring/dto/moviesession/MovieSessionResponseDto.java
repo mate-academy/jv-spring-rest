@@ -1,4 +1,4 @@
-package mate.academy.spring.dto.movie_session;
+package mate.academy.spring.dto.moviesession;
 
 import java.time.LocalDateTime;
 
