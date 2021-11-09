@@ -4,20 +4,16 @@ import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
-import mate.academy.spring.service.MovieSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SupportMapper {
-    private final MovieSessionService movieSessionService;
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
 
     @Autowired
-    public SupportMapper(MovieSessionService movieSessionService, MovieService movieService,
-                         CinemaHallService cinemaHallService) {
-        this.movieSessionService = movieSessionService;
+    public SupportMapper(MovieService movieService, CinemaHallService cinemaHallService) {
         this.movieService = movieService;
         this.cinemaHallService = cinemaHallService;
     }
