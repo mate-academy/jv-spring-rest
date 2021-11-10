@@ -37,18 +37,4 @@ public class MovieController {
         return movieDtoMapper.mapModelToDto(movieService.add(
                 movieDtoMapper.mapDtoToModel(movieRequestDto)));
     }
-
-    @GetMapping("/inject")
-    public String injectMokData() {
-        Movie fastAndFurious = new Movie("Fast and Furious");
-        fastAndFurious.setDescription("An action film about street racing, heists, and spies.");
-        Movie dune = new Movie("Dune");
-        dune.setDescription("Feature adaptation of Frank Herbert's science "
-                + "fiction novel, about the son of a noble family entrusted "
-                + "with the protection of the most valuable asset and most "
-                + "vital element in the galaxy.");
-        movieService.add(fastAndFurious);
-        movieService.add(dune);
-        return "Done!";
-    }
 }

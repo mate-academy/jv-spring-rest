@@ -37,17 +37,4 @@ public class CinemaHallController {
         return cinemaHallDtoMapper.mapModelToDto(cinemaHallService.add(
                 cinemaHallDtoMapper.mapDtoToModel(cinemaHallRequestDto)));
     }
-
-    @GetMapping("/inject")
-    public String injectMokData() {
-        CinemaHall firstCinemaHall = new CinemaHall();
-        firstCinemaHall.setCapacity(100);
-        firstCinemaHall.setDescription("first hall with capacity 100");
-        CinemaHall secondCinemaHall = new CinemaHall();
-        secondCinemaHall.setCapacity(200);
-        secondCinemaHall.setDescription("second hall with capacity 200");
-        cinemaHallService.add(firstCinemaHall);
-        cinemaHallService.add(secondCinemaHall);
-        return "Done!";
-    }
 }
