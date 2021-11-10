@@ -47,7 +47,8 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Cannot delete movie session by id: ", e);
+            throw new DataProcessingException("Cannot delete "
+                    + entity.getClass().getSimpleName() + ": " + entity, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -68,7 +69,8 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Cannot update movie session by id: ", e);
+            throw new DataProcessingException("Cannot update "
+                    + entity.getClass().getSimpleName() + ": " + entity, e);
         } finally {
             if (session != null) {
                 session.close();
