@@ -15,10 +15,10 @@ public class MovieDtoMapper {
         return movieResponseDto;
     }
 
-    public Movie toModel(MovieRequestDto requestDto) {
+    public Movie toModel(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
-        movie.setTitle(requestDto.getTitle());
-        movie.setDescription(requestDto.getDescription());
+        movie.setTitle(movieRequestDto.getTitle());
+        movie.setDescription(movieRequestDto.getDescription());
         return movie;
     }
 }
