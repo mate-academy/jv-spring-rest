@@ -40,9 +40,8 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/{id}")
-    public MovieSessionResponseDto get(
-            @PathVariable Long id) {
+    @GetMapping("/get")
+    public MovieSessionResponseDto get(@RequestParam Long id) {
         return movieSessionDtoMapper.toDto(movieSessionService.get(id));
     }
 
@@ -62,7 +61,7 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        movieSessionService.delete(id);
+    public Long delete(@PathVariable Long id) {
+        return movieSessionService.delete(id);
     }
 }
