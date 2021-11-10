@@ -40,6 +40,12 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/{id}")
+    public MovieSessionResponseDto get(
+            @PathVariable Long id) {
+        return movieSessionDtoMapper.toDto(movieSessionService.get(id));
+    }
+
     @PostMapping
     public MovieSessionResponseDto create(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
