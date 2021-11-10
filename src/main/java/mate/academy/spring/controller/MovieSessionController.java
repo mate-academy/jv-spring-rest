@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper mapper;
@@ -33,7 +35,7 @@ public class MovieSessionController {
         this.supportMapper = supportMapper;
     }
 
-    @GetMapping("/movie-sessions/available")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> find(@RequestParam Long movieId,
                                               @RequestParam
                                               @DateTimeFormat(pattern = "dd.MM.yyyy")
@@ -42,20 +44,20 @@ public class MovieSessionController {
                 movieSessionService.findAvailableSessions(movieId, date));
     }
 
-    @PostMapping("/movie-sessions")
+    @PostMapping
     public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto dto) {
         return mapper.movieSessionToMovieSessionResponseDto(movieSessionService
                 .add(supportMapper.movieSessionRequestDtoToMovieSession(dto)));
     }
 
-    @PutMapping("/movie-sessions/{id}")
+    @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody MovieSessionRequestDto dto) {
         MovieSession movieSession = supportMapper.movieSessionRequestDtoToMovieSession(dto);
         movieSession.setId(id);
         movieSessionService.update(movieSession);
     }
 
-    @DeleteMapping("/movie-sessions/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
     }
