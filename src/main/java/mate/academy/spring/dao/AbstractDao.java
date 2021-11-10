@@ -34,4 +34,45 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
             }
         }
     }
+
+    public void delete(T entity) {
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.delete(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Cannot delete movie session by id: ", e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    public T update(T entity) {
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.update(entity);
+            transaction.commit();
+            return entity;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Cannot update movie session by id: ", e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
 }
