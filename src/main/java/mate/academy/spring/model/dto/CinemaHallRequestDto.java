@@ -4,9 +4,6 @@ public class CinemaHallRequestDto {
     private int capacity;
     private String description;
 
-    public CinemaHallRequestDto() {
-    }
-
     public int getCapacity() {
         return capacity;
     }

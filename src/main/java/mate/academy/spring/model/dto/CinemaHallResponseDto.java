@@ -5,9 +5,6 @@ public class CinemaHallResponseDto {
     private int capacity;
     private String description;
 
-    public CinemaHallResponseDto() {
-    }
-
     public Long getId() {
         return id;
     }

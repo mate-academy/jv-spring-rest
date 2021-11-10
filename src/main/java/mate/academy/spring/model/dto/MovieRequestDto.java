@@ -4,9 +4,6 @@ public class MovieRequestDto {
     private String title;
     private String description;
 
-    public MovieRequestDto() {
-    }
-
     public String getTitle() {
         return title;
     }
