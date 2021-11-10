@@ -24,12 +24,12 @@ public class MovieSessionMapper {
         this.cinemaHallMapper = cinemaHallMapper;
     }
 
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
-        movieSessionResponseDto.setMovieDto(movieMapper.parse(movieSession.getMovie()));
+        movieSessionResponseDto.setMovieDto(movieMapper.toDto(movieSession.getMovie()));
         movieSessionResponseDto.setCinemaHallDto(cinemaHallMapper
-                .parse(movieSession.getCinemaHall()));
+                .toDto(movieSession.getCinemaHall()));
         movieSessionResponseDto.setShowTime(movieSession.getShowTime());
         return movieSessionResponseDto;
     }
