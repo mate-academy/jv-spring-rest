@@ -25,13 +25,15 @@ public class MovieSessionController {
     private MovieSessionService movieSessionService;
     private MovieSessionMapper movieSessionMapper;
 
-    public MovieSessionController(MovieSessionService movieSessionService, MovieSessionMapper movieSessionMapper) {
+    public MovieSessionController(MovieSessionService movieSessionService,
+                                  MovieSessionMapper movieSessionMapper) {
         this.movieSessionService = movieSessionService;
         this.movieSessionMapper = movieSessionMapper;
     }
 
     @PostMapping()
-    public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSessionResponseDto create(
+            @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionMapper.toDto(movieSessionService
                 .add(movieSessionMapper.toModel(movieSessionRequestDto)));
     }
@@ -56,8 +58,8 @@ public class MovieSessionController {
     public List<MovieSessionResponseDto> getAllAvailable(
             @RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date
-            ) {
-       return movieSessionService.findAvailableSessions(movieId, date)
+    ) {
+        return movieSessionService.findAvailableSessions(movieId, date)
                .stream()
                .map(movieSessionMapper::toDto)
                .collect(Collectors.toList());
