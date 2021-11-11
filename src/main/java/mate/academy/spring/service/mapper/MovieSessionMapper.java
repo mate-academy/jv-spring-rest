@@ -24,7 +24,7 @@ public class MovieSessionMapper {
         movieSessionResponseDto.setId(movieSession.getId());
         movieSessionResponseDto.setCinemaHallId(movieSession.getCinemaHall().getId());
         movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
-        movieSessionResponseDto.setShowTime(movieSession.getShowTime().toString());
+        movieSessionResponseDto.setShowTime(movieSession.getShowTime());
         return movieSessionResponseDto;
     }
 
@@ -32,7 +32,7 @@ public class MovieSessionMapper {
         MovieSession movieSession = new MovieSession();
         movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
         movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
-        movieSession.setShowTime(LocalDateTime.parse(movieSessionRequestDto.getShowTime()));
+        movieSession.setShowTime(movieSessionRequestDto.getShowTime());
         return movieSession;
     }
 }
