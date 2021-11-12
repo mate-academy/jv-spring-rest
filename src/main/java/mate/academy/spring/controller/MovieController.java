@@ -30,7 +30,7 @@ public class MovieController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping()
+    @PostMapping
     public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
         return movieMapper.toDto(movieService.add(movieMapper.toModel(movieRequestDto)));
     }
