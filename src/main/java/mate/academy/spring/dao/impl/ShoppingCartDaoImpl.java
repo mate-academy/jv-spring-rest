@@ -7,7 +7,6 @@ import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
@@ -27,21 +26,6 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
             return query.setParameter("id", user.getId()).getSingleResult();
         } catch (Exception e) {
             throw new DataProcessingException("Cannot find shopping cart using user ", e);
-        }
-    }
-
-    @Override
-    public void update(ShoppingCart shoppingCart) {
-        Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
-            session.update(shoppingCart);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Cannot create shopping cart ", e);
         }
     }
 }
