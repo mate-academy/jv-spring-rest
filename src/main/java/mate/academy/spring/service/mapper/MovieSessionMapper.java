@@ -1,29 +1,34 @@
 package mate.academy.spring.service.mapper;
 
-import mate.academy.spring.model.CinemaHall;
-import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
+import mate.academy.spring.service.CinemaHallService;
+import mate.academy.spring.service.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
-    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto,
-                                Movie movie,
-                                CinemaHall cinemaHall) {
+    private final MovieService movieService;
+    private final CinemaHallService cinemaHallService;
+
+    @Autowired
+    public MovieSessionMapper(MovieService movieService, CinemaHallService cinemaHallService) {
+        this.movieService = movieService;
+        this.cinemaHallService = cinemaHallService;
+    }
+
+    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
-        movieSession.setMovie(movie);
-        movieSession.setCinemaHall(cinemaHall);
+        movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
+        movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
         movieSession.setShowTime(movieSessionRequestDto.getShowTime());
         return movieSession;
     }
 
-    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto,
-                                Movie movie,
-                                CinemaHall cinemaHall,
-                                Long id) {
-        MovieSession movieSession = toModel(movieSessionRequestDto, movie, cinemaHall);
+    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto, Long id) {
+        MovieSession movieSession = toModel(movieSessionRequestDto);
         movieSession.setId(id);
         return movieSession;
     }
