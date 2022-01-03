@@ -54,6 +54,6 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
 
     private String getEntityName(T entity) {
         return entity.getClass().getSimpleName().replaceAll(
-                "(?<=\\w)([A-Z])", "$1 ").toLowerCase();
+                "(?<=\\w)([A-Z])", " $1").toLowerCase();
     }
 }
