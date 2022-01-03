@@ -27,7 +27,7 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
                 transaction.rollback();
             }
             throw new DataProcessingException("Can't insert "
-                    + entity.getClass().getSimpleName()
+                    + getEntityName(entity)
                     + ": " + entity, e);
         } finally {
             if (session != null) {
@@ -48,7 +48,12 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
                 transaction.rollback();
             }
             throw new DataProcessingException("Cannot remove "
-                    + entity.getClass().getSimpleName(), e);
+                    + getEntityName(entity) + ": " + entity, e);
         }
+    }
+
+    private String getEntityName(T entity) {
+        return entity.getClass().getSimpleName().replaceAll(
+                "(?<=\\w)([A-Z])", "$1 ").toLowerCase();
     }
 }
