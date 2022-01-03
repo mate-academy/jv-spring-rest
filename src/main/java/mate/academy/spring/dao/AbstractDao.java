@@ -26,12 +26,29 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't insert " + entity.getClass().getSimpleName()
+            throw new DataProcessingException("Can't insert "
+                    + entity.getClass().getSimpleName()
                     + ": " + entity, e);
         } finally {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public void remove(T entity) {
+        Transaction transaction = null;
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+            session.remove(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Cannot remove "
+                    + entity.getClass().getSimpleName(), e);
         }
     }
 }
