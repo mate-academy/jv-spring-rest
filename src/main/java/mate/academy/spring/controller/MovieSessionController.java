@@ -28,7 +28,6 @@ public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper movieSessionMapper;
 
-    @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionMapper movieSessionMapper) {
         this.movieSessionService = movieSessionService;
@@ -63,7 +62,7 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{movieSessionId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Long movieSessionId) {
         movieSessionService.remove(movieSessionService.get(movieSessionId));
     }

@@ -38,8 +38,10 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
 
     @Override
     public void remove(T entity) {
+        Session session = null;
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try {
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.remove(entity);
             transaction.commit();
@@ -49,6 +51,10 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
             }
             throw new DataProcessingException("Cannot remove "
                     + getEntityName(entity) + ": " + entity, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 
