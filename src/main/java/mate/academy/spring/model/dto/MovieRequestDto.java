@@ -19,12 +19,4 @@ public class MovieRequestDto {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    @Override
-    public String toString() {
-        return "MovieRequestDto{"
-                + "title='" + title + '\''
-                + ", description='" + description + '\''
-                + '}';
-    }
 }

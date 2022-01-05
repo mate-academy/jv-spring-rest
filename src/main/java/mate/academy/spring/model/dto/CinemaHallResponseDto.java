@@ -28,13 +28,4 @@ public class CinemaHallResponseDto {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    @Override
-    public String toString() {
-        return "CinemaHallResponseDto{"
-                + "id=" + id
-                + ", capacity=" + capacity
-                + ", description='" + description + '\''
-                + '}';
-    }
 }
