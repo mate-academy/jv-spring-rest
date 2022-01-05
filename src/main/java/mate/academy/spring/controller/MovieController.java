@@ -19,7 +19,6 @@ public class MovieController {
     private MovieService movieService;
     private MovieMapper movieMapper;
 
-    @Autowired
     public MovieController(MovieService movieService, MovieMapper movieMapper) {
         this.movieService = movieService;
         this.movieMapper = movieMapper;
