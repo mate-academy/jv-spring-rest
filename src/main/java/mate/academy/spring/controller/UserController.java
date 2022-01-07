@@ -58,12 +58,12 @@ public class UserController {
     public UserResponseDto update(@PathVariable Long id, @RequestBody UserRequestDto requestDto) {
         User user = userDtoMapper.toModel(requestDto);
         user.setId(id);
-        User updatedUser = userService.get(id); /* Need to change service method*/
+        User updatedUser = userService.update(id);
         return userDtoMapper.toDto(updatedUser);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        userService.delete(id); /* Need to change service method*/
+        userService.delete(id);
     }
 }
