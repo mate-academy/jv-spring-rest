@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MovieDaoImpl extends AbstractDao<Movie> implements MovieDao {
-    public MovieDaoImpl(SessionFactory sessionFactory) {
-        super(sessionFactory);
+    public MovieDaoImpl(SessionFactory sessionFactory, Class<Movie> movieClass) {
+        super(sessionFactory, movieClass);
     }
 
     @Override

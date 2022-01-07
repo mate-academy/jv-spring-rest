@@ -28,4 +28,14 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> getAll() {
         return movieDao.getAll();
     }
+
+    @Override
+    public Movie update(Long id) {
+        return movieDao.update(id).get();
+    }
+
+    @Override
+    public void delete(Long id) {
+        movieDao.delete(id);
+    }
 }
