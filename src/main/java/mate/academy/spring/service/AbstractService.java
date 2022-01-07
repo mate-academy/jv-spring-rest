@@ -2,30 +2,31 @@ package mate.academy.spring.service;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
-import mate.academy.spring.dao.AbstractDao;
+import mate.academy.spring.dao.GenericDao;
 
 @AllArgsConstructor
-public abstract class AbstractService<T> implements GenericService<T> {
-    private final AbstractDao<T> abstractDao;
+public abstract class AbstractService<T, C extends GenericDao<T>> implements GenericService<T> {
+    //private final AbstractDao<T> abstractDao;
+    C dao;
     //Experiment class, need mentor review!!!
 
     @Override
     public List<T> getAll() {
-        return abstractDao.getAll();
+        return dao.getAll();
     }
 
     @Override
     public T get(Long id) {
-        return abstractDao.get(id).get();
+        return dao.get(id).get();
     }
 
     @Override
     public T update(Long id) {
-        return abstractDao.update(id).get();
+        return dao.update(id).get();
     }
 
     @Override
     public void delete(Long id) {
-        abstractDao.delete(id);
+        dao.delete(id);
     }
 }
