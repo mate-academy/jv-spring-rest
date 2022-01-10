@@ -75,7 +75,9 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             }
             throw new DataProcessingException("Cannot update movieSession ", e);
         } finally {
-            session.close();
+            if (session != null){
+                session.close();
+            }
         }
     }
 
@@ -94,7 +96,9 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             }
             throw new DataProcessingException("Cannot delete movieSession ", e);
         } finally {
-            session.close();
+            if (session != null){
+                session.close();
+            }
         }
     }
 
