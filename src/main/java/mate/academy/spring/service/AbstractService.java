@@ -1,12 +1,16 @@
 package mate.academy.spring.service;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
 import mate.academy.spring.dao.GenericDao;
 
-@AllArgsConstructor
 public abstract class AbstractService<T, C extends GenericDao<T>> implements GenericService<T> {
+    private final Class<T> type;
     private final C dao;
+
+    public AbstractService(Class<T> type, C dao) {
+        this.type = type;
+        this.dao = dao;
+    }
     //Experiment class, need mentor review!!!
 
     @Override
@@ -16,12 +20,14 @@ public abstract class AbstractService<T, C extends GenericDao<T>> implements Gen
 
     @Override
     public T get(Long id) {
-        return dao.get(id).get();
+        return dao.get(id).orElseThrow(()
+                -> new RuntimeException(type.getName() + " not found"));
     }
 
     @Override
     public T update(Long id) {
-        return dao.update(id).get();
+        return dao.update(id).orElseThrow(()
+                -> new RuntimeException(type.getName() + " not found"));
     }
 
     @Override

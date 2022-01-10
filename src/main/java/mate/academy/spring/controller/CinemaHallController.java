@@ -8,7 +8,6 @@ import mate.academy.spring.model.dto.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallDtoMapper;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,10 +31,5 @@ public class CinemaHallController {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallDtoMapper::toDto)
                 .collect(Collectors.toList());
-    }
-
-    @GetMapping("/{id}")
-    public CinemaHallResponseDto get(@PathVariable Long id) {
-        return cinemaHallDtoMapper.toDto(cinemaHallService.get(id));
     }
 }
