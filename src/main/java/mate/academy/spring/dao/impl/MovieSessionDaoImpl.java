@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.exception.DataProcessingException;
@@ -75,7 +76,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             }
             throw new DataProcessingException("Cannot update movieSession ", e);
         } finally {
-            if (session != null){
+            if (session != null) {
                 session.close();
             }
         }
@@ -96,7 +97,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             }
             throw new DataProcessingException("Cannot delete movieSession ", e);
         } finally {
-            if (session != null){
+            if (session != null) {
                 session.close();
             }
         }
