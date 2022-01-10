@@ -2,16 +2,19 @@ package mate.academy.spring.dao;
 
 import java.util.List;
 import java.util.Optional;
-import lombok.AllArgsConstructor;
-import mate.academy.spring.exception.DataProcessingException;
+import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-@AllArgsConstructor
 public abstract class AbstractDao<T> implements GenericDao<T> {
     protected final SessionFactory sessionFactory;
-    private Class<T> type;
+    private final Class<T> type;
+
+    public AbstractDao(SessionFactory sessionFactory, Class<T> type) {
+        this.sessionFactory = sessionFactory;
+        this.type = type;
+    }
 
     @Override
     public T add(T entity) {
@@ -27,7 +30,7 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't insert " + type.getSimpleName()
+            throw new RuntimeException("Can't insert " + type.getSimpleName()
                     + ": " + entity, e);
         } finally {
             if (session != null) {
@@ -39,8 +42,10 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
     @Override
     public List<T> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM T", type)
-                    .getResultList();
+            CriteriaQuery<T> criteriaQuery = session.getCriteriaBuilder()
+                    .createQuery(type);
+            criteriaQuery.from(type);
+            return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
             throw new RuntimeException(type.getName() + " not found", e);
         }
@@ -69,7 +74,7 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't update "
+            throw new RuntimeException("Can't update "
                     + type.getSimpleName() + " by id: " + id, e);
         } finally {
             if (session != null) {
@@ -91,7 +96,7 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't delete "
+            throw new RuntimeException("Can't delete "
                     + type.getSimpleName() + " by id: " + id, e);
         } finally {
             if (session != null) {

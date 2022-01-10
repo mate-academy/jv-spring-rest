@@ -20,9 +20,8 @@ import org.springframework.stereotype.Repository;
 public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements MovieSessionDao {
     private static final LocalTime END_OF_DAY = LocalTime.of(23, 59, 59);
 
-    public MovieSessionDaoImpl(SessionFactory sessionFactory,
-                               Class<MovieSession> movieSessionClass) {
-        super(sessionFactory, movieSessionClass);
+    public MovieSessionDaoImpl(SessionFactory sessionFactory) {
+        super(sessionFactory, MovieSession.class);
     }
 
     @Override

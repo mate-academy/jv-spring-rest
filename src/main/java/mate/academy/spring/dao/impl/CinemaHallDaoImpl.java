@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements CinemaHallDao {
-    public CinemaHallDaoImpl(SessionFactory sessionFactory, Class<CinemaHall> cinemaHallClass) {
-        super(sessionFactory, cinemaHallClass);
+    public CinemaHallDaoImpl(SessionFactory sessionFactory) {
+        super(sessionFactory, CinemaHall.class);
     }
 
     @Override

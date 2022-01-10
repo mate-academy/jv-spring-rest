@@ -27,12 +27,18 @@ public class UserController {
     @GetMapping("/inject")
     public String injectMockData() {
         List<User> users = List.of(
-                User.builder().name("Aleksandr").lastName("Moskovchuk").build(),
-                User.builder().name("Andrew").lastName("Dzundza").build(),
-                User.builder().name("Dany").lastName("Nesterov").build(),
-                User.builder().name("Eugene").lastName("Kozlov").build(),
-                User.builder().name("Illia").lastName("Lavryniuk").build(),
-                User.builder().name("Kateryna").lastName("Nishchenko").build());
+                User.builder().name("Aleksandr").lastName("Moskovchuk")
+                        .email("Moskovchuk").password("1111").build(),
+                User.builder().name("Andrew").lastName("Dzundza")
+                        .email("Dzundza").password("1111").build(),
+                User.builder().name("Dany").lastName("Nesterov")
+                        .email("Nesterov").password("1111").build(),
+                User.builder().name("Eugene").lastName("Kozlov")
+                        .email("Kozlov").password("1111").build(),
+                User.builder().name("Illia").lastName("Lavryniuk")
+                        .email("Lavryniuk").password("1111").build(),
+                User.builder().name("Kateryna").lastName("Nishchenko")
+                        .email("Nishchenko").password("1111").build());
         users.forEach(userService::add);
         return "Mock data created!";
     }

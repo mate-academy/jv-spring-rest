@@ -6,8 +6,7 @@ import mate.academy.spring.dao.GenericDao;
 
 @AllArgsConstructor
 public abstract class AbstractService<T, C extends GenericDao<T>> implements GenericService<T> {
-    //private final AbstractDao<T> abstractDao;
-    C dao;
+    private final C dao;
     //Experiment class, need mentor review!!!
 
     @Override
