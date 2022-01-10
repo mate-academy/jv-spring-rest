@@ -8,7 +8,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.exception.DataProcessingException;
