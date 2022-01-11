@@ -1,8 +1,17 @@
 package mate.academy.spring.model.dto;
 
-public class MovieRequestDto {
+public class MovieResponseDto {
+    private Long id;
     private String title;
     private String description;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -23,6 +32,7 @@ public class MovieRequestDto {
     @Override
     public String toString() {
         return "MovieResponseDto{"
+                + "id=" + id
                 + ", title='" + title + '\''
                 + ", description='" + description + '\''
                 + '}';

@@ -1,8 +1,17 @@
 package mate.academy.spring.model.dto;
 
-public class CinemaHallRequestDto {
+public class CinemaHallResponseDto {
+    private Long id;
     private int capacity;
     private String description;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getCapacity() {
         return capacity;
@@ -22,8 +31,9 @@ public class CinemaHallRequestDto {
 
     @Override
     public String toString() {
-        return "CinemaHallRequestDto{"
-                + "capacity=" + capacity
+        return "CinemaHallResponseDto{"
+                + "id=" + id
+                + ", capacity=" + capacity
                 + ", description='" + description + '\''
                 + '}';
     }

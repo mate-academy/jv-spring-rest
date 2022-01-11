@@ -3,6 +3,7 @@ package mate.academy.spring.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.model.dto.MovieRequestDto;
+import mate.academy.spring.model.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.mapper.MovieDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,14 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<MovieRequestDto> getAllMovies() {
+    public List<MovieResponseDto> getAllMovies() {
         return movieService.getAll().stream()
                 .map(movieDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
-    public MovieRequestDto create(@RequestBody MovieRequestDto movieRequestDto) {
+    public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
         return movieDtoMapper.toDto(movieService
                 .add(movieDtoMapper.toModel(movieRequestDto)));
     }

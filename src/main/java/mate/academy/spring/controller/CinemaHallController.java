@@ -3,6 +3,7 @@ package mate.academy.spring.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
+import mate.academy.spring.model.dto.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,14 @@ public class CinemaHallController {
     }
 
     @GetMapping
-    public List<CinemaHallRequestDto> getAllCinemaHalls() {
+    public List<CinemaHallResponseDto> getAllCinemaHalls() {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
-    public CinemaHallRequestDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
+    public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallDtoMapper.toDto(cinemaHallService
                 .add(cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
     }
