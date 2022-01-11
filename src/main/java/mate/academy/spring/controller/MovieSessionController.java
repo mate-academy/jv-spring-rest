@@ -27,7 +27,8 @@ public class MovieSessionController {
     private MovieSessionMapper movieSessionMapper;
 
     @Autowired
-    public MovieSessionController(MovieSessionService movieSessionService, MovieSessionMapper movieSessionMapper) {
+    public MovieSessionController(MovieSessionService movieSessionService,
+                                  MovieSessionMapper movieSessionMapper) {
         this.movieSessionService = movieSessionService;
         this.movieSessionMapper = movieSessionMapper;
     }
@@ -51,7 +52,7 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public MovieSessionResponseDto update (
+    public MovieSessionResponseDto update(
             @PathVariable Long id,
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
