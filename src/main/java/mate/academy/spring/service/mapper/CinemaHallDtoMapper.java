@@ -8,17 +8,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class CinemaHallDtoMapper {
     public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
-        CinemaHallResponseDto responseDto = new CinemaHallResponseDto();
-        responseDto.setId(cinemaHall.getId());
-        responseDto.setCapacity(cinemaHall.getCapacity());
-        responseDto.setDescription(cinemaHall.getDescription());
-        return responseDto;
+        return CinemaHallResponseDto.builder()
+                .id(cinemaHall.getId())
+                .capacity(cinemaHall.getCapacity())
+                .description(cinemaHall.getDescription())
+                .build();
     }
 
     public CinemaHall toModel(CinemaHallRequestDto requestDto) {
-        CinemaHall cinemaHall = new CinemaHall();
-        cinemaHall.setCapacity(requestDto.getCapacity());
-        cinemaHall.setDescription(requestDto.getDescription());
-        return cinemaHall;
+        return CinemaHall.builder()
+                .capacity(requestDto.getCapacity())
+                .description(requestDto.getDescription())
+                .build();
     }
 }

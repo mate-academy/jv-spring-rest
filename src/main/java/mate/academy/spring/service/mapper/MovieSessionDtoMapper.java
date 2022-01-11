@@ -15,19 +15,19 @@ public class MovieSessionDtoMapper {
     private final CinemaHallService cinemaHallService;
 
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
-        MovieSessionResponseDto responseDto = new MovieSessionResponseDto();
-        responseDto.setId(movieSession.getId());
-        responseDto.setShowTime(movieSession.getShowTime());
-        responseDto.setMovieId(movieSession.getMovie().getId());
-        responseDto.setCinemaHallId(movieSession.getCinemaHall().getId());
-        return responseDto;
+        return MovieSessionResponseDto.builder()
+                .id(movieSession.getId())
+                .showTime(movieSession.getShowTime())
+                .movieId(movieSession.getMovie().getId())
+                .cinemaHallId(movieSession.getCinemaHall().getId())
+                .build();
     }
 
     public MovieSession toModel(MovieSessionRequestDto requestDto) {
-        MovieSession movieSession = new MovieSession();
-        movieSession.setShowTime(requestDto.getShowTime());
-        movieSession.setMovie(movieService.get(requestDto.getMovieId()));
-        movieSession.setCinemaHall(cinemaHallService.get(requestDto.getCinemaHallId()));
-        return movieSession;
+        return MovieSession.builder()
+                .showTime(requestDto.getShowTime())
+                .movie(movieService.get(requestDto.getMovieId()))
+                .cinemaHall(cinemaHallService.get(requestDto.getCinemaHallId()))
+                .build();
     }
 }

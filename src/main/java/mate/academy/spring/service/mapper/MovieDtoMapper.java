@@ -8,17 +8,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class MovieDtoMapper {
     public MovieResponseDto toDto(Movie movie) {
-        MovieResponseDto responseDto = new MovieResponseDto();
-        responseDto.setId(movie.getId());
-        responseDto.setTitle(movie.getTitle());
-        responseDto.setDescription(movie.getDescription());
-        return responseDto;
+        return MovieResponseDto.builder()
+                .id(movie.getId())
+                .title(movie.getTitle())
+                .description(movie.getDescription())
+                .build();
     }
 
     public Movie toModel(MovieRequestDto requestDto) {
-        Movie movie = new Movie();
-        movie.setTitle(requestDto.getTitle());
-        movie.setDescription(requestDto.getDescription());
-        return movie;
+        return Movie.builder()
+                .title(requestDto.getTitle())
+                .description(requestDto.getDescription())
+                .build();
     }
 }

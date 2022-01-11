@@ -43,13 +43,6 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping
-    public List<MovieSessionResponseDto> getAll() {
-        return movieSessionService.getAll().stream()
-                .map(movieSessionDtoMapper::toDto)
-                .collect(Collectors.toList());
-    }
-
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {

@@ -3,15 +3,14 @@ package mate.academy.spring.service;
 import java.util.List;
 import mate.academy.spring.dao.GenericDao;
 
-public abstract class AbstractService<T, C extends GenericDao<T>> implements GenericService<T> {
+public abstract class AbstractService<T, D extends GenericDao<T>> implements GenericService<T> {
     private final Class<T> type;
-    private final C dao;
+    private final D dao;
 
-    public AbstractService(Class<T> type, C dao) {
+    public AbstractService(Class<T> type, D dao) {
         this.type = type;
         this.dao = dao;
     }
-    //Experiment class, need mentor review!!!
 
     @Override
     public List<T> getAll() {
