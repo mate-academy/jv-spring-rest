@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     public OrderDaoImpl(SessionFactory sessionFactory) {
-        super(sessionFactory);
+        super(sessionFactory, Order.class);
     }
 
     @Override

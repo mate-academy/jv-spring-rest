@@ -11,8 +11,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
+
     public UserDaoImpl(SessionFactory sessionFactory) {
-        super(sessionFactory);
+        super(sessionFactory, User.class);
     }
 
     @Override

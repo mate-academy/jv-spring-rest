@@ -1,5 +1,6 @@
 package mate.academy.spring.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import mate.academy.spring.dao.UserDao;
 import mate.academy.spring.model.User;
@@ -16,6 +17,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> findByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userDao.getAll();
+    }
+
+    @Override
     public User add(User user) {
         user.setSalt(HashUtil.getSalt());
         user.setPassword(HashUtil.hashPassword(user.getPassword(), user.getSalt()));
@@ -23,7 +34,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userDao.findByEmail(email);
+    public User get(Long id) {
+        return userDao.get(id).get();
+    }
+
+    @Override
+    public User update(Long id) {
+        return userDao.update(id).get();
+    }
+
+    @Override
+    public void delete(Long id) {
+        userDao.delete(id);
     }
 }
