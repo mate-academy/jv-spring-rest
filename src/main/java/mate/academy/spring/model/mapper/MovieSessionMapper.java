@@ -13,7 +13,6 @@ public class MovieSessionMapper {
     private MovieService movieService;
     private CinemaHallService cinemaHallService;
 
-    @Autowired
     public MovieSessionMapper(MovieService movieService,
                               CinemaHallService cinemaHallService) {
         this.movieService = movieService;
