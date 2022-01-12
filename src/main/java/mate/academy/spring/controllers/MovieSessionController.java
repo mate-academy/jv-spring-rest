@@ -32,31 +32,31 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> getAvailable(
+    public List<MovieSessionResponseDto> findAvailableSessions(
             @RequestParam Long movieId, @RequestParam @DateTimeFormat(
                     pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date)
                 .stream()
-                .map(movieSessionMapper::parse)
+                .map(movieSessionMapper::mapToDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto dto) {
-        MovieSession movieSession = movieSessionService.add(movieSessionMapper.toModel(dto));
-        return movieSessionMapper.parse(movieSession);
+        MovieSession movieSession = movieSessionService.add(movieSessionMapper.mapToModel(dto));
+        return movieSessionMapper.mapToDto(movieSession);
     }
 
-    @PutMapping("/{movieSessionId}")
+    @PutMapping("/{id}")
     public MovieSessionResponseDto update(
-            @PathVariable Long movieSessionId, @RequestBody MovieSessionRequestDto dto) {
-        MovieSession movieSession = movieSessionMapper.toModel(dto);
-        movieSession.setId(movieSessionId);
-        return movieSessionMapper.parse(movieSessionService.update(movieSession));
+            @PathVariable Long id, @RequestBody MovieSessionRequestDto dto) {
+        MovieSession movieSession = movieSessionMapper.mapToModel(dto);
+        movieSession.setId(id);
+        return movieSessionMapper.mapToDto(movieSessionService.update(movieSession));
     }
 
-    @DeleteMapping("/{movieSessionId}")
-    public void delete(@PathVariable Long movieSessionId) {
-        movieSessionService.remove(movieSessionService.get(movieSessionId));
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        movieSessionService.remove(movieSessionService.get(id));
     }
 }
