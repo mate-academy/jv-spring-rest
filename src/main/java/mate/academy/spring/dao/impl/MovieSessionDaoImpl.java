@@ -60,18 +60,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public List<MovieSession> getAll() {
-        try (Session session = sessionFactory.openSession()) {
-            CriteriaQuery<MovieSession> criteriaQuery = session.getCriteriaBuilder()
-                    .createQuery(MovieSession.class);
-            criteriaQuery.from(MovieSession.class);
-            return session.createQuery(criteriaQuery).getResultList();
-        } catch (Exception e) {
-            throw new DataProcessingException("Can't get all movie sessions", e);
-        }
-    }
-
-    @Override
     public MovieSession update(MovieSession movieSession) {
         Session session = null;
         Transaction transaction = null;
