@@ -33,7 +33,7 @@ public class CinemaHallController {
     }
 
     @PutMapping
-    public CinemaHallResponseDto creat(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
+    public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallMapper.toDto(cinemaHallService
                 .add(cinemaHallMapper.toModel(cinemaHallRequestDto)));
     }
