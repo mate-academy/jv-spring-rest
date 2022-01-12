@@ -8,10 +8,6 @@ public class MovieRequestDto {
     public MovieRequestDto() {
     }
 
-    public MovieRequestDto(String title) {
-        this.title = title;
-    }
-
     public Long getId() {
         return id;
     }
