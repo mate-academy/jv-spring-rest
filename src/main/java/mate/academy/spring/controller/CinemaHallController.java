@@ -28,10 +28,9 @@ public class CinemaHallController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public long createCinemaHall(@RequestBody CinemaHallRequestDto cinemaHall) {
-        CinemaHallResponseDto cinemaHallResponseDto = cinemaHallMapper
-                .toDto(cinemaHallService.add(cinemaHallMapper.toModel(cinemaHall)));
-        return cinemaHallResponseDto.getId();
+    public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHall) {
+        return cinemaHallMapper.toDto(cinemaHallService
+                .add(cinemaHallMapper.toModel(cinemaHall)));
     }
 
     @GetMapping

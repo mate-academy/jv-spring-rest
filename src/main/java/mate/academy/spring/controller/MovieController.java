@@ -27,10 +27,8 @@ public class MovieController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public long createMovie(@RequestBody MovieRequestDto movie) {
-        MovieResponseDto movieResponseDto = movieMapper
-                .toDto(movieService.add(movieMapper.toModel(movie)));
-        return movieResponseDto.getId();
+    public MovieResponseDto create(@RequestBody MovieRequestDto movie) {
+        return movieMapper.toDto(movieService.add(movieMapper.toModel(movie)));
     }
 
     @GetMapping

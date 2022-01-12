@@ -35,18 +35,17 @@ public class MovieSessionController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public long createMovieSession(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        MovieSessionResponseDto movieSessionResponseDto = movieSessionMapper
+    public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto
+                                                       movieSessionRequestDto) {
+        return movieSessionMapper
                 .toDto(movieSessionService.add(movieSessionMapper.toModel(movieSessionRequestDto)));
-        return movieSessionResponseDto.getId();
     }
 
     @GetMapping("/available")
     @ResponseStatus(HttpStatus.OK)
     public List<MovieSessionResponseDto> findAllAvailableSessions(
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")
-                    Long movieId,
-                    LocalDate date) {
+                    LocalDate date, @RequestParam Long movieId) {
         return movieSessionService.findAvailableSessions(movieId, date)
                 .stream()
                 .map(movieSessionMapper::toDto)
@@ -55,17 +54,18 @@ public class MovieSessionController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Long updateMovieSession(@PathVariable Long id,
-                                   @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSessionResponseDto update(@PathVariable Long id,
+                                          @RequestBody MovieSessionRequestDto
+                                                  movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
         MovieSession updatedMovieSession = movieSessionService.update(movieSession);
-        return updatedMovieSession.getId();
+        return movieSessionMapper.toDto(updatedMovieSession);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteMovieSession(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
     }
 }
