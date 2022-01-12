@@ -30,7 +30,7 @@ public class CinemaHallController {
     @ResponseStatus(HttpStatus.OK)
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
-                .map(cinemaHallDtoMapper::parse)
+                .map(cinemaHallDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -38,7 +38,7 @@ public class CinemaHallController {
     @ResponseStatus(HttpStatus.CREATED)
     public CinemaHallResponseDto create(
             @RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
-        return cinemaHallDtoMapper.parse(cinemaHallService
+        return cinemaHallDtoMapper.toDto(cinemaHallService
                 .add(cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
     }
 

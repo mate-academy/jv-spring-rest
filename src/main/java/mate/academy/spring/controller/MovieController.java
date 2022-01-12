@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movie")
+@RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
     private final MovieDtoMapper movieDtoMapper;
@@ -29,14 +29,14 @@ public class MovieController {
     @ResponseStatus(HttpStatus.OK)
     public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
-                .map(movieDtoMapper::parse)
+                .map(movieDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
-        return movieDtoMapper.parse(movieService
+        return movieDtoMapper.toDto(movieService
                 .add(movieDtoMapper.toModel(movieRequestDto)));
     }
 }
