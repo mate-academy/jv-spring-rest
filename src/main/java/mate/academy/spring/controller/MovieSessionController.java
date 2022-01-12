@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/movie_sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper dtoMapper;
@@ -29,7 +31,7 @@ public class MovieSessionController {
         this.dtoMapper = dtoMapper;
     }
 
-    @PostMapping("/movie_sessions")
+    @PostMapping
     public MovieSessionResponseDto save(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         return dtoMapper.toDto(movieSessionService.add(dtoMapper.toModel(movieSessionRequestDto)));
@@ -49,7 +51,7 @@ public class MovieSessionController {
         movieSessionService.delete(movieSessionService.get(id));
     }
 
-    @GetMapping("/movie_sessions")
+    @GetMapping
     public List<MovieSessionResponseDto> getByParams(
             @RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {

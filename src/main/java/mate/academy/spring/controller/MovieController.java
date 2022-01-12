@@ -9,9 +9,11 @@ import mate.academy.spring.service.mapper.MovieDtoMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
     private final MovieDtoMapper dtoMapper;
@@ -21,14 +23,14 @@ public class MovieController {
         this.dtoMapper = dtoMapper;
     }
 
-    @GetMapping("/movies")
+    @GetMapping
     public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
                 .map(dtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("/movies")
+    @PostMapping
     public MovieResponseDto save(@RequestBody MovieRequestDto movieRequestDto) {
         return dtoMapper.toDto(movieService.add(dtoMapper.toModel(movieRequestDto)));
     }
