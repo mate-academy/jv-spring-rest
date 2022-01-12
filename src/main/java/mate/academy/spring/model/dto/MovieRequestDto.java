@@ -5,9 +5,6 @@ public class MovieRequestDto {
     private String title;
     private String description;
 
-    public MovieRequestDto() {
-    }
-
     public Long getId() {
         return id;
     }
