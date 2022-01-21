@@ -14,6 +14,7 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -56,5 +57,56 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
         }
+    }
+
+    @Override
+    public void delete(Long movieSessionId) {
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            MovieSession movieSession = session.get(MovieSession.class, movieSessionId);
+            session.delete(movieSession);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can`t delete a movie session by id: "
+                    + movieSessionId, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    @Override
+    public MovieSession update(MovieSession movieSession) {
+        Transaction transaction = null;
+        Session session = null;
+        MovieSession updatedMovieSession = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            updatedMovieSession = session.get(MovieSession.class, movieSession.getId());
+            updatedMovieSession.setCinemaHall(movieSession.getCinemaHall());
+            updatedMovieSession.setMovie(movieSession.getMovie());
+            updatedMovieSession.setShowTime(movieSession.getShowTime());
+            session.saveOrUpdate(updatedMovieSession);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can`t update movie session woth id: "
+                    + movieSession.getId(), e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return updatedMovieSession;
     }
 }
