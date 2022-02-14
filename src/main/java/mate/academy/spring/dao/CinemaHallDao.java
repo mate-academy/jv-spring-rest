@@ -8,4 +8,6 @@ public interface CinemaHallDao extends GenericDao<CinemaHall> {
     Optional<CinemaHall> get(Long id);
 
     List<CinemaHall> getAll();
+
+    CinemaHall add(CinemaHall cinemaHall);
 }
