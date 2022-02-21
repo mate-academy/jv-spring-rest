@@ -13,28 +13,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/cinema-hall")
+@RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
-    private final CinemaHallDtoMapper mapper;
+    private final CinemaHallDtoMapper cinemaHallMapper;
 
     public CinemaHallController(CinemaHallService cinemaHallService,
                                 CinemaHallDtoMapper cinemaHallDtoMapper) {
         this.cinemaHallService = cinemaHallService;
-        this.mapper = cinemaHallDtoMapper;
+        this.cinemaHallMapper = cinemaHallDtoMapper;
     }
 
     @PostMapping
     public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
-        return mapper.parse(cinemaHallService
-                .add(mapper.toModel(cinemaHallRequestDto)));
+        return cinemaHallMapper.parse(cinemaHallService
+                .add(cinemaHallMapper.toModel(cinemaHallRequestDto)));
 
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<CinemaHallResponseDto> getAllCinemaHall() {
         return cinemaHallService.getAll().stream()
-                .map(mapper::parse)
+                .map(cinemaHallMapper::parse)
                 .collect(Collectors.toList());
     }
 }

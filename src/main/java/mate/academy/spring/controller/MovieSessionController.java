@@ -23,35 +23,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
-    private final MovieSessionDtoMapper mapper;
+    private final MovieSessionDtoMapper movieSessionMapper;
 
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionDtoMapper mapper) {
         this.movieSessionService = movieSessionService;
-        this.mapper = mapper;
+        this.movieSessionMapper = mapper;
     }
 
     @PostMapping
     public MovieSessionResponseDto create(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        return mapper.parse(movieSessionService.add(mapper.toModel(movieSessionRequestDto)));
+        return movieSessionMapper.parse(movieSessionService.add(movieSessionMapper.toModel(movieSessionRequestDto)));
     }
 
     @GetMapping("/available")
     public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
                        @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(mapper::parse)
+                .map(movieSessionMapper::parse)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        MovieSession movieSession = mapper.toModel(movieSessionRequestDto);
+        MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
         MovieSession updatedMovieSession = movieSessionService.update(movieSession);
-        return mapper.parse(updatedMovieSession);
+        return movieSessionMapper.parse(updatedMovieSession);
     }
 
     @DeleteMapping("/{id}")
