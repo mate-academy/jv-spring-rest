@@ -18,8 +18,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
-//    Add cinema hall - POST: /cinema-halls
-//    Get all cinema halls - GET: /cinema-halls
     private CinemaHallService cinemaHallService;
     private CinemaHallMapper mapper;
 
