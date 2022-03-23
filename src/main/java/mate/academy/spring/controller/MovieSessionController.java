@@ -1,5 +1,8 @@
 package mate.academy.spring.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
@@ -17,14 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
-//    Remove movie session - DELETE /movie-sessions/{id}
     private MovieSessionService service;
     private MovieSessionMapper mapper;
 
