@@ -45,12 +45,4 @@ public class MovieSessionMapper {
         return model;
     }
 
-    public MovieSession toModel(MovieSessionResponseDto responseDto) {
-        MovieSession model = new MovieSession();
-        model.setId(responseDto.getId());
-        model.setMovie(movieService.get(responseDto.getMovieId()));
-        model.setCinemaHall(cinemaHallService.get(responseDto.getCinemaHallId()));
-        model.setShowTime(responseDto.getShowTime());
-        return model;
-    }
 }
