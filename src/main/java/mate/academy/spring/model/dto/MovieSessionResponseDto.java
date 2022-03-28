@@ -1,10 +1,14 @@
 package mate.academy.spring.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDateTime;
+
 public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
     private Long cinemaHallId;
-    private String showTime;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime showTime;
 
     public Long getId() {
         return id;
@@ -30,11 +34,11 @@ public class MovieSessionResponseDto {
         this.cinemaHallId = cinemaHallId;
     }
 
-    public String getShowTime() {
+    public LocalDateTime getShowTime() {
         return showTime;
     }
 
-    public void setShowTime(String showTime) {
+    public void setShowTime(LocalDateTime showTime) {
         this.showTime = showTime;
     }
 }

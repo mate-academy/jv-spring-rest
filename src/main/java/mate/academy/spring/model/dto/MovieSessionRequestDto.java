@@ -1,12 +1,12 @@
 package mate.academy.spring.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class MovieSessionRequestDto {
     private Long movieId;
     private Long cinemaHallId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime showTime;
 
     public Long getMovieId() {
