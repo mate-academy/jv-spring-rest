@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
-
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
 
