@@ -22,7 +22,7 @@ public class HashUtil {
             }
             return hashedPassword.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Can`t hash password", e);
+            throw new RuntimeException("Can`t hash password!", e);
         }
     }
 
