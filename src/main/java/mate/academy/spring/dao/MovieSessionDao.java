@@ -9,4 +9,8 @@ public interface MovieSessionDao extends GenericDao<MovieSession> {
     List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
 
     Optional<MovieSession> get(Long id);
+
+    Optional<MovieSession> update(MovieSession movieSession);
+
+    void delete(Long id);
 }
