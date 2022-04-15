@@ -16,7 +16,7 @@ public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements Cinema
     public CinemaHallDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
-
+    
     @Override
     public Optional<CinemaHall> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
