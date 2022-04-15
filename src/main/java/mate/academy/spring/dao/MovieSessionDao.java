@@ -7,6 +7,10 @@ import mate.academy.spring.model.MovieSession;
 
 public interface MovieSessionDao extends GenericDao<MovieSession> {
     List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
-
+    
     Optional<MovieSession> get(Long id);
+    
+    MovieSession update(MovieSession session);
+    
+    MovieSession delete(MovieSession movieSession);
 }
