@@ -10,4 +10,10 @@ public interface MovieSessionService {
     MovieSession get(Long id);
 
     MovieSession add(MovieSession session);
+
+    void delete(Long id);
+
+    MovieSession update(Long id);
+
+    List<MovieSession> getAll();
 }
