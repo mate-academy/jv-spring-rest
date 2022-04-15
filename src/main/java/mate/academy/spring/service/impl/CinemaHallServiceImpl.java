@@ -28,4 +28,14 @@ public class CinemaHallServiceImpl implements CinemaHallService {
     public List<CinemaHall> getAll() {
         return cinemaHallDao.getAll();
     }
+
+    @Override
+    public void delete(CinemaHall cinemaHall) {
+        cinemaHallDao.delete(cinemaHall);
+    }
+
+    @Override
+    public CinemaHall update(CinemaHall cinemaHall) {
+        return cinemaHallDao.update(cinemaHall);
+    }
 }
