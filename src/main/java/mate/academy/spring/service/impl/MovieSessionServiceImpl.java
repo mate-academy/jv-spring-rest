@@ -22,11 +22,21 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     public MovieSession get(Long id) {
-        return sessionDao.get(id).get();
+        return sessionDao.get(id).orElseThrow();
     }
 
     @Override
     public MovieSession add(MovieSession session) {
         return sessionDao.add(session);
+    }
+
+    @Override
+    public MovieSession update(MovieSession session) {
+        return sessionDao.update(session);
+    }
+
+    @Override
+    public void remove(Long id) {
+        sessionDao.remove(id);
     }
 }
