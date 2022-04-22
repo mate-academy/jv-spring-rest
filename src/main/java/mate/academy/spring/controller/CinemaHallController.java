@@ -34,7 +34,7 @@ public class CinemaHallController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping // /cinema-halls{"capacity":200, "description":"cinema hall 1"}
+    @PostMapping
     public CinemaHallResponseDto addCinemaHall(
             @RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         CinemaHall cinemaHall = cinemaHallService.add(
