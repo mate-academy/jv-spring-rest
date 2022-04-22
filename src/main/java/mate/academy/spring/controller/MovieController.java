@@ -27,7 +27,7 @@ public class MovieController {
         this.movieMapper = movieMapper;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<MovieResponseDto> getAllMovies() {
         return movieService.getAll().stream()
                 .map(movieMapper::modelToDto)
