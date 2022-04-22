@@ -16,7 +16,7 @@ public class CinemaHallDtoMapper {
         return responseDto;
     }
 
-    public  CinemaHall toModel(CinemaHallRequestDto requestDto) {
+    public CinemaHall toModel(CinemaHallRequestDto requestDto) {
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setCapacity(requestDto.getCapacity());
         cinemaHall.setDescription(requestDto.getDescription());
