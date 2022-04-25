@@ -3,10 +3,10 @@ package mate.academy.spring.service.mapper;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
-import mate.academy.spring.service.MovieService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MovieDtoMapper {
-    private MovieService movieService;
 
     public MovieResponseDto toDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
