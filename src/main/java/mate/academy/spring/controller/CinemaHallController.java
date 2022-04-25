@@ -20,10 +20,11 @@ public class CinemaHallController {
     private final CinemaDtoMapper cinemaDtoMapper;
 
     public CinemaHallController(CinemaHallService cinemaHallService,
-        CinemaDtoMapper cinemaDtoMapper) {
+            CinemaDtoMapper cinemaDtoMapper) {
         this.cinemaHallService = cinemaHallService;
         this.cinemaDtoMapper = cinemaDtoMapper;
     }
+
     @GetMapping("/")
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll()

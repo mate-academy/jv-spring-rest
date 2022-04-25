@@ -33,7 +33,7 @@ public class MovieSessionController {
 
     @PostMapping("/")
     public MovieSessionResponseDto create(@RequestBody
-        MovieSessionRequestDto movieSessionRequestDto) {
+            MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionMapper
                 .toDto(movieSessionService.add(movieSessionMapper.toModel(movieSessionRequestDto)));
     }

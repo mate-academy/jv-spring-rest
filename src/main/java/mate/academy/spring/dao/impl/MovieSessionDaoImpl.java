@@ -30,11 +30,11 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<MovieSession> criteriaQuery =
-                criteriaBuilder.createQuery(MovieSession.class);
+                    criteriaBuilder.createQuery(MovieSession.class);
             Root<MovieSession> root = criteriaQuery.from(MovieSession.class);
             Predicate moviePredicate = criteriaBuilder.equal(root.get("movie"), movieId);
             Predicate datePredicate = criteriaBuilder.between(root.get("showTime"),
-                date.atStartOfDay(), date.atTime(END_OF_DAY));
+                    date.atStartOfDay(), date.atTime(END_OF_DAY));
             Predicate allConditions = criteriaBuilder.and(moviePredicate, datePredicate);
             criteriaQuery.select(root).where(allConditions);
             root.fetch("movie");
@@ -68,7 +68,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             transaction = session.beginTransaction();
             session.createQuery("DELETE FROM MovieSession WHERE id = :id")
                 .setParameter("id", id)
-                .executeUpdate();
+                    .executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
