@@ -6,7 +6,6 @@ import mate.academy.spring.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
-import mate.academy.spring.service.MovieSessionService;
 import org.springframework.stereotype.Component;
 
 @Component

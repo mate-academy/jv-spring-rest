@@ -1,7 +1,7 @@
 package mate.academy.spring.dto.request;
 
-import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data

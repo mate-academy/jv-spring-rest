@@ -56,5 +56,4 @@ public class MovieSessionController {
         movieSessionService.delete(movieSessionService.get(id));
     }
 
-
 }
