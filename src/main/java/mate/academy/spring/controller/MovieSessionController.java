@@ -31,7 +31,7 @@ public class MovieSessionController {
         this.movieSessionMapper = movieSessionMapper;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public MovieSessionResponseDto create(@RequestBody
             MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionMapper
