@@ -8,7 +8,6 @@ import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movie-session")
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper movieSessionDtoMapper;
 
-    @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionDtoMapper movieSessionDtoMapper) {
         this.movieSessionService = movieSessionService;
@@ -34,22 +32,25 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSessionResponseDto create(
+            @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
         return movieSessionDtoMapper.toDto(movieSessionService.add(movieSession));
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> getAllAvailableMovieSessions(@RequestParam Long movieId,
-                                                                      @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
+    public List<MovieSessionResponseDto> getAllAvailableMovieSessions(
+            @RequestParam Long movieId,
+            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
-    public MovieSessionResponseDto update(@PathVariable Long id,
-                                          @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSessionResponseDto update(
+            @PathVariable Long id,
+            @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
         MovieSession updatedMovieSession = movieSessionService.update(movieSession);
