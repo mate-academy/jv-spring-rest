@@ -1,19 +1,20 @@
 package mate.academy.spring.dao.impl;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -28,8 +29,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<MovieSession> criteriaQuery =
-                    criteriaBuilder.createQuery(MovieSession.class);
+            CriteriaQuery<MovieSession> criteriaQuery
+                    = criteriaBuilder.createQuery(MovieSession.class);
             Root<MovieSession> root = criteriaQuery.from(MovieSession.class);
             Predicate moviePredicate = criteriaBuilder.equal(root.get("movie"), movieId);
             Predicate datePredicate = criteriaBuilder.between(root.get("showTime"),
@@ -55,6 +56,49 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                     .uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
+        }
+    }
+
+    @Override
+    public MovieSession update(MovieSession movieSession) {
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.update(movieSession);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Cannot update movie session: " + movieSession, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return movieSession;
+    }
+
+    @Override
+    public void delete(MovieSession movieSession) {
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.delete(movieSession);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+                throw new DataProcessingException("Can't delete movie session: " + movieSession, e);
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 }
