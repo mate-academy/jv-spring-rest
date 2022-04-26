@@ -5,8 +5,7 @@ import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
 
 public class MovieDtoMapper {
-
-    public MovieResponseDto parse(Movie movie) {
+    public MovieResponseDto toDto(Movie movie) {
         MovieResponseDto movieDto = new MovieResponseDto();
         movieDto.setDescription(movie.getDescription());
         movieDto.setTitle(movie.getTitle());
