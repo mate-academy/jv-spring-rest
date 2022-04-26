@@ -66,8 +66,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.createQuery("delete from MovieSession where id=:movieSessionId")
-                    .setParameter("movieSessionId", id)
+            session.createQuery("delete from MovieSession where id=:id")
+                    .setParameter("id", id)
                     .executeUpdate();
             transaction.commit();
         } catch (Exception e) {
