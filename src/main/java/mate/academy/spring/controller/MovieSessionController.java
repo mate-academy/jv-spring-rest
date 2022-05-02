@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -30,9 +31,9 @@ public class MovieSessionController {
         this.mapper = mapper;
     }
 
-    @GetMapping("/{movieId}&{date}")
-    public List<MovieSessionResponseDto> findAvailableSessions(@PathVariable Long movieId,
-                                                               @PathVariable
+    @GetMapping("")
+    public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
+                                                               @RequestParam
                                                                @DateTimeFormat(pattern =
                                                                        "dd.MM.yyyy")
                                                                        LocalDate date) {
