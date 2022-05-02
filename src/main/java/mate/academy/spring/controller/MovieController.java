@@ -1,19 +1,17 @@
 package mate.academy.spring.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieRequestDto;
 import mate.academy.spring.dto.MovieResponseDto;
 import mate.academy.spring.mapper.MovieMapper;
 import mate.academy.spring.model.Movie;
-import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/movies")

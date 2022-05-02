@@ -1,5 +1,8 @@
 package mate.academy.spring.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.mapper.MovieSessionMapper;
@@ -15,10 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/movie-sessions")
@@ -50,8 +49,7 @@ public class MovieSessionController {
 
     @PutMapping("/{id}")
     public MovieSessionResponseDto add(@PathVariable Long id,
-                                       @RequestBody MovieSessionRequestDto movieSessionRequestDto)
-    {
+                                       @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = mapper.convert(movieSessionRequestDto);
         movieSession.setId(id);
         return mapper.parse(service.update(movieSession));

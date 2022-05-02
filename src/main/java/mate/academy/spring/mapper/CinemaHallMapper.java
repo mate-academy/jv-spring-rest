@@ -21,6 +21,4 @@ public class CinemaHallMapper {
         cinemaHall.setDescription(cinemaHallRequestDto.getDescription());
         return cinemaHall;
     }
-
-
 }

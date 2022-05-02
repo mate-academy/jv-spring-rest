@@ -15,7 +15,7 @@ public class MovieMapper {
         return movieResponseDto;
     }
 
-    public Movie convert (MovieRequestDto movieRequestDto) {
+    public Movie convert(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
         movie.setTitle(movieRequestDto.getTitle());
         movie.setDescription(movieRequestDto.getDescription());
