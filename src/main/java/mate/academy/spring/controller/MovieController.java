@@ -24,14 +24,14 @@ public class MovieController {
         this.mapper = mapper;
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<MovieResponseDto> getAll() {
         return service.getAll().stream()
                 .map(mapper::parse)
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("")
+    @PostMapping
     public MovieResponseDto add(@RequestBody MovieRequestDto movieRequestDto) {
         Movie movie = mapper.convert(movieRequestDto);
         return mapper.parse(service.add(movie));

@@ -30,7 +30,7 @@ public class MovieSessionController {
         this.mapper = mapper;
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
                                                                @RequestParam
                                                                @DateTimeFormat(pattern =
@@ -41,7 +41,7 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("")
+    @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = mapper.convert(movieSessionRequestDto);
         return mapper.parse(service.add(movieSession));

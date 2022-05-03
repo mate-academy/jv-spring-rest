@@ -24,14 +24,14 @@ public class CinemaHallController {
         this.mapper = mapper;
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<CinemaHallResponseDto> getAll() {
         return service.getAll().stream()
                 .map(mapper::parse)
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("")
+    @PostMapping
     public CinemaHallResponseDto add(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         CinemaHall cinemaHall = mapper.convert(cinemaHallRequestDto);
         return mapper.parse(service.add(cinemaHall));
