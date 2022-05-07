@@ -26,6 +26,7 @@ public class MovieSessionMapper {
         movieSessionResponseDto.setShowtime(movieSession.getShowTime());
         return movieSessionResponseDto;
     }
+
     public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
