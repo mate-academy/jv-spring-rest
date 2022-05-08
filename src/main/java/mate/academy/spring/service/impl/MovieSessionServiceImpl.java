@@ -1,10 +1,12 @@
 package mate.academy.spring.service.impl;
 
-import java.time.LocalDate;
-import java.util.List;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,5 +30,25 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     @Override
     public MovieSession add(MovieSession session) {
         return sessionDao.add(session);
+    }
+
+    @Override
+    @Transactional
+    public void update(Long id, MovieSession movieSession) throws Exception {
+        Optional<MovieSession> movieSessionOptional = sessionDao.get(id);
+        if (movieSessionOptional.isEmpty()) {
+            throw new Exception("Movie Session not found id: " + id);
+        }
+
+        MovieSession movieSessionFromDB = movieSessionOptional.get();
+        movieSessionFromDB.setShowTime(movieSession.getShowTime());
+        movieSessionFromDB.setMovie(movieSession.getMovie());
+        movieSessionFromDB.setCinemaHall(movieSession.getCinemaHall());
+    }
+
+    @Override
+    public void delete(Long id) {
+        Optional<MovieSession> movieSessionOptional = sessionDao.get(id);
+        movieSessionOptional.ifPresent(sessionDao::delete);
     }
 }
