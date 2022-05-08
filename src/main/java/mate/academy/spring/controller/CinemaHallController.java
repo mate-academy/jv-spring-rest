@@ -19,7 +19,8 @@ public class CinemaHallController {
     private final CinemaHallTransformer cinemaHallTransformer;
 
     @Autowired
-    public CinemaHallController(CinemaHallService cinemaHallService, CinemaHallTransformer cinemaHallTransformer) {
+    public CinemaHallController(CinemaHallService cinemaHallService,
+                                CinemaHallTransformer cinemaHallTransformer) {
         this.cinemaHallService = cinemaHallService;
         this.cinemaHallTransformer = cinemaHallTransformer;
     }
