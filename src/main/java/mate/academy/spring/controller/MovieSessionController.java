@@ -1,12 +1,12 @@
 package mate.academy.spring.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionDto;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.transformer.MovieSessionTransformer;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +25,8 @@ public class MovieSessionController {
     private final MovieSessionTransformer movieSessionTransformer;
 
     @Autowired
-    public MovieSessionController(MovieSessionService movieSessionService, MovieSessionTransformer movieSessionTransformer) {
+    public MovieSessionController(MovieSessionService movieSessionService,
+                                  MovieSessionTransformer movieSessionTransformer) {
         this.movieSessionService = movieSessionService;
         this.movieSessionTransformer = movieSessionTransformer;
     }
@@ -37,9 +38,8 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionDto> getAvailable(
-        @RequestParam Long movieId,
-        @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
+    public List<MovieSessionDto> getAvailable(@RequestParam Long movieId,
+                                              @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date)
             .stream()
             .map(movieSessionTransformer::toDto)
@@ -47,8 +47,9 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public void updateMovieSession(@PathVariable Long id, @RequestBody MovieSessionDto movieSession) throws Exception {
-       movieSessionService.update(id, movieSessionTransformer.formFromDto(movieSession));
+    public void updateMovieSession(@PathVariable Long id,
+                                   @RequestBody MovieSessionDto movieSession) throws Exception {
+        movieSessionService.update(id, movieSessionTransformer.formFromDto(movieSession));
     }
 
     @DeleteMapping("/{id}")

@@ -11,7 +11,8 @@ public class MovieSessionTransformer {
     private final MovieTransformer movieTransformer;
 
     @Autowired
-    public MovieSessionTransformer(CinemaHallTransformer cinemaHallTransformer, MovieTransformer movieTransformer) {
+    public MovieSessionTransformer(CinemaHallTransformer cinemaHallTransformer,
+                                   MovieTransformer movieTransformer) {
         this.cinemaHallTransformer = cinemaHallTransformer;
         this.movieTransformer = movieTransformer;
     }

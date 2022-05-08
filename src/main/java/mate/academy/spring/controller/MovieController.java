@@ -1,11 +1,11 @@
 package mate.academy.spring.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieDto;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.transformer.MovieTransformer;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
