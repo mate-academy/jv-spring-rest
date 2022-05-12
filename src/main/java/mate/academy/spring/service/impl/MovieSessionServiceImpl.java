@@ -48,7 +48,7 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     public void delete(Long id) {
-        Optional<MovieSession> movieSessionOptional = sessionDao.get(id);
+        MovieSession movieSession = sessionDao.get(id).get();
         movieSessionOptional.ifPresent(sessionDao::delete);
     }
 }
