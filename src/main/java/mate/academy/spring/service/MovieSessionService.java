@@ -11,7 +11,7 @@ public interface MovieSessionService {
 
     MovieSession add(MovieSession session);
 
-    void update(Long id, MovieSession transformFromDto) throws Exception;
+    void update(MovieSession movieSession) throws Exception;
 
-    void delete(Long id);
+    void delete(MovieSession movieSession);
 }

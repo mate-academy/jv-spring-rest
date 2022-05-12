@@ -3,10 +3,11 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.MovieSessionDto;
+import mate.academy.spring.dto.MovieSessionRequestDto;
+import mate.academy.spring.dto.MovieSessionResponseDto;
+import mate.academy.spring.mappers.MovieSessionMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
-import mate.academy.spring.transformer.MovieSessionTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,41 +21,45 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/movie-sessions")
 public class MovieSessionController {
-
     private final MovieSessionService movieSessionService;
-    private final MovieSessionTransformer movieSessionTransformer;
+    private final MovieSessionMapper movieSessionMapper;
 
     @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
-                                  MovieSessionTransformer movieSessionTransformer) {
+                                  MovieSessionMapper movieSessionMapper) {
         this.movieSessionService = movieSessionService;
-        this.movieSessionTransformer = movieSessionTransformer;
+        this.movieSessionMapper = movieSessionMapper;
     }
 
     @PostMapping
-    public void add(@RequestBody MovieSessionDto movieSessionDto) {
-        MovieSession movieSession = movieSessionTransformer.formFromDto(movieSessionDto);
+    public void add(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+        MovieSession movieSession = movieSessionMapper.formDto(movieSessionRequestDto);
         movieSessionService.add(movieSession);
     }
 
     @GetMapping("/available")
-    public List<MovieSessionDto> findAvailableSessions(
+    public List<MovieSessionResponseDto> findAvailableSessions(
             @RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date)
             .stream()
-            .map(movieSessionTransformer::toDto)
+            .map(movieSessionMapper::toDto)
             .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public void updateMovieSession(@PathVariable Long id,
-                                   @RequestBody MovieSessionDto movieSession) throws Exception {
-        movieSessionService.update(id, movieSessionTransformer.formFromDto(movieSession));
+                                   @RequestBody MovieSessionRequestDto movieSessionRequestDto) throws Exception {
+        MovieSession movieSession = movieSessionMapper.formDto(movieSessionRequestDto);
+        movieSession.setId(id);
+        movieSessionService.update(movieSession);
     }
 
     @DeleteMapping("/{id}")
     public void deleteMovieSession(@PathVariable Long id) {
-        movieSessionService.delete(id);
+        MovieSession movieSession = movieSessionService.get(id);
+        if (movieSession != null) {
+            movieSessionService.delete(movieSession);
+        }
     }
 }

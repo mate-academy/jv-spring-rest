@@ -33,22 +33,12 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     }
 
     @Override
-    @Transactional
     public void update(MovieSession movieSession) throws Exception {
-        Optional<MovieSession> movieSessionOptional = sessionDao.get(id);
-        if (movieSessionOptional.isEmpty()) {
-            throw new Exception("Movie Session not found id: " + id);
-        }
-
-        MovieSession movieSessionFromDB = movieSessionOptional.get();
-        movieSessionFromDB.setShowTime(movieSession.getShowTime());
-        movieSessionFromDB.setMovie(movieSession.getMovie());
-        movieSessionFromDB.setCinemaHall(movieSession.getCinemaHall());
+        sessionDao.update(movieSession);
     }
 
     @Override
-    public void delete(Long id) {
-        MovieSession movieSession = sessionDao.get(id).get();
-        movieSessionOptional.ifPresent(sessionDao::delete);
+    public void delete(MovieSession movieSession) {
+        sessionDao.delete(movieSession);
     }
 }
