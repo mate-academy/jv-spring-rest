@@ -48,8 +48,9 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public void updateMovieSession(@PathVariable Long id,
-                                   @RequestBody MovieSessionRequestDto movieSessionRequestDto) throws Exception {
+    public void updateMovieSession(
+            @PathVariable Long id,
+            @RequestBody MovieSessionRequestDto movieSessionRequestDto) throws Exception {
         MovieSession movieSession = movieSessionMapper.formDto(movieSessionRequestDto);
         movieSession.setId(id);
         movieSessionService.update(movieSession);

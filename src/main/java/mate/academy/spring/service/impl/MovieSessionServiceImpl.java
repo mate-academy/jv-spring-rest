@@ -2,8 +2,6 @@ package mate.academy.spring.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import javax.transaction.Transactional;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
