@@ -34,7 +34,7 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     @Transactional
-    public void update(Long id, MovieSession movieSession) throws Exception {
+    public void update(MovieSession movieSession) throws Exception {
         Optional<MovieSession> movieSessionOptional = sessionDao.get(id);
         if (movieSessionOptional.isEmpty()) {
             throw new Exception("Movie Session not found id: " + id);
