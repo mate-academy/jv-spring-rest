@@ -5,7 +5,7 @@ import mate.academy.spring.model.CinemaHall;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CinemaHallTransformer {
+public class CinemaHallMapper {
 
     public CinemaHallDto toDto(CinemaHall cinemaHall) {
         CinemaHallDto dto = new CinemaHallDto();
