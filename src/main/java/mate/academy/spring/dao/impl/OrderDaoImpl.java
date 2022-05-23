@@ -22,8 +22,8 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
         try (Session session = sessionFactory.openSession()) {
             Query<Order> query = session.createQuery("select distinct o "
                     + "from Order o "
-                    + "join fetch o.tickets "
-                    + "join fetch o.user "
+                    + "left join fetch o.tickets "
+                    + "left join fetch o.user "
                     + "where o.user = :user", Order.class);
             query.setParameter("user", user);
             return query.getResultList();
