@@ -19,5 +19,4 @@ public class MovieRequestDto {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
