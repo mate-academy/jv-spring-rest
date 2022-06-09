@@ -8,16 +8,16 @@ import mate.academy.spring.service.MovieService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MoviesSessionDtoMapper {
-    private final MovieService sessionService;
+public class MovieSessionDtoMapper {
+    private final MovieService movieService;
     private final CinemaHallService hallService;
 
-    public MoviesSessionDtoMapper(MovieService sessionService, CinemaHallService hallService) {
-        this.sessionService = sessionService;
+    public MovieSessionDtoMapper(MovieService sessionService, CinemaHallService hallService) {
+        this.movieService = sessionService;
         this.hallService = hallService;
     }
 
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto responseDto = new MovieSessionResponseDto();
         responseDto.setId(movieSession.getId());
         responseDto.setMovieId(movieSession.getMovie().getId());
@@ -28,7 +28,7 @@ public class MoviesSessionDtoMapper {
 
     public MovieSession toModel(MovieSessionRequestDto requestDto) {
         MovieSession movieSession = new MovieSession();
-        movieSession.setMovie(sessionService.get(requestDto.getMovieId()));
+        movieSession.setMovie(movieService.get(requestDto.getMovieId()));
         movieSession.setCinemaHall(hallService.get(requestDto.getCinemaHallId()));
         movieSession.setShowTime(requestDto.getShowTime());
         return movieSession;
