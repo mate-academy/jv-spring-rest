@@ -1,6 +1,6 @@
 package mate.academy.spring.model.dto;
 
-public class MovieResponceDto {
+public class MovieResponseDto {
     private Long id;
     private String title;
     private String description;

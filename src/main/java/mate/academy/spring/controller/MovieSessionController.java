@@ -8,7 +8,6 @@ import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,6 @@ public class MovieSessionController {
     private final MovieSessionMapper movieSessionMapper;
     private final MovieSessionService movieSessionService;
 
-    @Autowired
     public MovieSessionController(MovieSessionMapper movieSessionMapper,
                                   MovieSessionService movieSessionService) {
         this.movieSessionMapper = movieSessionMapper;
@@ -40,7 +38,7 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> getAvailableSessions(@RequestParam Long movieId,
+    public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionMapper::toDto)

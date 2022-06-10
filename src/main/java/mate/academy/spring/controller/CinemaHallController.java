@@ -6,7 +6,6 @@ import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +18,6 @@ public class CinemaHallController {
     private final CinemaHallMapper cinemaHallMapper;
     private final CinemaHallService cinemaHallService;
 
-    @Autowired
     public CinemaHallController(CinemaHallMapper cinemaHallMapper,
                                 CinemaHallService cinemaHallService) {
         this.cinemaHallMapper = cinemaHallMapper;
@@ -27,9 +25,9 @@ public class CinemaHallController {
     }
 
     @PostMapping
-    public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHall) {
+    public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallMapper.toDto(cinemaHallService
-                .add(cinemaHallMapper.toModel(cinemaHall)));
+                .add(cinemaHallMapper.toModel(cinemaHallRequestDto)));
     }
 
     @GetMapping

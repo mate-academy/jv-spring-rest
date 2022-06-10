@@ -5,14 +5,12 @@ import java.util.List;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MovieSessionServiceImpl implements MovieSessionService {
     private final MovieSessionDao sessionDao;
 
-    @Autowired
     public MovieSessionServiceImpl(MovieSessionDao sessionDao) {
         this.sessionDao = sessionDao;
     }
@@ -33,12 +31,12 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     }
 
     @Override
-    public void delete(MovieSession movieSession) {
-        sessionDao.delete(movieSession);
+    public void delete(MovieSession session) {
+        sessionDao.delete(session);
     }
 
     @Override
-    public MovieSession update(MovieSession movieSession) {
-        return sessionDao.update(movieSession);
+    public MovieSession update(MovieSession session) {
+        return sessionDao.update(session);
     }
 }
