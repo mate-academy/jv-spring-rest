@@ -1,5 +1,7 @@
 package mate.academy.spring.service.mapper;
 
+import mate.academy.spring.dto.CinemaHallResponseDto;
+import mate.academy.spring.dto.MovieResponseDto;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
@@ -18,11 +20,20 @@ public class MovieSessionMapper {
     }
 
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
+
+        MovieResponseDto movieResponseDto = new MovieResponseDto();
+        movieResponseDto.setId(movieSession.getMovie().getId());
+        movieResponseDto.setTitle(movieSession.getMovie().getTitle());
+        movieResponseDto.setDescription(movieSession.getMovie().getDescription());
+        CinemaHallResponseDto cinemaHallResponseDto = new CinemaHallResponseDto();
+        cinemaHallResponseDto.setId(movieSession.getCinemaHall().getId());
+        cinemaHallResponseDto.setCapacity(movieSession.getCinemaHall().getCapacity());
+        cinemaHallResponseDto.setDescription(movieSession.getCinemaHall().getDescription());
         MovieSessionResponseDto movieSessionResponseDto
                 = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
-        movieSessionResponseDto.setMovie(movieSession.getMovie());
-        movieSessionResponseDto.setCinemaHall(movieSession.getCinemaHall());
+        movieSessionResponseDto.setMovie(movieResponseDto);
+        movieSessionResponseDto.setCinemaHall(cinemaHallResponseDto);
         movieSessionResponseDto.setShowTime(movieSession.getShowTime());
         return movieSessionResponseDto;
     }
