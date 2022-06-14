@@ -20,15 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("movie-sessions")
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
-    private final MovieSessionDtoMapper mapperDto;
+    private final MovieSessionDtoMapper movieSessionMapper;
 
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionDtoMapper mapper) {
         this.movieSessionService = movieSessionService;
-        this.mapperDto = mapper;
+        this.movieSessionMapper = mapper;
     }
 
     @GetMapping("/available")
@@ -37,14 +37,15 @@ public class MovieSessionController {
                                                                        (pattern = "dd.mm.yyyy")
                                                                LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(mapperDto::parse)
+                .map(movieSessionMapper::mapToDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     public MovieSessionResponseDto create(@RequestBody
                                               MovieSessionRequestDto movieSessionRequestDto) {
-        return mapperDto.parse(movieSessionService.add(mapperDto.toModel(movieSessionRequestDto)));
+        return movieSessionMapper.mapToDto(
+                movieSessionService.add(movieSessionMapper.mapToModel(movieSessionRequestDto)));
     }
 
     @DeleteMapping("/{id}")
@@ -55,8 +56,8 @@ public class MovieSessionController {
     @PutMapping("{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
-        MovieSession movieSession = mapperDto.toModel(requestDto);
+        MovieSession movieSession = movieSessionMapper.mapToModel(requestDto);
         movieSession.setId(id);
-        return mapperDto.parse(movieSessionService.update(movieSession));
+        return movieSessionMapper.mapToDto(movieSessionService.update(movieSession));
     }
 }
