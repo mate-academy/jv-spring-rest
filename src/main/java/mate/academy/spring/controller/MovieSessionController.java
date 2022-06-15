@@ -32,7 +32,7 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public MovieSessionResponseDto addMovieSession(
+    public MovieSessionResponseDto add(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionMapper.parse(movieSessionService.add(
                 movieSessionMapper.toModel(movieSessionRequestDto)));
@@ -48,7 +48,7 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public MovieSessionResponseDto updateMovieSession(
+    public MovieSessionResponseDto update(
             @PathVariable Long id,
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
@@ -58,7 +58,7 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteMovieSession(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
     }
 }

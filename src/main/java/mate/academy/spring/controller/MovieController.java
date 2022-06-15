@@ -24,7 +24,7 @@ public class MovieController {
     }
 
     @PostMapping
-    public MovieResponseDto addMovie(@RequestBody MovieRequestDto movieRequestDto) {
+    public MovieResponseDto add(@RequestBody MovieRequestDto movieRequestDto) {
         return movieMapper.parse(movieService.add(movieMapper.toModel(movieRequestDto)));
     }
 
