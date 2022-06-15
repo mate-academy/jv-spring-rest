@@ -83,15 +83,13 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public boolean remove(Long id) {
+    public boolean remove(MovieSession movieSession) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.createQuery("delete from MovieSession where id = :id")
-                    .setParameter("id", id)
-                    .executeUpdate();
+            session.remove(movieSession);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -99,7 +97,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                 transaction.rollback();
             }
             throw new DataProcessingException("Unable to remove movie session by id: "
-                    + id, e);
+                    + movieSession.getId(), e);
         } finally {
             if (session != null) {
                 session.close();
