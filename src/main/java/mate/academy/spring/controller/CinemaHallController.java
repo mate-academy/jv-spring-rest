@@ -1,5 +1,7 @@
 package mate.academy.spring.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.mapper.CinemaHallMapper;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
@@ -11,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cinema_halls")
