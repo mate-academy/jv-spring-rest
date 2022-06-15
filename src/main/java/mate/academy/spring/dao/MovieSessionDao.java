@@ -6,7 +6,14 @@ import java.util.Optional;
 import mate.academy.spring.model.MovieSession;
 
 public interface MovieSessionDao extends GenericDao<MovieSession> {
+
+    MovieSession add(MovieSession movieSession);
+
     List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
 
     Optional<MovieSession> get(Long id);
+
+    MovieSession update(MovieSession movieSession);
+
+    void delete(Long id);
 }
