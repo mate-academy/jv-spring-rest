@@ -53,7 +53,7 @@ public class MovieSessionController {
         movieSessionService.delete(movieSessionService.get(id));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
         MovieSession movieSession = movieSessionMapper.mapToModel(requestDto);
