@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
-    private MovieSessionService movieSessionService;
-    private MovieSessionMapper movieSessionMapper;
+    private final MovieSessionService movieSessionService;
+    private final MovieSessionMapper movieSessionMapper;
 
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionMapper movieSessionMapper) {
@@ -37,7 +37,7 @@ public class MovieSessionController {
             LocalDate date, @RequestParam Long movieId) {
         return movieSessionService.findAvailableSessions(movieId, date)
                 .stream()
-                .map(movieSession -> movieSessionMapper.toDto(movieSession))
+                .map(movieSessionMapper::toDto)
                 .collect(Collectors.toList());
     }
 
