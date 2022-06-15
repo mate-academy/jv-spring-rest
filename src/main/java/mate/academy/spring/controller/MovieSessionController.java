@@ -70,20 +70,4 @@ public class MovieSessionController {
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(movieSessionService.get(id));
     }
-
-    @GetMapping("/inject")
-    public String injectMovieSessions() {
-        Movie movie = new Movie();
-        movie.setTitle("Dune");
-        movie.setDescription("Desert around");
-        CinemaHall cinemaHall = new CinemaHall();
-        cinemaHall.setCapacity(200);
-        cinemaHall.setDescription("New hall description");
-        MovieSession movieSession = new MovieSession();
-        movieSession.setMovie(movie);
-        movieSession.setCinemaHall(cinemaHall);
-        movieSession.setShowTime(LocalDateTime.now());
-        movieSessionService.add(movieSession);
-        return "Movie Sessions are injected!";
-    }
 }
