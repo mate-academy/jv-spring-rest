@@ -42,7 +42,7 @@ public class MovieSessionController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public List<MovieSessionResponseDto> getAvailableMovieSessions(
             @RequestParam Long movieId,
             @RequestParam
@@ -53,7 +53,7 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public MovieSessionResponseDto update(@RequestBody MovieSessionRequestDto requestDto,
                                           @PathVariable Long id) {
         MovieSession movieSession = movieSessionMapper.toModel(requestDto);

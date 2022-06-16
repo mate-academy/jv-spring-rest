@@ -36,19 +36,10 @@ public class MovieController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
                 .map(movieMapper::toDto)
                 .collect(Collectors.toList());
-    }
-
-    @GetMapping("/inject")
-    public String injectMovies() {
-        Movie movie = new Movie();
-        movie.setTitle("Avatar 2");
-        movie.setDescription("Waiting for release");
-        movieService.add(movie);
-        return "Movies are injected!";
     }
 }

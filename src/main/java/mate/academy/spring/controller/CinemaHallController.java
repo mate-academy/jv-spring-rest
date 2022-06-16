@@ -36,19 +36,10 @@ public class CinemaHallController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallMapper::toDto)
                 .collect(Collectors.toList());
-    }
-
-    @GetMapping("/inject")
-    public String injectCinemaHalls() {
-        CinemaHall cinemaHall = new CinemaHall();
-        cinemaHall.setCapacity(100);
-        cinemaHall.setDescription("Super hall");
-        cinemaHallService.add(cinemaHall);
-        return "Cinema Halls are injected!";
     }
 }
