@@ -9,12 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 @Configuration
 @PropertySource("classpath:db.properties")
 @ComponentScan(basePackages = "mate.academy.spring")
-public class AppConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class AppConfig {
     private final Environment env;
 
     public AppConfig(Environment env) {
@@ -44,20 +43,5 @@ public class AppConfig extends AbstractAnnotationConfigDispatcherServletInitiali
         factoryBean.setHibernateProperties(properties);
         factoryBean.setPackagesToScan("mate.academy.spring.model");
         return factoryBean;
-    }
-
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{AppConfig.class};
-    }
-
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfig.class};
-    }
-
-    @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
     }
 }
