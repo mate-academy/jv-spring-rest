@@ -12,4 +12,5 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @ComponentScan(basePackages = "mate.academy.spring.controller")
 public class WebConfig implements WebMvcConfigurer {
+
 }
