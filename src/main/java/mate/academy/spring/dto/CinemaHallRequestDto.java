@@ -4,14 +4,6 @@ public class CinemaHallRequestDto {
     private int capacity;
     private String description;
 
-    public CinemaHallRequestDto() {
-    }
-
-    public CinemaHallRequestDto(int capacity, String description) {
-        this.capacity = capacity;
-        this.description = description;
-    }
-
     public int getCapacity() {
         return capacity;
     }

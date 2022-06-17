@@ -7,15 +7,6 @@ public class MovieSessionRequestDto {
     private Long cinemaHallId;
     private LocalDateTime showTime;
 
-    public MovieSessionRequestDto() {
-    }
-
-    public MovieSessionRequestDto(Long movieId, Long cinemaHallId, LocalDateTime showTime) {
-        this.movieId = movieId;
-        this.cinemaHallId = cinemaHallId;
-        this.showTime = showTime;
-    }
-
     public Long getMovieId() {
         return movieId;
     }
