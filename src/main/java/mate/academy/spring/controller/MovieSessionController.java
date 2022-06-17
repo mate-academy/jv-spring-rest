@@ -49,7 +49,6 @@ public class MovieSessionController {
     @ResponseStatus(code = HttpStatus.CREATED)
     public MovieSessionResponseDto create(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        System.out.println("jj");
         return movieSessionDtoMapper.toDto(
                 movieSessionService.add(
                         movieSessionDtoMapper.toModel(movieSessionRequestDto)));
