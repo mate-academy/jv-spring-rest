@@ -55,6 +55,7 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
+    @ResponseBody
     @ResponseStatus(code = HttpStatus.OK)
     public MovieSessionResponseDto update(
             @PathVariable Long id, @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
