@@ -1,10 +1,5 @@
 package mate.academy.spring.model.dto;
 
-import mate.academy.spring.model.CinemaHall;
-import mate.academy.spring.model.Movie;
-
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 public class MovieSessionResponseDto {

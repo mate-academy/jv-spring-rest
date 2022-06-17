@@ -1,14 +1,18 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.model.Movie;
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.impl.MovieDtoMapper;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/movies")
@@ -21,16 +25,17 @@ public class MovieController {
         this.movieDtoMapper = movieDtoMapper;
     }
 
+    @ResponseStatus(code = HttpStatus.OK)
     @GetMapping
     public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
-                .map(movieDtoMapper::parse)
+                .map(movieDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
+    @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping
-    @GetMapping
-    public MovieResponseDto add(@RequestBody MovieRequestDto movieRequestDto) {
-        return movieDtoMapper.parse(movieService.add(movieDtoMapper.toModel(movieRequestDto)));
+    public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
+        return movieDtoMapper.toDto(movieService.add(movieDtoMapper.toModel(movieRequestDto)));
     }
 }
