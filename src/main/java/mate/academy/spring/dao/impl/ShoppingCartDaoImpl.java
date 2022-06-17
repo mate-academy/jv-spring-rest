@@ -33,7 +33,9 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
     @Override
     public void update(ShoppingCart shoppingCart) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.update(shoppingCart);
             transaction.commit();
@@ -42,6 +44,10 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
                 transaction.rollback();
             }
             throw new DataProcessingException("Cannot update shopping cart ", e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 }
