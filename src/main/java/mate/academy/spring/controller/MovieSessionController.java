@@ -44,7 +44,7 @@ public class MovieSessionController {
         return movieSessionDtoMapper.toDto(updatedSession);
     }
 
-    @GetMapping("/")
+    @GetMapping("/all-movie-sessions")
     public List<MovieSessionResponseDto> getAll(@RequestParam Long movieId,
                                                 @RequestParam @DateTimeFormat(
                                                         pattern = "dd.MM.yyyy")
