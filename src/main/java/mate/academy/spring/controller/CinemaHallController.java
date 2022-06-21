@@ -31,7 +31,7 @@ public class CinemaHallController {
                         cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
     }
 
-    @GetMapping("/all-cinema-halls")
+    @GetMapping
     public List<CinemaHallResponseDto> getAllCinemaHalls() {
         return cinemaHallService
                 .getAll()

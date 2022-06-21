@@ -48,7 +48,7 @@ public class MovieSessionController {
         return movieSessionDtoMapper.toDto(updatedSession);
     }
 
-    @GetMapping("/all-movie-sessions")
+    @GetMapping
     public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
                                                 @RequestParam @DateTimeFormat(
                                                         pattern = "dd.MM.yyyy")

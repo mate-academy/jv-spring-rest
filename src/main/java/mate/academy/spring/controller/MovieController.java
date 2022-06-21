@@ -30,7 +30,7 @@ public class MovieController {
                         .add(movieDtoMapper.toModel(movieRequestDto)));
     }
 
-    @GetMapping("/all-movies")
+    @GetMapping
     public List<MovieResponseDto> getAllMovies() {
         return movieService
                 .getAll()
