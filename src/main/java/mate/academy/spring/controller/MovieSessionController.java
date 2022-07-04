@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("movie_sessions")
+@RequestMapping("movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper movieSessionDtoMapper;
@@ -51,8 +51,11 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public MovieSessionResponseDto delete(@PathVariable Long id) {
+        MovieSessionResponseDto movieSessionResponseDto
+                = movieSessionDtoMapper.toDto(movieSessionService.get(id));
         movieSessionService.delete(movieSessionService.get(id));
+        return movieSessionResponseDto;
     }
 
     @PutMapping("/{id}")
