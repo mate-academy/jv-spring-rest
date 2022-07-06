@@ -26,8 +26,8 @@ public class CinemaHallController {
         this.cinemaHallDtoMapper = cinemaHallDtoMapper;
     }
 
-    @GetMapping({"", "/"})
-    public List<CinemaHallResponseDto> getAllCinemaHalls() {
+    @GetMapping
+    public List<CinemaHallResponseDto> getAll() {
         return cinemaHallDao.getAll().stream()
                 .map(cinemaHallDtoMapper::parse)
                 .collect(Collectors.toList());
