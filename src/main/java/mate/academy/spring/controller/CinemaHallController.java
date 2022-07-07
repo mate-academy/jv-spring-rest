@@ -33,7 +33,7 @@ public class CinemaHallController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallDtoMapper.parse(
                 cinemaHallDao.add(cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
