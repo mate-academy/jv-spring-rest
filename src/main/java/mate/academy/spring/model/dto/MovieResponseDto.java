@@ -1,7 +1,5 @@
 package mate.academy.spring.model.dto;
 
-import java.io.Serializable;
-
 public class MovieResponseDto {
     private Long id;
     private String title;

@@ -1,6 +1,5 @@
 package mate.academy.spring.model.dto;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class MovieSessionRequestDto {
