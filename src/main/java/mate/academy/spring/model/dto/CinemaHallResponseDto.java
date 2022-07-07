@@ -2,7 +2,7 @@ package mate.academy.spring.model.dto;
 
 import java.io.Serializable;
 
-public class CinemaHallResponseDto implements Serializable {
+public class CinemaHallResponseDto {
     private Long id;
     private int capacity;
     private String description;

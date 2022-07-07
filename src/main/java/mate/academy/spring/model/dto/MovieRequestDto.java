@@ -2,7 +2,7 @@ package mate.academy.spring.model.dto;
 
 import java.io.Serializable;
 
-public class MovieRequestDto implements Serializable {
+public class MovieRequestDto {
     private String title;
     private String description;
 

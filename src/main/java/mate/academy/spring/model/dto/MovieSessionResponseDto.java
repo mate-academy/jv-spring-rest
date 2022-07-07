@@ -3,7 +3,7 @@ package mate.academy.spring.model.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class MovieSessionResponseDto implements Serializable {
+public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
     private Long cinemaHallId;
