@@ -23,17 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("movie-sessions")
 public class MovieSessionController {
-    private static MovieSessionService service;
-    private static MovieSessionMapper mapper;
+    private static MovieSessionService movieSessionService;
+    private static MovieSessionMapper movieSessionMapper;
 
     public MovieSessionController(MovieSessionService service, MovieSessionMapper mapper) {
-        this.service = service;
-        this.mapper = mapper;
+        this.movieSessionService = service;
+        this.movieSessionMapper = mapper;
     }
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto requestDto) {
-        return mapper.toDto(service.add(mapper.toModel(requestDto)));
+        return movieSessionMapper.toDto(movieSessionService.add(movieSessionMapper.toModel(requestDto)));
     }
 
     @GetMapping("/available")
@@ -41,21 +41,21 @@ public class MovieSessionController {
             @RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date
     ) {
-        return service.findAvailableSessions(movieId, date).stream()
-                .map(mapper::toDto)
+        return movieSessionService.findAvailableSessions(movieId, date).stream()
+                .map(movieSessionMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
-        return mapper.toDto(service.update(mapper.toModel(requestDto, id)));
+        return movieSessionMapper.toDto(movieSessionService.update(movieSessionMapper.toModel(requestDto, id)));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remove(@PathVariable Long id,
                        @RequestBody MovieSessionRequestDto requestDto) {
-        service.remove(mapper.toModel(requestDto, id));
+        movieSessionService.remove(movieSessionMapper.toModel(requestDto, id));
     }
 }

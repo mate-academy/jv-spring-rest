@@ -15,24 +15,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
-    private final CinemaHallService service;
-    private final CinemaHallMapper mapper;
+    private final CinemaHallService cinemaHallService;
+    private final CinemaHallMapper cinemaHallMapper;
 
     public CinemaHallController(CinemaHallService service,
                                 CinemaHallMapper responseMapper) {
-        this.service = service;
-        this.mapper = responseMapper;
+        this.cinemaHallService = service;
+        this.cinemaHallMapper = responseMapper;
     }
 
     @GetMapping
     public List<CinemaHallResponseDto> getAll() {
-        return service.getAll().stream()
-                .map(mapper::toDto)
+        return cinemaHallService.getAll().stream()
+                .map(cinemaHallMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     public CinemaHallResponseDto add(@RequestBody CinemaHallRequestDto dto) {
-        return mapper.toDto(service.add(mapper.toModel(dto)));
+        return cinemaHallMapper.toDto(cinemaHallService.add(cinemaHallMapper.toModel(dto)));
     }
 }
