@@ -65,10 +65,10 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         LocalDateTime dateStart = date.atTime(0, 0, 0);
         LocalDateTime dateEnd = date.atTime(23, 59, 59);
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from MovieSession ms " +
-                    "where ms.movie.id = :movieId " +
-                    "and ms.showTime >= :dateStart " +
-                    "and ms.showTime <= :dateEnd", MovieSession.class)
+            return session.createQuery("from MovieSession ms "
+                            + "where ms.movie.id = :movieId "
+                            + "and ms.showTime >= :dateStart "
+                            + "and ms.showTime <= :dateEnd", MovieSession.class)
                     .setParameter("movieId", movieId)
                     .setParameter("dateStart", dateStart)
                     .setParameter("dateEnd", dateEnd)

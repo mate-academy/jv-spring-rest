@@ -1,6 +1,5 @@
 package mate.academy.spring.service.mapper.impl;
 
-import mate.academy.spring.dao.MovieDao;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
