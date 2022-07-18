@@ -61,24 +61,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public List<MovieSession> getOnDateAndMovieId(LocalDate date, Long movieId) {
-        LocalDateTime dateStart = date.atTime(0, 0, 0);
-        LocalDateTime dateEnd = date.atTime(23, 59, 59);
-        try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from MovieSession ms "
-                            + "where ms.movie.id = :movieId "
-                            + "and ms.showTime >= :dateStart "
-                            + "and ms.showTime <= :dateEnd", MovieSession.class)
-                    .setParameter("movieId", movieId)
-                    .setParameter("dateStart", dateStart)
-                    .setParameter("dateEnd", dateEnd)
-                    .getResultList();
-        } catch (Exception e) {
-            throw new DataProcessingException("Can't get movie sessions list from DB", e);
-        }
-    }
-
-    @Override
     public MovieSession update(MovieSession movieSession) {
         Session session = null;
         Transaction transaction = null;

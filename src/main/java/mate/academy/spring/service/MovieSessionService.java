@@ -11,7 +11,7 @@ public interface MovieSessionService {
 
     MovieSession add(MovieSession session);
 
-    List<MovieSession> getOnDateAndMovieId(LocalDate date, Long movieId);
+    List<MovieSession> findAvailableSessions(LocalDate date, Long movieId);
 
     MovieSession update(MovieSession session);
 
