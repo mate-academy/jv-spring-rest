@@ -1,11 +1,11 @@
-package mate.academy.spring.service.impl;
+package mate.academy.spring.service.mapper.impl;
 
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
-import mate.academy.spring.service.MovieSessionMapper;
+import mate.academy.spring.service.mapper.MovieSessionMapper;
 import org.springframework.stereotype.Component;
 
 @Component

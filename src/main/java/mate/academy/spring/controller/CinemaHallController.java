@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
-import mate.academy.spring.service.CinemaHallMapper;
+import mate.academy.spring.service.mapper.CinemaHallMapper;
 import mate.academy.spring.service.CinemaHallService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,28 +14,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/cinema_halls")
+@RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
-    private final CinemaHallMapper mapper;
+    private final CinemaHallMapper cinemaHallMapper;
 
-    public CinemaHallController(CinemaHallService cinemaHallService, CinemaHallMapper mapper) {
+    public CinemaHallController(CinemaHallService cinemaHallService, CinemaHallMapper cinemaHallMapper) {
         this.cinemaHallService = cinemaHallService;
-        this.mapper = mapper;
+        this.cinemaHallMapper = cinemaHallMapper;
     }
 
-    @GetMapping({"/", ""})
+    @GetMapping
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
-                .map(mapper::toDto)
+                .map(cinemaHallMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto dto) {
-        CinemaHall cinemaHall = mapper.toModel(dto);
+        CinemaHall cinemaHall = cinemaHallMapper.toModel(dto);
         CinemaHall cinemaHallFromDb = cinemaHallService.add(cinemaHall);
-        CinemaHallResponseDto responseDto = mapper.toDto(cinemaHallFromDb);
+        CinemaHallResponseDto responseDto = cinemaHallMapper.toDto(cinemaHallFromDb);
         return responseDto;
     }
 }

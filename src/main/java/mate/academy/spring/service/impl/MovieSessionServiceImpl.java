@@ -31,8 +31,8 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     }
 
     @Override
-    public List<MovieSession> getAll() {
-        return sessionDao.getAll();
+    public List<MovieSession> getOnDateAndMovieId(LocalDate date, Long movieId) {
+        return sessionDao.getOnDateAndMovieId(date, movieId);
     }
 
     @Override

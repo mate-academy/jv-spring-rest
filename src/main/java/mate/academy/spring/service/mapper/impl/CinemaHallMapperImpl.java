@@ -1,9 +1,9 @@
-package mate.academy.spring.service.impl;
+package mate.academy.spring.service.mapper.impl;
 
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
-import mate.academy.spring.service.CinemaHallMapper;
+import mate.academy.spring.service.mapper.CinemaHallMapper;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,6 +1,7 @@
 package mate.academy.spring.dao.impl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -60,11 +61,18 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public List<MovieSession> getAll() {
+    public List<MovieSession> getOnDateAndMovieId(LocalDate date, Long movieId) {
+        LocalDateTime dateStart = date.atTime(0, 0, 0);
+        LocalDateTime dateEnd = date.atTime(23, 59, 59);
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("from MovieSession ms "
-                    + "left join fetch ms.movie m "
-                    + "left join fetch ms.cinemaHall", MovieSession.class).getResultList();
+            return session.createQuery("from MovieSession ms " +
+                    "where ms.movie.id = :movieId " +
+                    "and ms.showTime >= :dateStart " +
+                    "and ms.showTime <= :dateEnd", MovieSession.class)
+                    .setParameter("movieId", movieId)
+                    .setParameter("dateStart", dateStart)
+                    .setParameter("dateEnd", dateEnd)
+                    .getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get movie sessions list from DB", e);
         }
@@ -85,28 +93,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                 transaction.rollback();
             }
             throw new DataProcessingException("Can't update movie session " + movieSession, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-    }
-
-    @Override
-    public MovieSession add(MovieSession entity) {
-        Session session = null;
-        Transaction transaction = null;
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.save(entity);
-            transaction.commit();
-            return entity;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can't add movie session to DB" + entity, e);
         } finally {
             if (session != null) {
                 session.close();
