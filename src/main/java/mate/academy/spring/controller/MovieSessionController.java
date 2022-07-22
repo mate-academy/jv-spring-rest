@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController // = @Controller + @ResponseBody
+@RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService sessionService;
@@ -33,8 +33,8 @@ public class MovieSessionController {
 
     @PostMapping
     public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto requestDto) {
-        MovieSession movieSession = sessionService.add(sessionMapper.parseToModel(requestDto));
-        return sessionMapper.parseFromModel(movieSession);
+        MovieSession movieSession = sessionService.add(sessionMapper.fromDto(requestDto));
+        return sessionMapper.toDto(movieSession);
     }
 
     @GetMapping("/available")
@@ -42,22 +42,22 @@ public class MovieSessionController {
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")
             Long movieId, LocalDate date) {
         return sessionService.findAvailableSessions(movieId, date).stream()
-                .map(sessionMapper::parseFromModel)
+                .map(sessionMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
-        MovieSession movieSession = sessionMapper.parseToModel(requestDto);
+        MovieSession movieSession = sessionMapper.fromDto(requestDto);
         movieSession.setId(id);
-        return sessionMapper.parseFromModel(sessionService.update(movieSession));
+        return sessionMapper.toDto(sessionService.update(movieSession));
     }
 
     @DeleteMapping("/{id}")
     public MovieSessionResponseDto delete(@PathVariable Long id) {
         MovieSession movieSession = sessionService.get(id);
         sessionService.delete(movieSession);
-        return sessionMapper.parseFromModel(movieSession);
+        return sessionMapper.toDto(movieSession);
     }
 }
