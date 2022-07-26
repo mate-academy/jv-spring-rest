@@ -61,8 +61,10 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
 
     @Override
     public void delete(Long movieSessionId) {
+        Session session = null;
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        try {
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.createQuery("DELETE from MovieSession ms "
                     + " where ms.id = :id", MovieSession.class).setParameter("id", movieSessionId);
@@ -72,6 +74,10 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             }
             throw new DataProcessingException("Cannot delete movie session by id"
                     + movieSessionId, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 
