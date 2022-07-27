@@ -37,5 +37,4 @@ public class CinemaHallController {
                 .map(cinemaHallDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
-
 }
