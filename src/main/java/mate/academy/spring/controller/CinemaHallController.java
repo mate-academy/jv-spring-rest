@@ -34,6 +34,5 @@ public class CinemaHallController {
     public CinemaHallResponseDto add(CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallMapper.toDto(cinemaHallService
                 .add(cinemaHallMapper.toModel(cinemaHallRequestDto)));
-
     }
 }
