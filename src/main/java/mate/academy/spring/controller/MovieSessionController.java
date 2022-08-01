@@ -50,7 +50,7 @@ Remove movie session - DELETE /movie-sessions/{id}*/
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
         MovieSession movieSession = dtoMapper.toModel(requestDto);
