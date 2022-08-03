@@ -22,10 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
-    /*Add movie session - POST: /movie-sessions
-Get all available movie sessions - GET: /movie-sessions/available?movieId=1&date=29.02.2020
-Update movie session - PUT /movie-sessions/{id}
-Remove movie session - DELETE /movie-sessions/{id}*/
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper dtoMapper;
 

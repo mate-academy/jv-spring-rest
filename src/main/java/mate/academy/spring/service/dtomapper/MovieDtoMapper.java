@@ -10,7 +10,7 @@ public class MovieDtoMapper {
     public MovieResponseDto toDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
         movieResponseDto.setId(movie.getId());
-        movieResponseDto.setDescription(movie.getTitle());
+        movieResponseDto.setTitle(movie.getTitle());
         movieResponseDto.setDescription(movie.getDescription());
         return movieResponseDto;
     }
