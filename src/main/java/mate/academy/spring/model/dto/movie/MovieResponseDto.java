@@ -28,5 +28,4 @@ public class MovieResponseDto {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

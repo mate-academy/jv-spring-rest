@@ -31,7 +31,7 @@ public class MovieSessionController {
 
     @PostMapping
     public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto requestDto) {
-        return movieSessionDtoMapper.parse(
+        return movieSessionDtoMapper.toDo(
                 movieSessionService.add(movieSessionDtoMapper.toModel(requestDto)));
     }
 
@@ -41,7 +41,7 @@ public class MovieSessionController {
             @RequestParam Long movieId) {
         return movieSessionService.findAvailableSessions(movieId, date)
                 .stream()
-                .map(movieSessionDtoMapper::parse).collect(Collectors.toList());
+                .map(movieSessionDtoMapper::toDo).collect(Collectors.toList());
     }
 
     @DeleteMapping("/{id}")
