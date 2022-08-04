@@ -6,35 +6,41 @@ import mate.academy.spring.dto.CinemaHallRequestDto;
 import mate.academy.spring.dto.CinemaHallResponseDto;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.service.CinemaHallService;
-import mate.academy.spring.service.mapping.CinemaHallDtoMapping;
+import mate.academy.spring.service.mapping.CinemaHallDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cinemaHalls")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
-    private final CinemaHallDtoMapping cinemaHallDtoMapping;
+    private final CinemaHallDtoMapper cinemaHallDtoMapper;
 
     @Autowired
-    public CinemaHallController (CinemaHallService cinemaHallService,
-                                 CinemaHallDtoMapping cinemaHallDtoMapping) {
+    public CinemaHallController(CinemaHallService cinemaHallService,
+                                 CinemaHallDtoMapper cinemaHallDtoMapper) {
         this.cinemaHallService = cinemaHallService;
-        this.cinemaHallDtoMapping = cinemaHallDtoMapping;
+        this.cinemaHallDtoMapper = cinemaHallDtoMapper;
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
-                .map(cinemaHallDtoMapping::parseToDto)
+                .map(cinemaHallDtoMapper::parseToDto)
                 .collect(Collectors.toList());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public CinemaHallResponseDto put(@RequestBody CinemaHallRequestDto request) {
-        CinemaHall cinemaHall = cinemaHallService.add(cinemaHallDtoMapping.parseToModel(request));
-        return cinemaHallDtoMapping.parseToDto(cinemaHall);
+        CinemaHall cinemaHall = cinemaHallService.add(cinemaHallDtoMapper.parseToModel(request));
+        return cinemaHallDtoMapper.parseToDto(cinemaHall);
     }
 }
