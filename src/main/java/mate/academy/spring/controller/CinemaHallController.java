@@ -39,7 +39,7 @@ public class CinemaHallController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public CinemaHallResponseDto put(@RequestBody CinemaHallRequestDto request) {
+    public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto request) {
         CinemaHall cinemaHall = cinemaHallService.add(cinemaHallDtoMapper.parseToModel(request));
         return cinemaHallDtoMapper.parseToDto(cinemaHall);
     }

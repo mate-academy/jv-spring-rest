@@ -38,7 +38,7 @@ public class MovieController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MovieResponseDto put(@RequestBody MovieRequestDto requestDto) {
+    public MovieResponseDto create(@RequestBody MovieRequestDto requestDto) {
         Movie movie = movieService.add(movieDtoMapper.parseToModel(requestDto));
         return movieDtoMapper.parseToDto(movie);
     }
