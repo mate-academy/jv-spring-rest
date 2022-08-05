@@ -36,26 +36,25 @@ public class MovieSessionController {
     @PostMapping
     public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto requestDto) {
         MovieSession movieSession = movieSessionService
-                .add(movieSessionDtoMapper.parseToModel(requestDto));
-        return movieSessionDtoMapper.parseToDto(movieSession);
+                .add(movieSessionDtoMapper.toModel(requestDto));
+        return movieSessionDtoMapper.toDto(movieSession);
     }
 
-    @GetMapping(value = "/available")
-    public List<MovieSessionResponseDto>
-            get(@RequestParam Long movieId,
-                @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
+    @GetMapping("/available")
+    public List<MovieSessionResponseDto> get(@RequestParam Long movieId,
+            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(movieSessionDtoMapper::parseToDto)
+                .map(movieSessionDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
-        MovieSession movieSession = movieSessionDtoMapper.parseToModel(requestDto);
+        MovieSession movieSession = movieSessionDtoMapper.toModel(requestDto);
         movieSession.setId(id);
         movieSessionService.update(movieSession);
-        return movieSessionDtoMapper.parseToDto(movieSessionService.get(id));
+        return movieSessionDtoMapper.toDto(movieSessionService.get(id));
     }
 
     @DeleteMapping("/{id}")
