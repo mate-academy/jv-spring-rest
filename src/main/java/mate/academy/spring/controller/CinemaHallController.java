@@ -30,8 +30,8 @@ public class CinemaHallController {
                 cinemaHallService.add(cinemaHallDtoMapper.toModel(requestDto)));
     }
 
-    @GetMapping("/")
-    public List<CinemaHallResponseDto> getAllCinemaHalls() {
+    @GetMapping
+    public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll()
                 .stream()
                 .map(cinemaHallDtoMapper::toDo)
