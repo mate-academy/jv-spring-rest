@@ -1,8 +1,8 @@
-package mate.academy.spring.dto;
+package mate.academy.spring.dto.response;
 
-public class ResponseMovieDto {
+public class CinemaHallResponseDto {
     private Long id;
-    private String title;
+    private int capacity;
     private String description;
 
     public Long getId() {
@@ -13,12 +13,12 @@ public class ResponseMovieDto {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public String getDescription() {

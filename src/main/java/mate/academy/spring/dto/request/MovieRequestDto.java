@@ -1,6 +1,6 @@
-package mate.academy.spring.dto;
+package mate.academy.spring.dto.request;
 
-public class RequestMovieDto {
+public class MovieRequestDto {
     private String description;
     private String title;
 
