@@ -51,7 +51,7 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("")
+    @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         movieSessionRequestDto.setShowTime(LocalDateTime.now());
         MovieSession movieSession =
