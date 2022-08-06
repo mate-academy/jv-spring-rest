@@ -21,5 +21,4 @@ public class MovieMapper {
         movie.setTitle(movieRequestDto.getTitle());
         return movie;
     }
-
 }
