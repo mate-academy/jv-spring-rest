@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(name = "/movie-sessions")
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper movieSessionMapper;
@@ -40,7 +40,7 @@ public class MovieSessionController {
                 .add(movieSessionMapper.toModel(movieSession)));
     }
 
-    @GetMapping(name = "/available")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> getAllAvailable(
             @RequestParam Long id,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
@@ -49,7 +49,7 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping(name = "/{id}")
+    @PutMapping("/{id}")
     public MovieSessionResponseDto update(
             @PathVariable Long id, @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
@@ -57,7 +57,7 @@ public class MovieSessionController {
         return movieSessionMapper.toDto(movieSessionService.update(movieSession));
     }
 
-    @DeleteMapping(name = "/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         MovieSession movieSession = movieSessionService.get(id);
         movieSessionService.delete(movieSession);

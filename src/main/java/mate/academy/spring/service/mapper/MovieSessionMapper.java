@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
-
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
