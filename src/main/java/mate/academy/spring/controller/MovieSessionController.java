@@ -8,7 +8,6 @@ import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +27,6 @@ public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper movieSessionDtoMapper;
 
-    @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionDtoMapper movieSessionDtoMapper) {
         this.movieSessionService = movieSessionService;

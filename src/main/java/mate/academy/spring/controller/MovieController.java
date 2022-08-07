@@ -6,7 +6,6 @@ import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.mapper.MovieDtoMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +20,6 @@ public class MovieController {
     private final MovieService movieService;
     private final MovieDtoMapper movieDtoMapper;
 
-    @Autowired
     public MovieController(MovieService movieService, MovieDtoMapper movieDtoMapper) {
         this.movieService = movieService;
         this.movieDtoMapper = movieDtoMapper;
