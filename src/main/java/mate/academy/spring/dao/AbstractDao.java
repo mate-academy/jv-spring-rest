@@ -21,7 +21,6 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
             transaction = session.beginTransaction();
             session.save(entity);
             transaction.commit();
-            return entity;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -33,5 +32,6 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
                 session.close();
             }
         }
+        return entity;
     }
 }
