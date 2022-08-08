@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper movieSessionDtoMapper;
+    private static final String patternDateForm = "dd.MM.yyyy";
     
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionDtoMapper movieSessionDtoMapper) {
@@ -33,17 +34,15 @@ public class MovieSessionController {
         this.movieSessionDtoMapper = movieSessionDtoMapper;
     }
     
-    @ResponseStatus(code = HttpStatus.OK)
     @GetMapping("available")
     public List<MovieSessionResponseDto> getAll(@RequestParam Long movieId,
-                        @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
+                        @RequestParam @DateTimeFormat(pattern = patternDateForm) LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
     
     @PostMapping
-    @ResponseStatus(code = HttpStatus.CREATED)
     public MovieSessionResponseDto create(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionDtoMapper.toDto(
@@ -52,7 +51,6 @@ public class MovieSessionController {
     }
     
     @PutMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.OK)
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto
                                                   movieSessionRequestDto) {

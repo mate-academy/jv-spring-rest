@@ -26,7 +26,6 @@ public class CinemaHallController {
         this.cinemaHallDtoMapper = cinemaHallDtoMapper;
     }
     
-    @ResponseStatus(code = HttpStatus.OK)
     @GetMapping
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
@@ -34,7 +33,6 @@ public class CinemaHallController {
                 .collect(Collectors.toList());
     }
     
-    @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping
     public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallDtoMapper.toDto(cinemaHallService
