@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
+    private static final String DATE_PATTERN = "dd.MM.yyyy";
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper movieSessionDtoMapper;
 
@@ -34,9 +35,8 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    @ResponseStatus(code = HttpStatus.OK)
     public List<MovieSessionResponseDto> getAllAvailableMovieSession(
-            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date,
+            @RequestParam @DateTimeFormat(pattern = DATE_PATTERN) LocalDate date,
             @RequestParam Long movieId) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionDtoMapper::toDto)
@@ -44,17 +44,17 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    @ResponseStatus(code = HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED)
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto requestDto) {
         return movieSessionDtoMapper.toDto(movieSessionService
                 .add(movieSessionDtoMapper.toModel(requestDto)));
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
-        MovieSession movieSession = new MovieSession();
+        MovieSession movieSession = movieSessionDtoMapper.toModel(requestDto);
         movieSession.setId(id);
         MovieSession updatedMovieSession = movieSessionService.update(movieSession);
         return movieSessionDtoMapper.toDto(updatedMovieSession);
