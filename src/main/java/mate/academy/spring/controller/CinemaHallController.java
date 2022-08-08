@@ -29,7 +29,6 @@ public class CinemaHallController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll()
                 .stream()

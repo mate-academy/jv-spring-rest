@@ -28,7 +28,6 @@ public class MovieController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<MovieResponseDto> getAll() {
         return movieService.getAll()
                 .stream()
