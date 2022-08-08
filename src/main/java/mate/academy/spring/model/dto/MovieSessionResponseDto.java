@@ -11,5 +11,4 @@ public class MovieSessionResponseDto {
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
-
 }

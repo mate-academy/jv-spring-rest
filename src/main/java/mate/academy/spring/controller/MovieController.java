@@ -28,7 +28,7 @@ public class MovieController {
         return movieDtoMapper.toDto(movieService.add(movieDtoMapper.toModel(requestDto)));
     }
 
-    @GetMapping()
+    @GetMapping
     public List<MovieResponseDto> getAll() {
         return movieService.getAll()
                 .stream()

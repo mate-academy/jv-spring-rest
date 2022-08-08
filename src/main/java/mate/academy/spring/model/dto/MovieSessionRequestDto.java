@@ -10,5 +10,4 @@ public class MovieSessionRequestDto {
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
-
 }
