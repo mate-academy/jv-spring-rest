@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
+    private static final String patternDateForm = "dd.MM.yyyy";
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper movieSessionDtoMapper;
-    private static final String patternDateForm = "dd.MM.yyyy";
     
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionDtoMapper movieSessionDtoMapper) {
