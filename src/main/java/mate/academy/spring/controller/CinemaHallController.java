@@ -29,7 +29,6 @@ public class CinemaHallController {
         return cinemaHallDtoMapper
                 .toDto(cinemaHallService
                         .add(cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
-
     }
 
     @GetMapping
