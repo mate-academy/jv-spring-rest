@@ -6,11 +6,9 @@ import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.mapper.MovieDtoMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,7 +23,6 @@ public class MovieController {
     }
 
     @PostMapping("/movies")
-    @ResponseStatus(HttpStatus.CREATED)
     public MovieResponseDto create(@RequestBody MovieRequestDto requestDto) {
         return movieDtoMapper.toDto(
                 movieService.add(
@@ -35,7 +32,6 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    @ResponseStatus(HttpStatus.OK)
     public List<MovieResponseDto> getAll() {
         return movieService.getAll()
                 .stream()
