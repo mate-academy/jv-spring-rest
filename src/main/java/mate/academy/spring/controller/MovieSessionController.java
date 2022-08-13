@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper movieSessionDtoMapper;
@@ -29,14 +31,14 @@ public class MovieSessionController {
         this.movieSessionDtoMapper = movieSessionDtoMapper;
     }
 
-    @PostMapping("/movie-sessions")
+    @PostMapping
     public MovieSessionResponseDto create(@RequestBody
                                               MovieSessionRequestDto requestDto) {
         return movieSessionDtoMapper.toDto(
                 movieSessionService.add(movieSessionDtoMapper.toModel(requestDto)));
     }
 
-    @GetMapping("/movie-sessions/available")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> getAllAvailable(@RequestParam Long movieId,
                                                          @RequestParam @DateTimeFormat
                                                                  (pattern = "dd.MM.yyyy")
@@ -47,7 +49,7 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/movie-sessions/{id}")
+    @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
         MovieSession movieSession = movieSessionDtoMapper.toModel(requestDto);
@@ -55,7 +57,7 @@ public class MovieSessionController {
         return movieSessionDtoMapper.toDto(movieSessionService.update(movieSession));
     }
 
-    @DeleteMapping("/movie-sessions/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         MovieSession movieSession = movieSessionService.get(id);
         movieSessionService.delete(movieSession);
