@@ -18,19 +18,19 @@ public class MovieSessionDtoMapper {
     }
 
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
-        MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
-        movieSessionResponseDto.setId(movieSession.getId());
-        movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
-        movieSessionResponseDto.setCinemaHallId(movieSession.getCinemaHall().getId());
-        movieSessionResponseDto.setShowTime(movieSession.getShowTime());
-        return movieSessionResponseDto;
+        MovieSessionResponseDto responseDto = new MovieSessionResponseDto();
+        responseDto.setId(movieSession.getId());
+        responseDto.setMovieId(movieSession.getMovie().getId());
+        responseDto.setCinemaHallId(movieSession.getCinemaHall().getId());
+        responseDto.setShowTime(movieSession.getShowTime());
+        return responseDto;
     }
 
-    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSession toModel(MovieSessionRequestDto requestDto) {
         MovieSession movieSession = new MovieSession();
-        movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
-        movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
-        movieSession.setShowTime(movieSessionRequestDto.getShowTime());
+        movieSession.setMovie(movieService.get(requestDto.getMovieId()));
+        movieSession.setCinemaHall(cinemaHallService.get(requestDto.getCinemaHallId()));
+        movieSession.setShowTime(requestDto.getShowTime());
         return movieSession;
     }
 }
