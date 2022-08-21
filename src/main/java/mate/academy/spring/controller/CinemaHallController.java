@@ -14,19 +14,13 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping
 public class CinemaHallController {
-    CinemaHallService cinemaHallService;
-    CinemaHallResponseDto cinemaHallResponseDto;
-    CinemaHallRequestDto cinemaHallRequestDto;
-    CinemaHallDtoMapper cinemaHallDtoMapper;
+    private final CinemaHallService cinemaHallService;
+    private final CinemaHallDtoMapper cinemaHallDtoMapper;
 
     @Autowired
     public CinemaHallController(CinemaHallService cinemaHallService,
-                                CinemaHallResponseDto cinemaHallResponseDto,
-                                CinemaHallRequestDto cinemaHallRequestDto,
                                 CinemaHallDtoMapper cinemaHallDtoMapper) {
         this.cinemaHallService = cinemaHallService;
-        this.cinemaHallResponseDto = cinemaHallResponseDto;
-        this.cinemaHallRequestDto = cinemaHallRequestDto;
         this.cinemaHallDtoMapper = cinemaHallDtoMapper;
 
     }

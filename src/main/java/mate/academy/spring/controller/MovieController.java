@@ -20,18 +20,12 @@ import java.util.stream.Collectors;
 
 @Controller
 public class MovieController {
-    private MovieService movieService;
-    private MovieResponseDto movieResponseDto;
-    private MovieRequestDto movieRequestDto;
-    private MovieDtoMapper movieDtoMapper;
+    private final MovieService movieService;
+    private final MovieDtoMapper movieDtoMapper;
 
     public MovieController(MovieService movieService,
-                           MovieResponseDto movieResponseDto,
-                           MovieRequestDto movieRequestDto,
                            MovieDtoMapper movieDtoMapper) {
         this.movieService = movieService;
-        this.movieResponseDto = movieResponseDto;
-        this.movieRequestDto = movieRequestDto;
         this.movieDtoMapper = movieDtoMapper;
     }
 
