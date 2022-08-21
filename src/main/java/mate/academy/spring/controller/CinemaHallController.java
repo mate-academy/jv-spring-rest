@@ -2,7 +2,6 @@ package mate.academy.spring.controller;
 
 import mate.academy.spring.dto.CinemaHallRequestDto;
 import mate.academy.spring.dto.CinemaHallResponseDto;
-import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class CinemaHallController {
 
     @GetMapping("/cinema-halls")
     @ResponseBody
-    public List<CinemaHallResponseDto> get() {
+    public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallDtoMapper::parse).collect(Collectors.toList());
     }
