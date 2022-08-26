@@ -9,11 +9,12 @@ import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class MovieSessionController {
+    public static final String DATE_FORMAT = "dd.MM.yyyy";
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper movieSessionDtoMapper;
 
@@ -25,8 +26,8 @@ public class MovieSessionController {
     }
 
     @PostMapping("/movie-sessions")
-    @ResponseBody
-    private MovieSessionResponseDto create(MovieSessionRequestDto movieSessionRequestDto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    private MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionDtoMapper.parse(movieSessionService
                 .add(movieSessionDtoMapper.toModel(movieSessionRequestDto)));
     }
@@ -34,7 +35,7 @@ public class MovieSessionController {
     @GetMapping("/movie-sessions/available")
     @ResponseBody
     private List<MovieSessionResponseDto> getAvailableSessions(@RequestParam Long movieId,
-                            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
+                            @RequestParam @DateTimeFormat(pattern = DATE_FORMAT) LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionDtoMapper::parse)
                 .collect(Collectors.toList());
