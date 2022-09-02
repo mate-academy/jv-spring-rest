@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
+import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,21 @@ public class MovieSessionController {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionDtoMapper::parse)
                 .collect(Collectors.toList());
+    }
+
+    @PutMapping("/movie-sessions/{id}")
+    @ResponseBody
+    private MovieSessionResponseDto update(@PathVariable Long id,
+                                   @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+        MovieSession movieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
+        movieSession.setId(id);
+        movieSession = movieSessionService.update(movieSession);
+        return movieSessionDtoMapper.parse(movieSession);
+    }
+
+    @DeleteMapping("/movie-sessions/{id}")
+    @ResponseBody
+    private boolean delete(@PathVariable Long id) {
+        return movieSessionService.delete(id);
     }
 }

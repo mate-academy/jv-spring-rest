@@ -14,6 +14,7 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -55,6 +56,39 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                     .uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
+        }
+    }
+
+    @Override
+    public Optional<MovieSession> update(MovieSession movieSession) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.update(movieSession);
+            transaction.commit();
+            return Optional.ofNullable(movieSession);
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't update a movie session: " + movieSession, e);
+        }
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            MovieSession movieSession = session.get(MovieSession.class, id);
+            session.delete(movieSession);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't delete a movie session by id: " + id, e);
         }
     }
 }
