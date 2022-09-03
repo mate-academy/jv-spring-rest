@@ -1,45 +1,43 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.dto.CinemaHallRequestDto;
-import mate.academy.spring.dto.CinemaHallResponseDto;
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieRequestDto;
 import mate.academy.spring.dto.MovieResponseDto;
-import mate.academy.spring.model.Movie;
-import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
-import mate.academy.spring.service.mapper.CinemaHallDtoMapper;
 import mate.academy.spring.service.mapper.MovieDtoMapper;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-@Controller
+@RestController
+@RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
     private final MovieDtoMapper movieDtoMapper;
 
+    @Autowired
     public MovieController(MovieService movieService,
                            MovieDtoMapper movieDtoMapper) {
         this.movieService = movieService;
         this.movieDtoMapper = movieDtoMapper;
     }
 
-    @PostMapping("/movies")
-    @ResponseBody
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     private MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
-        return movieDtoMapper.parse(movieService.add(movieDtoMapper.toModel(movieRequestDto)));
+        return movieDtoMapper.toDto(movieService.add(movieDtoMapper.toModel(movieRequestDto)));
     }
 
-    @GetMapping("/movies")
-    @ResponseBody
+    @GetMapping
     private List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
-                .map(movieDtoMapper::parse)
+                .map(movieDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
