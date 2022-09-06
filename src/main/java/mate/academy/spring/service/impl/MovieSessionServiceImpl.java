@@ -30,8 +30,7 @@ public class MovieSessionServiceImpl implements MovieSessionService {
         return sessionDao.add(session);
     }
 
-    public MovieSession update(Long id, MovieSession movieSession) {
-        movieSession.setId(id);
+    public MovieSession update(MovieSession movieSession) {
         return sessionDao.update(movieSession);
     }
 

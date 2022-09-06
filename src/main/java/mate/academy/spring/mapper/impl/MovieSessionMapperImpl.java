@@ -33,8 +33,8 @@ public class MovieSessionMapperImpl implements MovieSessionMapper {
     public MovieSessionResponseDto toDto(MovieSession entity) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(entity.getId());
-        movieSessionResponseDto.setMovie(entity.getMovie());
-        movieSessionResponseDto.setCinemaHall(entity.getCinemaHall());
+        movieSessionResponseDto.setMovieId(entity.getMovie().getId());
+        movieSessionResponseDto.setCinemaHallId(entity.getCinemaHall().getId());
         movieSessionResponseDto.setShowTime(entity.getShowTime());
         return movieSessionResponseDto;
     }
