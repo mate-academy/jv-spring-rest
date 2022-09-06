@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieRequestDto;
 import mate.academy.spring.dto.MovieResponseDto;
-import mate.academy.spring.mapper.MovieMapper;
+import mate.academy.spring.mapper.MovieRequestMapper;
+import mate.academy.spring.mapper.MovieResponseMapper;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +18,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
-    private MovieMapper movieMapper;
     private MovieService movieService;
+    private MovieRequestMapper requestMapper;
+    private MovieResponseMapper responseMapper;
 
     @Autowired
-    public MovieController(MovieMapper movieMapper, MovieService movieService) {
-        this.movieMapper = movieMapper;
+    public MovieController(MovieService movieService,
+                           MovieRequestMapper requestMapper,
+                           MovieResponseMapper responseMapper) {
         this.movieService = movieService;
+        this.requestMapper = requestMapper;
+        this.responseMapper = responseMapper;
     }
 
     @PostMapping
     public MovieResponseDto add(@RequestBody MovieRequestDto movieRequestDto) {
-        Movie movie = movieService.add(movieMapper.toModel(movieRequestDto));
-        return movieMapper.toDto(movie);
+        Movie movie = movieService.add(requestMapper.toModel(movieRequestDto));
+        return responseMapper.toDto(movie);
     }
 
     @GetMapping
     public List<MovieResponseDto> getAll() {
         return movieService.getAll()
                 .stream()
-                .map(movieMapper::toDto)
+                .map(responseMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
