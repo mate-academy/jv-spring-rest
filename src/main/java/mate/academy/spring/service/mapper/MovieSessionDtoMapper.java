@@ -5,10 +5,11 @@ import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
+import mate.academy.spring.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class MovieSessionDtoMapper {
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
@@ -32,7 +33,7 @@ public class MovieSessionDtoMapper {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(requestDto.getMovieId()));
         movieSession.setCinemaHall(cinemaHallService.get(requestDto.getCinemaHallId()));
-        movieSession.setShowTime(requestDto.getShowTime());
+        movieSession.setShowTime(DateUtil.toLocalDateTime(requestDto.getShowTime()));
         return movieSession;
     }
 }
