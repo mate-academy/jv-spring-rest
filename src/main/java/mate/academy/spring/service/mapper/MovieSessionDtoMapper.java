@@ -36,4 +36,13 @@ public class MovieSessionDtoMapper {
         movieSession.setShowTime(DateUtil.toLocalDateTime(requestDto.getShowTime()));
         return movieSession;
     }
+
+    public MovieSession toModelWithId(Long id, MovieSessionRequestDto requestDto) {
+        MovieSession movieSession = new MovieSession();
+        movieSession.setId(id);
+        movieSession.setMovie(movieService.get(requestDto.getMovieId()));
+        movieSession.setCinemaHall(cinemaHallService.get(requestDto.getCinemaHallId()));
+        movieSession.setShowTime(DateUtil.toLocalDateTime(requestDto.getShowTime()));
+        return movieSession;
+    }
 }
