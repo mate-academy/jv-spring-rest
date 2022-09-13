@@ -74,7 +74,7 @@ public class MovieSessionController {
         movieSessionService.remove(id);
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<MovieSessionResponseDto> getAll() {
         return movieSessionService.getAll().stream()
                 .map(movieSessionDtoMapper::toDto)
