@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.dto.CinemaHallRequestDto;
 import mate.academy.spring.dto.CinemaHallResponseDto;
-import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,21 +28,13 @@ public class CinemaHallController {
     }
 
     @PostMapping
-    public void add(@RequestBody CinemaHallRequestDto cinemaHallDto) {
-        CinemaHall cinemaHall = new CinemaHall();
-        cinemaHall.setCapacity(cinemaHallDto.getCapacity());
-        cinemaHall.setDescription(cinemaHallDto.getDescription());
-        cinemaHallService.add(cinemaHall);
+    public void add(@RequestBody CinemaHallRequestDto requestDto) {
+        cinemaHallService.add(cinemaHallDtoMapper.toModel(requestDto));
     }
 
     @GetMapping("/{id}")
     public CinemaHallResponseDto get(@PathVariable Long id) {
-        CinemaHall cinemaHall = cinemaHallService.get(id);
-        CinemaHallResponseDto responseDto = new CinemaHallResponseDto();
-        responseDto.setId(id);
-        responseDto.setCapacity(cinemaHall.getCapacity());
-        responseDto.setDescription(cinemaHall.getDescription());
-        return responseDto;
+        return cinemaHallDtoMapper.toDto(cinemaHallService.get(id));
     }
 
     @GetMapping

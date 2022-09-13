@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieRequestDto;
 import mate.academy.spring.dto.MovieResponseDto;
-import mate.academy.spring.model.Movie;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.mapper.MovieDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,20 +28,12 @@ public class MovieController {
 
     @GetMapping("/{id}")
     public MovieResponseDto get(@PathVariable Long id) {
-        MovieResponseDto responseDto = new MovieResponseDto();
-        Movie movie = movieService.get(id);
-        responseDto.setId(id);
-        responseDto.setTitle(movie.getTitle());
-        responseDto.setDescription((movie.getDescription()));
-        return responseDto;
+        return movieDtoMapper.toDto(movieService.get(id));
     }
 
     @PostMapping
     public void add(@RequestBody MovieRequestDto requestDto) {
-        Movie movie = new Movie();
-        movie.setTitle(requestDto.getTitle());
-        movie.setDescription(requestDto.getDescription());
-        movieService.add(movie);
+        movieService.add(movieDtoMapper.toModel(requestDto));
     }
 
     @GetMapping
