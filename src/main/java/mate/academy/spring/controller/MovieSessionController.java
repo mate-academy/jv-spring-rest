@@ -50,19 +50,13 @@ public class MovieSessionController {
     @PutMapping("/{id}")
     public MovieSessionResponseDto put(@PathVariable Long id,
                                        @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        MovieSession movieSession = movieSessionService.get(id);
-        MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
-        MovieSession movieSessionFromDto = movieSessionDtoMapper.toModel(movieSessionRequestDto);
-        movieSession.setMovie(movieSessionFromDto.getMovie());
-        movieSession.setCinemaHall(movieSessionFromDto.getCinemaHall());
-        movieSession.setShowTime(movieSessionFromDto.getShowTime());
+        MovieSession movieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
+        movieSession.setId(id);
         return movieSessionDtoMapper.toDto(movieSessionService.update(movieSession));
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
-
     }
-
 }
