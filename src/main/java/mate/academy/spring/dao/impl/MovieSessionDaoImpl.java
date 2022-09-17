@@ -72,7 +72,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't delete item with id: " + movieSession.getId(), e);
+            throw new DataProcessingException(
+                    "Can't delete item with id: " + movieSession.getId(), e);
         } finally {
             if (session != null) {
                 session.close();
@@ -94,7 +95,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't update movie session with id: " + movieSession.getId(), e);
+            throw new DataProcessingException(
+                    "Can't update movie session with id: " + movieSession.getId(), e);
         } finally {
             if (session != null) {
                 session.close();

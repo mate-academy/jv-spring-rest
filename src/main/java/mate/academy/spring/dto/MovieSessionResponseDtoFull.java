@@ -10,6 +10,7 @@ public class MovieSessionResponseDtoFull {
     private Long cinemaHallId;
     private int cinemaHallCapacity;
     private String cinemaHallDescription;
+    private LocalDateTime showTime;
 
     public String getMovieTitle() {
         return movieTitle;
@@ -42,8 +43,6 @@ public class MovieSessionResponseDtoFull {
     public void setCinemaHallDescription(String cinemaHallDescription) {
         this.cinemaHallDescription = cinemaHallDescription;
     }
-
-    private LocalDateTime showTime;
 
     public Long getId() {
         return id;
