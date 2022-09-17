@@ -1,12 +1,10 @@
 package mate.academy.spring.controller;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
-import mate.academy.spring.dto.MovieSessionResponseDtoFull;
 import mate.academy.spring.mapper.MovieSessionDtoMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
@@ -51,15 +49,6 @@ public class MovieSessionController {
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionDtoMapper::toDto).collect(Collectors.toList());
-    }
-
-    @GetMapping("/available-full")
-    public List<MovieSessionResponseDtoFull> findAllAvailableSessionsFull(
-            @RequestParam Long movieId,
-            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
-        List<Object> all = new ArrayList<>();
-        return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(movieSessionDtoMapper::toDtoFull).collect(Collectors.toList());
     }
 
     @DeleteMapping("/{id}")
