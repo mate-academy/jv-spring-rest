@@ -86,7 +86,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't update a movie session by id: " + id, e);
+            throw new DataProcessingException("Can't delete a movie session by id: " + id, e);
         }
     }
 }
