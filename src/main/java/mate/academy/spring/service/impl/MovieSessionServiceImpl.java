@@ -36,8 +36,19 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     }
 
     @Override
-    public MovieSession update(MovieSession movieSession) {
-        sessionDao.update(movieSession);
-        return sessionDao.get(movieSession.getId()).get();
+    public MovieSession update(Long id, MovieSession receivedMovieSession) {
+        MovieSession updatedMovieSession = sessionDao.get(id).get();
+        if (receivedMovieSession.getMovie() != null) {
+            updatedMovieSession.setMovie(receivedMovieSession.getMovie());
+        }
+        if (receivedMovieSession.getCinemaHall() != null) {
+            updatedMovieSession.setCinemaHall(receivedMovieSession.getCinemaHall());
+        }
+        if (receivedMovieSession.getShowTime() != null) {
+            updatedMovieSession.setShowTime(receivedMovieSession.getShowTime());
+        }
+
+        sessionDao.update(updatedMovieSession);
+        return updatedMovieSession;
     }
 }
