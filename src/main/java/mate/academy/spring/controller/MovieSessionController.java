@@ -3,11 +3,11 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.MovieSessionResponseDto;
+import mate.academy.spring.dto.request.MovieSessionRequestDto;
+import mate.academy.spring.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
-import mate.academy.spring.model.request.MovieSessionRequestDto;
 import mate.academy.spring.service.MovieSessionService;
-import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
+import mate.academy.spring.service.mapper.MovieSessionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,18 +24,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
-    private final MovieSessionDtoMapper mapper;
+    private final MovieSessionMapper mapper;
 
     @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
-                                  MovieSessionDtoMapper mapper) {
+                                  MovieSessionMapper mapper) {
         this.movieSessionService = movieSessionService;
         this.mapper = mapper;
     }
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto movieSession) {
-        return mapper.parse(movieSessionService.add(mapper.toModel(movieSession)));
+        return mapper.toDto(movieSessionService.add(mapper.toModel(movieSession)));
     }
 
     @GetMapping("/available")
@@ -43,7 +43,7 @@ public class MovieSessionController {
             @RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(mapper::parse).collect(Collectors.toList());
+                .map(mapper::toDto).collect(Collectors.toList());
     }
 
     @DeleteMapping("/{id}")
@@ -55,7 +55,6 @@ public class MovieSessionController {
     public MovieSessionResponseDto update(@PathVariable Long id,
                                    @RequestBody MovieSessionRequestDto requestDto) {
         MovieSession movieSession = mapper.toModel(requestDto);
-        return mapper.parse(movieSessionService.update(movieSession));
+        return mapper.toDto(movieSessionService.update(movieSession));
     }
-
 }
