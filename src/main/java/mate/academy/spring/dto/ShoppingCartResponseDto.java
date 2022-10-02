@@ -2,20 +2,11 @@ package mate.academy.spring.dto;
 
 import java.util.List;
 
-public class ShoppingCartDto {
-    private Long id;
+public class ShoppingCartResponseDto {
     private List<Long> tickets;
     private Long userId;
 
-    public ShoppingCartDto() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public ShoppingCartResponseDto() {
     }
 
     public List<Long> getTickets() {
