@@ -8,7 +8,6 @@ import mate.academy.spring.security.mapper.MovieDtoMapper;
 import mate.academy.spring.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,14 +28,13 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<MovieResponseDto> getAllMovies() {
+    public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
                .map(movieDtoMapper::toDto)
                .collect(Collectors.toList());
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType
-            .APPLICATION_JSON_VALUE)
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
         return movieDtoMapper.toDto(movieService.add(movieDtoMapper.toModel(movieRequestDto)));

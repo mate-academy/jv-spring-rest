@@ -31,5 +31,4 @@ public class CinemaHallResponseDto {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

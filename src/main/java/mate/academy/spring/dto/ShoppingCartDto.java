@@ -1,13 +1,11 @@
 package mate.academy.spring.dto;
 
 import java.util.List;
-import mate.academy.spring.model.Ticket;
-import mate.academy.spring.model.User;
 
 public class ShoppingCartDto {
     private Long id;
-    private List<Ticket> tickets;
-    private User user;
+    private List<Long> tickets;
+    private Long userId;
 
     public ShoppingCartDto() {
     }
@@ -20,19 +18,19 @@ public class ShoppingCartDto {
         this.id = id;
     }
 
-    public List<Ticket> getTickets() {
+    public List<Long> getTickets() {
         return tickets;
     }
 
-    public void setTickets(List<Ticket> tickets) {
+    public void setTickets(List<Long> tickets) {
         this.tickets = tickets;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUser() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Long userId) {
+        this.userId = userId;
     }
 }
