@@ -9,12 +9,35 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.CinemaHall;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements CinemaHallDao {
     public CinemaHallDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
+    }
+
+    @Override
+    public CinemaHall add(CinemaHall cinemaHall) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(cinemaHall);
+            transaction.commit();
+            return cinemaHall;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't insert a new cinema hall: " + cinemaHall, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
