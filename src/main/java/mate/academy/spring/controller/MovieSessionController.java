@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
-import mate.academy.spring.security.mapper.MovieSessionDtoMapper;
+import mate.academy.spring.security.mapper.MovieSessionMapper;
 import mate.academy.spring.service.MovieSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,11 +26,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private MovieSessionService movieSessionService;
-    private MovieSessionDtoMapper mapper;
+    private MovieSessionMapper mapper;
 
     @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
-                                  MovieSessionDtoMapper mapper) {
+                                  MovieSessionMapper mapper) {
         this.movieSessionService = movieSessionService;
         this.mapper = mapper;
     }

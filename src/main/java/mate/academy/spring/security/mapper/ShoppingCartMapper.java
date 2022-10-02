@@ -7,7 +7,7 @@ import mate.academy.spring.model.Ticket;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ShoppingCartDtoMapper {
+public class ShoppingCartMapper {
     ShoppingCartResponseDto toDto(ShoppingCart shoppingCart) {
         ShoppingCartResponseDto shoppingCartResponseDto = new ShoppingCartResponseDto();
         shoppingCartResponseDto.setUser(shoppingCart.getUser().getId());

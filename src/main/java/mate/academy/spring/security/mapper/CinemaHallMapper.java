@@ -6,7 +6,7 @@ import mate.academy.spring.model.CinemaHall;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CinemaHallDtoMapper {
+public class CinemaHallMapper {
     public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
         CinemaHallResponseDto cinemaHallResponseDto = new CinemaHallResponseDto();
         cinemaHallResponseDto.setId(cinemaHall.getId());
