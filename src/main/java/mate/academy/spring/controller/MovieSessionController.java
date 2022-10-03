@@ -1,11 +1,11 @@
 package mate.academy.spring.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
-import java.time.LocalDate;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionMapper;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,9 +40,10 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> findAvailableSessions(@PathVariable Long movieId,
+    public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
                                                                @RequestParam
-                                                               @DateTimeFormat(pattern = DATE_TIME_FORMAT)
+                                                               @DateTimeFormat
+                                                                       (pattern = DATE_TIME_FORMAT)
                                                                LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionMapper::toDto)
