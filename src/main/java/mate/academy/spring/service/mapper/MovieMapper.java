@@ -6,7 +6,7 @@ import mate.academy.spring.model.dto.MovieResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieDtoMapper {
+public class MovieMapper {
     public MovieResponseDto toDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
         movieResponseDto.setId(movie.getId());
