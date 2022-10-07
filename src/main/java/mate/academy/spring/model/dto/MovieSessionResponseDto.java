@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionResponseDto {
+    private Long id;
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
@@ -31,5 +32,13 @@ public class MovieSessionResponseDto {
 
     public void setShowTime(LocalDateTime showTime) {
         this.showTime = showTime;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
