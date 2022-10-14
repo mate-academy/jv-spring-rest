@@ -18,7 +18,8 @@ public class CinemaHallController {
     private CinemaHallMapper cinemaHallMapper;
     private CinemaHallService cinemaHallService;
 
-    public CinemaHallController(CinemaHallMapper cinemaHallMapper, CinemaHallService cinemaHallService) {
+    public CinemaHallController(CinemaHallMapper cinemaHallMapper,
+                                CinemaHallService cinemaHallService) {
         this.cinemaHallMapper = cinemaHallMapper;
         this.cinemaHallService = cinemaHallService;
     }
