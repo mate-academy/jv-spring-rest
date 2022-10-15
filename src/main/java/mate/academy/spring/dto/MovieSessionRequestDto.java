@@ -1,9 +1,8 @@
 package mate.academy.spring.dto;
 
+import java.time.LocalDateTime;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
-
-import java.time.LocalDateTime;
 
 public class MovieSessionRequestDto {
     private Movie movie;
