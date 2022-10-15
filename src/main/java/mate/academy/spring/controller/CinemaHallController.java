@@ -2,11 +2,14 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import mate.academy.spring.dto.CinemaHallRequestDto;
 import mate.academy.spring.dto.CinemaHallResponseDto;
 import mate.academy.spring.mapper.CinemaHallMapper;
 import mate.academy.spring.service.CinemaHallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +32,10 @@ public class CinemaHallController {
                 .stream()
                 .map(cinemaHallMapper::toDto)
                 .collect(Collectors.toList());
+    }
+    @PostMapping
+    public CinemaHallResponseDto create(CinemaHallRequestDto requestDto) {
+        return cinemaHallMapper.toModel(cinemaHallService.add())
     }
 
 }

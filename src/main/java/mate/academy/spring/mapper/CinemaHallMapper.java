@@ -1,5 +1,6 @@
 package mate.academy.spring.mapper;
 
+import mate.academy.spring.dto.CinemaHallRequestDto;
 import mate.academy.spring.dto.CinemaHallResponseDto;
 import mate.academy.spring.model.CinemaHall;
 import org.springframework.stereotype.Component;
@@ -7,11 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CinemaHallMapper {
 
-    public CinemaHall toModel(CinemaHallResponseDto responseDto) {
+    public CinemaHall toModel(CinemaHallRequestDto requestDto) {
         CinemaHall cinemaHall = new CinemaHall();
-        cinemaHall.setId(responseDto.getId());
-        cinemaHall.setCapacity(responseDto.getCapacity());
-        cinemaHall.setDescription(responseDto.getDescription());
+        cinemaHall.setCapacity(requestDto.getCapacity());
+        cinemaHall.setDescription(requestDto.getDescription());
         return cinemaHall;
     }
 
