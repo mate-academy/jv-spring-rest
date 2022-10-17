@@ -59,5 +59,4 @@ public class MovieSessionController {
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(movieSessionService.get(id));
     }
-
 }
