@@ -9,7 +9,6 @@ import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionMapper;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
@@ -32,7 +31,6 @@ public class MovieSessionController {
         this.movieSessionMapper = movieSessionMapper;
     }
 
-    @ResponseBody
     @PostMapping
     public MovieSessionResponseDto create(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
@@ -40,7 +38,6 @@ public class MovieSessionController {
                 .add(movieSessionMapper.toModel(movieSessionRequestDto)));
     }
 
-    @ResponseBody
     @GetMapping("/available")
     public List<MovieSessionResponseDto> getAvailableMovieSessions(
             @RequestParam Long movieId,
@@ -51,7 +48,6 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @ResponseBody
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(
             @PathVariable Long id,
