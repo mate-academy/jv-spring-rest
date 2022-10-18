@@ -104,9 +104,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public void remove(Long id) {
-        MovieSession movieSession = get(id)
-                .orElseThrow(() -> new RuntimeException("Session with id=" + id + " not found"));
+    public void remove(MovieSession movieSession) {
         Transaction transaction = null;
         Session session = null;
         try {
