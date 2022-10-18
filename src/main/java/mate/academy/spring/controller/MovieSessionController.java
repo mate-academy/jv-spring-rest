@@ -1,7 +1,10 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.dto.movieSession.MovieSessionRequestDto;
-import mate.academy.spring.dto.movieSession.MovieSessionResponseDto;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+import mate.academy.spring.dto.moviesession.MovieSessionRequestDto;
+import mate.academy.spring.dto.moviesession.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionMapper;
@@ -15,10 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/movie-sessions")
@@ -39,8 +38,8 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> findAllAvailable( @RequestParam Long movieId,
-            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")LocalDate date) {
+    public List<MovieSessionResponseDto> findAllAvailable(@RequestParam Long movieId,
+            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(movieSessionMapper::toDto)
                 .collect(Collectors.toList());

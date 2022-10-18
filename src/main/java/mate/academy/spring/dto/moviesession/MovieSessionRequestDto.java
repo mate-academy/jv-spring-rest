@@ -1,25 +1,11 @@
-package mate.academy.spring.dto.movieSession;
+package mate.academy.spring.dto.moviesession;
 
-import mate.academy.spring.model.CinemaHall;
-import mate.academy.spring.model.Movie;
-
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
-public class MovieSessionResponseDto {
-    private Long id;
+public class MovieSessionRequestDto {
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getMovieId() {
         return movieId;

@@ -1,4 +1,4 @@
-package mate.academy.spring.dto.cinemaHall;
+package mate.academy.spring.dto.cinemahall;
 
 public class CinemaHallRequestDto {
     private int capacity;

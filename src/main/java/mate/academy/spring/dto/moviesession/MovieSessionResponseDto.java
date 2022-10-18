@@ -1,11 +1,20 @@
-package mate.academy.spring.dto.movieSession;
+package mate.academy.spring.dto.moviesession;
 
 import java.time.LocalDateTime;
 
-public class MovieSessionRequestDto {
+public class MovieSessionResponseDto {
+    private Long id;
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getMovieId() {
         return movieId;
