@@ -23,17 +23,17 @@ public class MovieController {
         this.movieMapper = movieMapper;
     }
 
-    @GetMapping
-    public List<MovieResponseDto> getAll() {
-        return movieService.getAll().stream()
-                .map(movieMapper::toDto)
-                .collect(Collectors.toList());
-    }
-
     @PostMapping
     public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
         return movieMapper.toDto(
                 movieService.add(
                         movieMapper.toModel(movieRequestDto)));
+    }
+
+    @GetMapping
+    public List<MovieResponseDto> getAll() {
+        return movieService.getAll().stream()
+                .map(movieMapper::toDto)
+                .collect(Collectors.toList());
     }
 }
