@@ -10,6 +10,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.MovieSessionDao;
+import mate.academy.spring.dto.moviesession.MovieSessionResponseDto;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
@@ -82,7 +83,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public void delete(MovieSession movieSession) {
+    public MovieSessionResponseDto delete(MovieSession movieSession) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -100,5 +101,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                 session.close();
             }
         }
+        return null;
     }
 }

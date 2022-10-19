@@ -3,6 +3,7 @@ package mate.academy.spring.dao;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import mate.academy.spring.dto.moviesession.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
 
 public interface MovieSessionDao extends GenericDao<MovieSession> {
@@ -12,5 +13,5 @@ public interface MovieSessionDao extends GenericDao<MovieSession> {
 
     MovieSession update(MovieSession movieSession);
 
-    void delete(MovieSession movieSession);
+    MovieSessionResponseDto delete(MovieSession movieSession);
 }
