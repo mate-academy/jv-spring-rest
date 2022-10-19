@@ -17,25 +17,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private CinemaHallService cinemaHallService;
-    private CinemaHallDtoMapper mapper;
+    private CinemaHallDtoMapper cinemaHallDtoMapper;
 
-    public CinemaHallController(CinemaHallService cinemaHallService, CinemaHallDtoMapper mapper) {
+    public CinemaHallController(CinemaHallService cinemaHallService, CinemaHallDtoMapper cinemaHallDtoMapper) {
         this.cinemaHallService = cinemaHallService;
-        this.mapper = mapper;
+        this.cinemaHallDtoMapper = cinemaHallDtoMapper;
     }
 
     @GetMapping
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll()
                 .stream()
-                .map(mapper::toDto)
+                .map(cinemaHallDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     public CinemaHallResponseDto add(@RequestBody CinemaHallRequestDto request) {
-        CinemaHall cinemaHall = mapper.toModel(request);
+        CinemaHall cinemaHall = cinemaHallDtoMapper.toModel(request);
         cinemaHallService.add(cinemaHall);
-        return mapper.toDto(cinemaHall);
+        return cinemaHallDtoMapper.toDto(cinemaHall);
     }
 }
