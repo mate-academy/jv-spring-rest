@@ -1,7 +1,7 @@
 package mate.academy.spring.mapper;
 
-import mate.academy.spring.dto.MovieSessionRequestDto;
-import mate.academy.spring.dto.MovieSessionResponseDto;
+import mate.academy.spring.dto.request.MovieSessionRequestDto;
+import mate.academy.spring.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;

@@ -2,8 +2,8 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.MovieRequestDto;
-import mate.academy.spring.dto.MovieResponseDto;
+import mate.academy.spring.dto.request.MovieRequestDto;
+import mate.academy.spring.dto.response.MovieResponseDto;
 import mate.academy.spring.mapper.MovieMapper;
 import mate.academy.spring.service.MovieService;
 import org.springframework.web.bind.annotation.GetMapping;
