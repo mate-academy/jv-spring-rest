@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import mate.academy.spring.dao.MovieDao;
 import mate.academy.spring.dto.request.MovieRequestDto;
 import mate.academy.spring.dto.response.MovieResponseDto;
+import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.mapper.MovieMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,22 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
-    private final MovieDao movieDao;
+    private final MovieService movieService;
     private final MovieMapper movieMapper;
 
-    public MovieController(MovieDao movieDao, MovieMapper movieMapper) {
-        this.movieDao = movieDao;
+    public MovieController(MovieService movieService, MovieMapper movieMapper) {
+        this.movieService = movieService;
         this.movieMapper = movieMapper;
     }
 
     @PostMapping
     public MovieResponseDto addMovie(@RequestBody MovieRequestDto movieRequestDto) {
-        return movieMapper.parse(movieDao.add(movieMapper.toModel(movieRequestDto)));
+        return movieMapper.parse(movieService.add(movieMapper.toModel(movieRequestDto)));
     }
 
     @GetMapping
     public List<MovieResponseDto> getAllMovies() {
-        return movieDao.getAll().stream()
+        return movieService.getAll().stream()
                 .map(movieMapper::parse)
                 .collect(Collectors.toList());
     }
