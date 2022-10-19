@@ -9,7 +9,6 @@ import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private MovieSessionDtoMapper mapper;
@@ -33,7 +32,6 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    @ResponseBody
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto requestDto) {
         MovieSession movieSession = mapper.toModel(requestDto);
         movieSessionService.add(movieSession);
@@ -41,8 +39,7 @@ public class MovieSessionController {
     }
 
     @GetMapping
-    public List<MovieSessionResponseDto> findAvailableSessions(
-            @RequestParam Long movieId,
+    public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate showDate) {
         return movieSessionService.findAvailableSessions(movieId, showDate)
                 .stream()
