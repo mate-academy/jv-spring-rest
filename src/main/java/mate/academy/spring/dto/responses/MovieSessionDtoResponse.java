@@ -1,6 +1,5 @@
 package mate.academy.spring.dto.responses;
 
-
 import java.time.LocalDateTime;
 
 public class MovieSessionDtoResponse {

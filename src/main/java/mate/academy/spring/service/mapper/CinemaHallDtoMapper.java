@@ -1,7 +1,7 @@
 package mate.academy.spring.service.mapper;
 
-import mate.academy.spring.dto.responses.CinemaHallDtoResponse;
 import mate.academy.spring.dto.requests.CinemaHallDtoRequest;
+import mate.academy.spring.dto.responses.CinemaHallDtoResponse;
 import mate.academy.spring.model.CinemaHall;
 import org.springframework.stereotype.Component;
 
