@@ -58,6 +58,6 @@ public class MovieSessionController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        sessionService.delete(id);
+        sessionService.delete(sessionService.get(id));
     }
 }
