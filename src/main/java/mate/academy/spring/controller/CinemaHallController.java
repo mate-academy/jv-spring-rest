@@ -1,4 +1,4 @@
-package mate.academy.spring.controllers;
+package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;

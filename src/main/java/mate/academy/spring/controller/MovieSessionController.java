@@ -1,4 +1,4 @@
-package mate.academy.spring.controllers;
+package mate.academy.spring.controller;
 
 import java.time.LocalDate;
 import java.util.List;
