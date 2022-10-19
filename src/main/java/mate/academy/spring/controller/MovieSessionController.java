@@ -3,7 +3,6 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
