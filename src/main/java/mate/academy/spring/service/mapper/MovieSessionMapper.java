@@ -12,7 +12,7 @@ public class MovieSessionMapper {
     private MovieService movieService;
     private CinemaHallService cinemaHallService;
 
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
         movieSessionResponseDto.setShowTime(movieSession.getShowTime());
