@@ -1,8 +1,6 @@
 package mate.academy.spring.dto.response;
 
 import java.time.LocalDateTime;
-import mate.academy.spring.model.CinemaHall;
-import mate.academy.spring.model.Movie;
 
 public class MovieSessionResponseDto {
 
@@ -48,7 +46,7 @@ public class MovieSessionResponseDto {
         return "MovieSessionResponseDto{"
                 + "movieId=" + movieId
                 + ", cinemaHallId=" + cinemaHallId
-                + ", showTime=" + showTime +
-                '}';
+                + ", showTime=" + showTime
+                + '}';
     }
 }
