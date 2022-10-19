@@ -49,8 +49,9 @@ public class MovieSessionController {
 
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
-                                          @RequestBody MovieSessionRequestDto requestDto) {
-        MovieSession movieSession = movieSessionDtoMapper.toModel(requestDto);
+                                          @RequestBody
+                                          MovieSessionRequestDto movieSessionRequestDto) {
+        MovieSession movieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
         movieSessionService.update(movieSession);
         return movieSessionDtoMapper.toDto(movieSession);
     }
