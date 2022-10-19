@@ -8,11 +8,11 @@ import mate.academy.spring.service.MovieService;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieSessionMapperService {
+public class MovieSessionMapper {
     private MovieService movieService;
     private CinemaHallService cinemaHallService;
 
-    public MovieSessionMapperService(
+    public MovieSessionMapper(
             MovieService movieService, CinemaHallService cinemaHallService) {
         this.movieService = movieService;
         this.cinemaHallService = cinemaHallService;
