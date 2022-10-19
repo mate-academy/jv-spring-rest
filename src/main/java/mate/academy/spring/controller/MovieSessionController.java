@@ -47,7 +47,7 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
         MovieSession movieSession = movieSessionMapper.toModel(requestDto);
