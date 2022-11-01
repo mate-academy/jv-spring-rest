@@ -54,8 +54,7 @@ public class MovieSessionController {
 
     @DeleteMapping("/{id}")
     public void delete(
-            @PathVariable Long id,
-            @PathVariable MovieSessionRequestDto movieSessionRequestDto) {
+            @PathVariable Long id) {
         movieSessionService.delete(movieSessionService.get(id));
     }
 }
