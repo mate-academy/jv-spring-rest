@@ -29,4 +29,15 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     public MovieSession add(MovieSession session) {
         return sessionDao.add(session);
     }
+
+    @Override
+    public void update(MovieSession toModel) {
+        sessionDao.update(toModel);
+    }
+
+    @Override
+    public void delete(Long id) {
+        MovieSession movieSession = sessionDao.get(id).get();
+        sessionDao.delete(movieSession);
+    }
 }
