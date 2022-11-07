@@ -25,6 +25,12 @@ public class MovieSessionController {
     private MovieSessionDtoMapper movieSessionDtoMapper;
     private MovieSessionService movieSessionService;
 
+    public MovieSessionController(MovieSessionDtoMapper movieSessionDtoMapper,
+                                  MovieSessionService movieSessionService) {
+        this.movieSessionDtoMapper = movieSessionDtoMapper;
+        this.movieSessionService = movieSessionService;
+    }
+
     @PostMapping
     public MovieSessionResponseDto create(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
@@ -45,6 +51,7 @@ public class MovieSessionController {
     public MovieSessionResponseDto update(
             @PathVariable Long id, @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
+        movieSession.setId(id);
         movieSessionService.update(movieSession);
         return movieSessionDtoMapper.toDto(movieSession);
     }
