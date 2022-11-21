@@ -6,6 +6,7 @@ public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
     private Long cinemaHallId;
+    private LocalDateTime showTime;
 
     public Long getId() {
         return id;
@@ -38,6 +39,4 @@ public class MovieSessionResponseDto {
     public void setShowTime(LocalDateTime showTime) {
         this.showTime = showTime;
     }
-
-    private LocalDateTime showTime;
 }
