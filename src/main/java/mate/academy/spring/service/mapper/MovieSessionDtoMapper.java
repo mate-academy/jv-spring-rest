@@ -18,6 +18,7 @@ public class MovieSessionDtoMapper {
     public void setMovieService(MovieService movieService) {
         this.movieService = movieService;
     }
+
     @Autowired
     public void setCinemaHallService(CinemaHallService cinemaHallService) {
         this.cinemaHallService = cinemaHallService;
