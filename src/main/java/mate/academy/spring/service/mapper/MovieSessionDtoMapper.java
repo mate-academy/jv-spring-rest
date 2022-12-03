@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionDtoMapper {
-    MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
         movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
@@ -18,7 +18,7 @@ public class MovieSessionDtoMapper {
         return movieSessionResponseDto;
     }
 
-    MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
         Movie movie = new Movie();
         movie.setId(movieSessionRequestDto.getMovieId());
