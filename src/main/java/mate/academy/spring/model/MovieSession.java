@@ -20,6 +20,7 @@ public class MovieSession {
     @ManyToOne(fetch = FetchType.LAZY)
     private CinemaHall cinemaHall;
     private LocalDateTime showTime;
+    private boolean deleted = Boolean.FALSE;
 
     public Long getId() {
         return id;
