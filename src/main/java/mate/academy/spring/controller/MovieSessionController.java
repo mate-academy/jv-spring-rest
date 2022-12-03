@@ -34,10 +34,8 @@ public class MovieSessionController {
     @PostMapping
     public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto
                                                       movieSessionRequestDto) {
-        return movieSessionDtoMapper
-                .toDto(movieSessionService
-                        .add(movieSessionDtoMapper
-                                .toModel(movieSessionRequestDto)));
+        return movieSessionDtoMapper.toDto(movieSessionService
+                        .add(movieSessionDtoMapper.toModel(movieSessionRequestDto)));
     }
 
     @GetMapping("/find")
