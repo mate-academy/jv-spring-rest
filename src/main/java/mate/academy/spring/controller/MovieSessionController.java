@@ -1,7 +1,6 @@
 package mate.academy.spring.controller;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("movie-sessions")
@@ -39,14 +37,8 @@ public class MovieSessionController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public MovieSessionDto add(@RequestBody MovieSessionDto dto) {
-        try {
-            MovieSession movieSession = movieSessionService.add(movieSessionMapper.toModel(dto));
-            return movieSessionMapper.toDto(movieSession);
-        } catch (DateTimeParseException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "Can't create movie session: "
-                    + "Invalid showTime format: " + dto.getShowTime(), e);
-        }
+        MovieSession movieSession = movieSessionService.add(movieSessionMapper.toModel(dto));
+        return movieSessionMapper.toDto(movieSession);
     }
 
     @GetMapping("/available")
@@ -72,10 +64,6 @@ public class MovieSessionController {
         } catch (NoSuchElementException e) {
             throw new MovieSessionNotFoundException(
                     "Can't find movie session by id " + id, e);
-        } catch (DateTimeParseException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "Can't create movie session: "
-                            + "Invalid showTime format: " + dto.getShowTime(), e);
         }
     }
 

@@ -1,6 +1,8 @@
 package mate.academy.spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,5 +13,6 @@ public class MovieSessionDto {
     private Long id;
     private Long movieId;
     private Long cinemaHallId;
-    private String showTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm")
+    private LocalDateTime showTime;
 }

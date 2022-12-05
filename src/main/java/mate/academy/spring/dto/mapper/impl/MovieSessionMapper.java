@@ -1,7 +1,5 @@
 package mate.academy.spring.dto.mapper.impl;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import mate.academy.spring.dto.MovieSessionDto;
 import mate.academy.spring.dto.mapper.DtoMapper;
 import mate.academy.spring.model.MovieSession;
@@ -12,8 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class MovieSessionMapper
         implements DtoMapper<MovieSession, MovieSessionDto> {
-    private static final DateTimeFormatter DATE_TIME_FORMAT
-            = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
 
@@ -28,7 +24,7 @@ public class MovieSessionMapper
         dto.setId(movieSession.getId());
         dto.setMovieId(movieSession.getMovie().getId());
         dto.setCinemaHallId(movieSession.getCinemaHall().getId());
-        dto.setShowTime(movieSession.getShowTime().format(DATE_TIME_FORMAT));
+        dto.setShowTime(movieSession.getShowTime());
         return dto;
     }
 
@@ -37,8 +33,7 @@ public class MovieSessionMapper
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(dto.getMovieId()));
         movieSession.setCinemaHall(cinemaHallService.get(dto.getCinemaHallId()));
-        LocalDateTime showTime = LocalDateTime.parse(dto.getShowTime(), DATE_TIME_FORMAT);
-        movieSession.setShowTime(showTime);
+        movieSession.setShowTime(dto.getShowTime());
         return movieSession;
     }
 }
