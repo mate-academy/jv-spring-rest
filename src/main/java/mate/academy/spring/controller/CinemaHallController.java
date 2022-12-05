@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import mate.academy.spring.dto.CinemaHallDto;
 import mate.academy.spring.dto.mapper.impl.CinemaHallMapper;
 import mate.academy.spring.model.CinemaHall;
-import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

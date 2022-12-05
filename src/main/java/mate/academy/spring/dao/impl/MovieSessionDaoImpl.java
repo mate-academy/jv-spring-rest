@@ -46,8 +46,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         }
     }
 
-
-
     @Override
     public Optional<MovieSession> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
