@@ -54,7 +54,7 @@ public class MovieSessionController {
         return movieSessionMapper.parseToDto(updated);
     }
 
-    @GetMapping("/find")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> getAllAvailableMovieSessions(
             @RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
