@@ -1,6 +1,5 @@
 package mate.academy.spring.mapper;
 
-import java.time.format.DateTimeFormatter;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
