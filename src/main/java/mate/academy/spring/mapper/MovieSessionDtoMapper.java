@@ -28,10 +28,6 @@ public class MovieSessionDtoMapper {
     }
 
     public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
-        System.out.println("model of movieSession start creating");
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        System.out.println(movieSessionRequestDto.getShowTime().format(dateTimeFormatter));
-
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
         movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
