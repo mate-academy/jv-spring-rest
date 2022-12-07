@@ -3,9 +3,7 @@ package mate.academy.spring.dto;
 import java.time.LocalDateTime;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
-import org.springframework.stereotype.Component;
 
-@Component
 public class MovieSessionResponseDto {
     private Long id;
     private Movie movie;
