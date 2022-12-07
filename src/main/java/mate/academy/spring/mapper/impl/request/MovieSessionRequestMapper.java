@@ -13,7 +13,8 @@ public class MovieSessionRequestMapper
     private final MovieService movieService;
     private final CinemaHallService cinemaHallService;
 
-    public MovieSessionRequestMapper(MovieService movieService, CinemaHallService cinemaHallService) {
+    public MovieSessionRequestMapper(MovieService movieService,
+                                     CinemaHallService cinemaHallService) {
         this.movieService = movieService;
         this.cinemaHallService = cinemaHallService;
     }
