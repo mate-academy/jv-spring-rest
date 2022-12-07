@@ -56,7 +56,7 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> find(@RequestParam Long movieId,
+    public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
                                               @RequestParam
                                               @DateTimeFormat(pattern = "dd.MM.yyyy")
                                               LocalDate date) {
@@ -66,8 +66,7 @@ public class MovieSessionController {
     }
 
     private MovieSession getMovieSessionWithId(Long id,
-                                               MovieSessionRequestDto
-                                                       movieSessionRequestDto) {
+                                               MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionDtoMapper
                 .toModel(movieSessionRequestDto);
         movieSession.setId(id);
