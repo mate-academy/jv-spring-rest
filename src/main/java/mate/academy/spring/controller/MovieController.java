@@ -2,8 +2,10 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.MovieDto;
-import mate.academy.spring.dto.mapper.impl.MovieMapper;
+import mate.academy.spring.dto.request.MovieRequestDto;
+import mate.academy.spring.dto.response.MovieResponseDto;
+import mate.academy.spring.mapper.DtoRequestMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.service.MovieService;
 import org.springframework.http.HttpStatus;
@@ -18,24 +20,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("movies")
 public class MovieController {
     private final MovieService movieService;
-    private final MovieMapper movieMapper;
+    private final DtoResponseMapper<Movie, MovieResponseDto> responseDtoMapper;
+    private final DtoRequestMapper<Movie, MovieRequestDto> requestDtoMapper;
 
-    public MovieController(MovieService movieService, MovieMapper movieMapper) {
+    public MovieController(MovieService movieService,
+                           DtoResponseMapper<Movie, MovieResponseDto> responseDtoMapper,
+                           DtoRequestMapper<Movie, MovieRequestDto> requestDtoMapper) {
         this.movieService = movieService;
-        this.movieMapper = movieMapper;
+        this.responseDtoMapper = responseDtoMapper;
+        this.requestDtoMapper = requestDtoMapper;
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public MovieDto add(@RequestBody MovieDto dto) {
-        Movie movie = movieService.add(movieMapper.toModel(dto));
-        return movieMapper.toDto(movie);
+    public MovieResponseDto add(@RequestBody MovieRequestDto dto) {
+        Movie movie = movieService.add(requestDtoMapper.toModel(dto));
+        return responseDtoMapper.toDto(movie);
     }
 
     @GetMapping
-    public List<MovieDto> getAll() {
+    public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
-                .map(movieMapper::toDto)
+                .map(responseDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 }

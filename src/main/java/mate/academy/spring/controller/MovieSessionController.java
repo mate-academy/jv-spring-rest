@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.MovieSessionDto;
-import mate.academy.spring.dto.mapper.impl.MovieSessionMapper;
+import mate.academy.spring.dto.request.MovieSessionRequestDto;
+import mate.academy.spring.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.exception.MovieSessionNotFoundException;
+import mate.academy.spring.mapper.DtoRequestMapper;
+import mate.academy.spring.mapper.DtoResponseMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,23 +28,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
-    private final MovieSessionMapper movieSessionMapper;
+    private final DtoResponseMapper<MovieSession, MovieSessionResponseDto> responseDtoMapper;
+    private final DtoRequestMapper<MovieSession, MovieSessionRequestDto> requestDtoMapper;
 
     public MovieSessionController(MovieSessionService movieSessionService,
-                                  MovieSessionMapper movieSessionMapper) {
+                                  DtoResponseMapper<MovieSession,
+                                          MovieSessionResponseDto> responseDtoMapper,
+                                  DtoRequestMapper<MovieSession,
+                                          MovieSessionRequestDto> requestDtoMapper) {
         this.movieSessionService = movieSessionService;
-        this.movieSessionMapper = movieSessionMapper;
+        this.responseDtoMapper = responseDtoMapper;
+        this.requestDtoMapper = requestDtoMapper;
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public MovieSessionDto add(@RequestBody MovieSessionDto dto) {
-        MovieSession movieSession = movieSessionService.add(movieSessionMapper.toModel(dto));
-        return movieSessionMapper.toDto(movieSession);
+    public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto dto) {
+        MovieSession movieSession = movieSessionService.add(requestDtoMapper.toModel(dto));
+        return responseDtoMapper.toDto(movieSession);
     }
 
     @GetMapping("/available")
-    public List<MovieSessionDto> getAllAvailableSessions(
+    public List<MovieSessionResponseDto> getAllAvailableSessions(
             @RequestParam
             Long movieId,
             @RequestParam
@@ -50,21 +57,17 @@ public class MovieSessionController {
             LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date)
                 .stream()
-                .map(movieSessionMapper::toDto)
+                .map(responseDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id,
                        @RequestBody
-                       MovieSessionDto dto) {
-        try {
-            MovieSession movieSession = movieSessionService.get(id);
-            movieSessionService.update(movieSession);
-        } catch (NoSuchElementException e) {
-            throw new MovieSessionNotFoundException(
-                    "Can't find movie session by id " + id, e);
-        }
+                       MovieSessionRequestDto dto) {
+        MovieSession movieSession = requestDtoMapper.toModel(dto);
+        movieSession.setId(id);
+        movieSessionService.update(movieSession);
     }
 
     @DeleteMapping("/{id}")
