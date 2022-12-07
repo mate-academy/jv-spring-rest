@@ -18,7 +18,7 @@ public class MovieSessionMapper {
         this.cinemaHallService = cinemaHallService;
     }
 
-    public MovieSessionResponseDto parseToDto(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto movieResponseDto = new MovieSessionResponseDto();
         movieResponseDto.setId(movieSession.getId());
         movieResponseDto.setMovieId(movieSession.getMovie().getId());
@@ -27,7 +27,7 @@ public class MovieSessionMapper {
         return movieResponseDto;
     }
 
-    public MovieSession parseToModel(MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
         movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
