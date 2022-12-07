@@ -1,10 +1,10 @@
 package mate.academy.spring.dto.response;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 public class CinemaHallResponseDto {
     private Long id;
     private int capacity;

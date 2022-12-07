@@ -1,10 +1,10 @@
 package mate.academy.spring.dto.request;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 public class CinemaHallRequestDto {
     private int capacity;
     private String description;

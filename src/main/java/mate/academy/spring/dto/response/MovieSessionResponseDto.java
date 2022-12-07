@@ -2,11 +2,11 @@ package mate.academy.spring.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
