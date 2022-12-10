@@ -34,14 +34,14 @@ public class MovieSessionController {
     @GetMapping("/available")
     public List<MovieSessionResponseDto> getAvailableMovieSessions(
                     @RequestParam("movieId") Long movieId,
-                    @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                    @RequestParam("date") @DateTimeFormat(pattern = "dd.MM.yyyy")
                     LocalDate localDate) {
         return movieSessionService.findAvailableSessions(movieId, localDate).stream()
                     .map(dtoMapper::parse)
                     .collect(Collectors.toList());
     }
 
-    @PostMapping("")
+    @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         return dtoMapper.parse(movieSessionService.add(dtoMapper
                     .toModel(movieSessionRequestDto)));
