@@ -33,7 +33,7 @@ public class MovieController {
         return movieDtoMapper.parse(movieService.add(movieDtoMapper.toModel(movie)));
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
                 .map(movieDtoMapper::parse)
