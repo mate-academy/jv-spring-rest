@@ -7,7 +7,7 @@ public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
     private Long cinemaHallId;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH:mm")
+    @JsonFormat(pattern = "dd.MM.yyyy HH:mm")
     private LocalDateTime showTime;
 
     public Long getId() {
