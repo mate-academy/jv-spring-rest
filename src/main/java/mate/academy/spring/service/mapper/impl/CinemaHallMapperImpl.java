@@ -22,7 +22,7 @@ public class CinemaHallMapperImpl implements CinemaHallMapper {
     public CinemaHall toModel(CinemaHallRequestDto requestDto) {
         CinemaHall hall = new CinemaHall();
         hall.setDescription(requestDto.getDescription());
-        hall.setCapacity(hall.getCapacity());
+        hall.setCapacity(requestDto.getCapacity());
         return hall;
     }
 }
