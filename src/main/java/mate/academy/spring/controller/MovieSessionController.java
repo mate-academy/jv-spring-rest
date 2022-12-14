@@ -55,7 +55,7 @@ public class MovieSessionController {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
         movieSessionService.update(movieSession);
-        return movieSessionMapper.toDto(movieSessionService.add(movieSession));
+        return movieSessionMapper.toDto(movieSession);
     }
 
     @DeleteMapping("/{id}")
