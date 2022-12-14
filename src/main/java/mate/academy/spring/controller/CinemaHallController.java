@@ -1,7 +1,7 @@
 package mate.academy.spring.controller;
 
-import mate.academy.spring.dto.CinemaHallRequestDto;
-import mate.academy.spring.dto.CinemaHallResponseDto;
+import mate.academy.spring.dto.cinemahall.CinemaHallRequestDto;
+import mate.academy.spring.dto.cinemahall.CinemaHallResponseDto;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallMapper;
@@ -23,7 +23,6 @@ public class CinemaHallController {
 
     private final CinemaHallMapper cinemaHallMapper;
 
-    @Autowired
     public CinemaHallController(CinemaHallService cinemaHallService, CinemaHallMapper cinemaHallMapper) {
         this.cinemaHallService = cinemaHallService;
         this.cinemaHallMapper = cinemaHallMapper;
