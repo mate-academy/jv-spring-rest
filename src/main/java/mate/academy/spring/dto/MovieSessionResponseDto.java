@@ -10,9 +10,6 @@ public class MovieSessionResponseDto {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime showTime;
 
-    public MovieSessionResponseDto() {
-    }
-
     public Long getId() {
         return id;
     }

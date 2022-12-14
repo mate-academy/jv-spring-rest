@@ -5,9 +5,6 @@ public class MovieResponseDto {
     private String title;
     private String description;
 
-    public MovieResponseDto() {
-    }
-
     public Long getId() {
         return id;
     }
