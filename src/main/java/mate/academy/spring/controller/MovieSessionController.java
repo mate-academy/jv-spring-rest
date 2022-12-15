@@ -35,7 +35,7 @@ public class MovieSessionController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public MovieSessionResponseDto add(MovieSessionRequestDto movieSessionRequestDto) {
-        return movieSessionDtoMapper.toDto(movieSessionDtoMapper.doModel(movieSessionRequestDto));
+        return movieSessionDtoMapper.toDto(movieSessionDtoMapper.toModel(movieSessionRequestDto));
     }
 
     @GetMapping("/available")
@@ -51,7 +51,7 @@ public class MovieSessionController {
     public MovieSessionResponseDto update(
             @PathVariable Long id,
             @RequestParam MovieSessionRequestDto movieSessionRequestDto) {
-        MovieSession movieSession = movieSessionDtoMapper.doModel(movieSessionRequestDto);
+        MovieSession movieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
         return movieSessionDtoMapper.toDto(movieSession);
     }

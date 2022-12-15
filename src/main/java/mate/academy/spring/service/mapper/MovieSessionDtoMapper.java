@@ -17,7 +17,7 @@ public class MovieSessionDtoMapper {
         this.cinemaHallService = cinemaHallService;
     }
 
-    public MovieSession doModel(MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
         movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
