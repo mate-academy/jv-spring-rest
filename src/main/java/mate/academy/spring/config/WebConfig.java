@@ -12,7 +12,6 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @ComponentScan(basePackages = "mate.academy.spring")
 public class WebConfig implements WebMvcConfigurer {
-
     @Bean
     public InternalResourceViewResolver resolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();

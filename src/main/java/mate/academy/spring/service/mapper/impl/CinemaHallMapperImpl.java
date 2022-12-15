@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CinemaHallMapperImpl implements CinemaHallMapper {
-
     @Override
     public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
         CinemaHallResponseDto responseDto = new CinemaHallResponseDto();
