@@ -83,10 +83,22 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
 
     @Override
     public void remove(MovieSession movieSession) {
-        try (Session session = sessionFactory.openSession()) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
             session.remove(movieSession);
+            transaction.commit();
         } catch (Exception e) {
-            throw new DataProcessingException("Can't remove movie session " + movieSession, e);
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't remove movie session: " + movieSession, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 }
