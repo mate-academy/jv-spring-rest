@@ -2,7 +2,6 @@ package mate.academy.spring.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.NoSuchElementException;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
@@ -33,8 +32,7 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     public MovieSession update(MovieSession movieSession) {
-        return sessionDao.update(movieSession).orElseThrow(
-                () -> new NoSuchElementException("Couldn't update movie session:" + movieSession));
+        return sessionDao.update(movieSession);
     }
 
     @Override
