@@ -11,14 +11,14 @@ public class CinemaHallDtoMapper {
         CinemaHallResponseDto cinemaHallResponseDto = new CinemaHallResponseDto();
         cinemaHallResponseDto.setId(cinemaHall.getId());
         cinemaHallResponseDto.setDescription(cinemaHall.getDescription());
-        cinemaHallResponseDto.setCapacity(cinemaHallResponseDto.getCapacity());
+        cinemaHallResponseDto.setCapacity(cinemaHall.getCapacity());
         return cinemaHallResponseDto;
     }
 
     public CinemaHall toModel(CinemaHallRequestDto cinemaHallRequestDto) {
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setCapacity(cinemaHallRequestDto.getCapacity());
-        cinemaHall.setDescription(cinemaHall.getDescription());
+        cinemaHall.setDescription(cinemaHallRequestDto.getDescription());
         return cinemaHall;
     }
 }
