@@ -7,8 +7,12 @@ import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
@@ -29,20 +33,26 @@ public class MovieSessionController {
     @PostMapping("/movie-sessions")
     public MovieSessionResponseDto add(MovieSessionRequestDto requestDto) {
         return movieSessionDtoMapper.parse(
-                movieSessionService.add(movieSessionDtoMapper.toMap(requestDto)));
+                movieSessionService.add(movieSessionDtoMapper.toModel(requestDto)));
     }
 
-    @GetMapping("//movie-sessions/available/")
+    @GetMapping("/movie-sessions/available/")
     public List<MovieSession> findAvailable(
             @RequestParam Long id, @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate localDate) {
         return movieSessionService.findAvailableSessions(id, localDate);
     }
 
-    public void update(Long movieSessionId) {
-
+    @PutMapping("movie-sessions/{id}")
+    public MovieSessionResponseDto update(@PathVariable Long id,
+                                          @RequestBody MovieSessionRequestDto requestDto) {
+        MovieSession movieSession = movieSessionDtoMapper.toModel(requestDto);
+        movieSession.setId(id);
+        MovieSession updatedMovieSession = movieSessionService.update(movieSession);
+        return movieSessionDtoMapper.parse(updatedMovieSession);
     }
 
-    public void remove(Long movieSessionId) {
-
+    @DeleteMapping("/movie-sessions/{id}")
+    public void remove(@PathVariable Long id) {
+        movieSessionService.delete(id);
     }
 }
