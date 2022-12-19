@@ -3,7 +3,8 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.MovieSessionDto;
+import mate.academy.spring.dto.request.MovieSessionRequestDto;
+import mate.academy.spring.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.mapper.MovieSessionMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
@@ -32,17 +33,16 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public MovieSessionDto create(@RequestBody MovieSessionDto movieSessionDto) {
+    public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto movieSessionDto) {
         return movieSessionMapper
                 .toDto(movieSessionService.add(movieSessionMapper.toModel(movieSessionDto)));
     }
 
     @GetMapping("/available")
-    public List<MovieSessionDto> getAllAvailableSessions(@RequestParam Long movieId,
-                                                         @RequestParam
-                                                         @DateTimeFormat(pattern =
-                                                                 DATE_FORMAT_TO_PARSE)
-                                                         LocalDate date) {
+    public List<MovieSessionResponseDto> findAvailableSessions(
+            @RequestParam Long movieId,
+            @RequestParam @DateTimeFormat(pattern = DATE_FORMAT_TO_PARSE)
+            LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date)
                 .stream()
                 .map(movieSessionMapper::toDto)
@@ -50,8 +50,9 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public MovieSessionDto update(@PathVariable Long id,
-                                  @RequestBody MovieSessionDto movieSessionDto) {
+    public MovieSessionResponseDto update(
+            @PathVariable Long id,
+            @RequestBody MovieSessionRequestDto movieSessionDto) {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionDto);
         movieSession.setId(id);
         return movieSessionMapper

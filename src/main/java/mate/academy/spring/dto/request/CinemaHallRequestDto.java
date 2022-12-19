@@ -1,17 +1,8 @@
-package mate.academy.spring.dto;
+package mate.academy.spring.dto.request;
 
-public class CinemaHallDto {
-    private Long id;
+public class CinemaHallRequestDto {
     private int capacity;
     private String description;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public int getCapacity() {
         return capacity;

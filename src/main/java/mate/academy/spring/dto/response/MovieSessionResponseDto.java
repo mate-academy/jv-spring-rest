@@ -1,6 +1,6 @@
-package mate.academy.spring.dto;
+package mate.academy.spring.dto.response;
 
-public class MovieSessionDto {
+public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
     private Long cinemaHallId;
