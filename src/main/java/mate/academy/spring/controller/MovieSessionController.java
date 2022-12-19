@@ -31,7 +31,7 @@ public class MovieSessionController {
         this.movieSessionMapper = movieSessionMapper;
     }
 
-    @PostMapping()
+    @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto sessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.toModel(sessionRequestDto);
         return movieSessionMapper.toDto(movieSessionService.add(movieSession));
