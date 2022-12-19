@@ -33,7 +33,7 @@ public class MovieSessionController {
     @PostMapping("/movie-sessions")
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto requestDto) {
         return movieSessionDtoMapper
-                .parse(movieSessionService.add(movieSessionDtoMapper.toModel(requestDto)));
+                .toDto(movieSessionService.add(movieSessionDtoMapper.toModel(requestDto)));
     }
 
     @GetMapping("/movie-sessions/available")
@@ -50,7 +50,7 @@ public class MovieSessionController {
         MovieSession movieSession = movieSessionDtoMapper.toModel(requestDto);
         movieSession.setId(id);
         MovieSession updatedMovieSession = movieSessionService.update(movieSession);
-        return movieSessionDtoMapper.parse(updatedMovieSession);
+        return movieSessionDtoMapper.toDto(updatedMovieSession);
     }
 
     @DeleteMapping("/movie-sessions/{id}")

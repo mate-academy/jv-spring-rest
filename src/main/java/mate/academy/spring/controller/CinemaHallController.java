@@ -26,14 +26,14 @@ public class CinemaHallController {
 
     @PostMapping("/cinema-halls")
     public CinemaHallResponseDto add(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
-        return cinemaHallDtoMapper.parse(
+        return cinemaHallDtoMapper.toDto(
                 cinemaHallService.add(cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
     }
 
     @GetMapping("/cinema-halls")
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
-                .map(cinemaHallDtoMapper::parse)
+                .map(cinemaHallDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
