@@ -35,30 +35,30 @@ public class MovieSessionController {
     public MovieSessionResponseDto create(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
-        return movieSessionMapper.parseFromModelToResponseDto(movieSessionService
-                .add(movieSessionMapper.parseFromRequestDtoToModel(movieSessionRequestDto)));
+        return movieSessionMapper.toDto(movieSessionService
+                .add(movieSessionMapper.toModel(movieSessionRequestDto)));
     }
 
     @GetMapping("/available")
     public List<MovieSessionResponseDto> get(@RequestParam Long movieId,
                          @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate showTime) {
         return movieSessionService.findAvailableSessions(movieId, showTime).stream()
-                .map(movieSessionMapper::parseFromModelToResponseDto)
+                .map(movieSessionMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/{movieSessionId}")
-    public MovieSessionResponseDto update(@PathVariable Long movieSessionId,
+    @PutMapping("/{id}")
+    public MovieSessionResponseDto update(@PathVariable Long id,
                                       @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession
-                = movieSessionMapper.parseFromRequestDtoToModel(movieSessionRequestDto);
-        movieSession.setId(movieSessionId);
+                = movieSessionMapper.toModel(movieSessionRequestDto);
+        movieSession.setId(id);
         return movieSessionMapper
-                .parseFromModelToResponseDto(movieSessionService.update(movieSession));
+                .toDto(movieSessionService.update(movieSession));
     }
 
-    @DeleteMapping("/{movieSessionId}")
-    public void delete(@PathVariable Long movieSessionId) {
-        movieSessionService.delete(movieSessionId);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        movieSessionService.delete(id);
     }
 }

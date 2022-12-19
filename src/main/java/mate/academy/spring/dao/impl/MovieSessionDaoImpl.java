@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -89,12 +88,11 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaDelete<MovieSession> criteriaDelete
-                    = criteriaBuilder.createCriteriaDelete(MovieSession.class);
-            Root<MovieSession> root = criteriaDelete.from(MovieSession.class);
-            criteriaDelete.where(criteriaBuilder.equal(root.get("id"), id));
-            session.createQuery(criteriaDelete).executeUpdate();
+            session.createQuery(
+                    "From MovieSession "
+                        + "WHERE id = :id")
+                            .setParameter("id", id)
+                            .executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
