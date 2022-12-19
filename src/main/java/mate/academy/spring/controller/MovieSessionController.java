@@ -1,5 +1,7 @@
 package mate.academy.spring.controller;
 
+import java.time.LocalDate;
+import java.util.List;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
@@ -15,8 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 public class MovieSessionController {
@@ -31,9 +31,9 @@ public class MovieSessionController {
     }
 
     @PostMapping("/movie-sessions")
-    public MovieSessionResponseDto add(MovieSessionRequestDto requestDto) {
-        return movieSessionDtoMapper.parse(
-                movieSessionService.add(movieSessionDtoMapper.toModel(requestDto)));
+    public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto requestDto) {
+        return movieSessionDtoMapper
+                .parse(movieSessionService.add(movieSessionDtoMapper.toModel(requestDto)));
     }
 
     @GetMapping("/movie-sessions/available")
@@ -44,17 +44,17 @@ public class MovieSessionController {
         return movieSessionService.findAvailableSessions(id, localDate);
     }
 
-//    @PutMapping("movie-sessions/{id}")
-//    public MovieSessionResponseDto update(@PathVariable Long id,
-//                                          @RequestBody MovieSessionRequestDto requestDto) {
-//        MovieSession movieSession = movieSessionDtoMapper.toModel(requestDto);
-//        movieSession.setId(id);
-//        MovieSession updatedMovieSession = movieSessionService.update(movieSession);
-//        return movieSessionDtoMapper.parse(updatedMovieSession);
-//    }
-//
-//    @DeleteMapping("/movie-sessions/{id}")
-//    public void remove(@PathVariable Long id) {
-//        movieSessionService.delete(id);
-//    }
+    @PutMapping("movie-sessions/{id}")
+    public MovieSessionResponseDto update(@PathVariable Long id,
+                                          @RequestBody MovieSessionRequestDto requestDto) {
+        MovieSession movieSession = movieSessionDtoMapper.toModel(requestDto);
+        movieSession.setId(id);
+        MovieSession updatedMovieSession = movieSessionService.update(movieSession);
+        return movieSessionDtoMapper.parse(updatedMovieSession);
+    }
+
+    @DeleteMapping("/movie-sessions/{id}")
+    public void remove(@PathVariable Long id) {
+        movieSessionService.delete(movieSessionService.get(id));
+    }
 }
