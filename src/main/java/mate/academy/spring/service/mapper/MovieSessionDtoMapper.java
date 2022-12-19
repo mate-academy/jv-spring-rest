@@ -1,6 +1,5 @@
 package mate.academy.spring.service.mapper;
 
-import java.time.LocalDateTime;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
@@ -24,7 +23,7 @@ public class MovieSessionDtoMapper {
         dto.setId(movieSession.getId());
         dto.setMovieId(movieSession.getMovie().getId());
         dto.setCinemaHallId(movieSession.getCinemaHall().getId());
-        dto.setShowTime(movieSession.getShowTime().toString());
+        dto.setShowTime(movieSession.getShowTime());
         return dto;
     }
 
@@ -32,7 +31,7 @@ public class MovieSessionDtoMapper {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(dto.getMovieId()));
         movieSession.setCinemaHall(cinemaHallService.get(dto.getCinemaHallId()));
-        movieSession.setShowTime(LocalDateTime.parse(dto.getShowTime()));
+        movieSession.setShowTime(dto.getShowTime());
         return movieSession;
     }
 }
