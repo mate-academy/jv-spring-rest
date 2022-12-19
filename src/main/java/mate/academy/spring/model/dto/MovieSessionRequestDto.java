@@ -32,12 +32,4 @@ public class MovieSessionRequestDto {
     public void setShowTime(LocalDateTime showTime) {
         this.showTime = showTime;
     }
-
-    @Override
-    public String toString() {
-        return "MovieSessionRequestDto{"
-                + "movieId=" + movieId
-                + ", cinemaHallId=" + cinemaHallId
-                + ", showTime=" + showTime + '}';
-    }
 }

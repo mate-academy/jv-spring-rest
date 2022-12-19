@@ -39,12 +39,4 @@ public class MovieSessionResponseDto {
     public void setShowTime(LocalDateTime showTime) {
         this.showTime = showTime;
     }
-
-    @Override
-    public String toString() {
-        return "MovieSessionResponseDto{"
-                + "id=" + id + ", movieId=" + movieId
-                + ", cinemaHallId=" + cinemaHallId
-                + ", showTime=" + showTime + '}';
-    }
 }

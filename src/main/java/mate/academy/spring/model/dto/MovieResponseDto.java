@@ -28,12 +28,4 @@ public class MovieResponseDto {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    @Override
-    public String toString() {
-        return "MovieResponseDto{"
-                + "id=" + id
-                + ", title='" + title + '\''
-                + ", description='" + description + '\'' + '}';
-    }
 }
