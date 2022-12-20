@@ -12,7 +12,6 @@ import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
