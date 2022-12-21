@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = "mate.academy.controllers")
+@ComponentScan(basePackages = "mate.academy.controller")
 public class WebConfig {
     @Bean
     public InternalResourceViewResolver resolver() {
