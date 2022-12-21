@@ -10,6 +10,8 @@ import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,8 +68,9 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long movieId) {
+    public ResponseEntity<String> delete(@PathVariable Long movieId) {
         movieSessionService.delete(movieId);
-        return "Done!";
+        return new ResponseEntity<>(
+                "The 'movie' item with was successfully removed", HttpStatus.OK);
     }
 }
