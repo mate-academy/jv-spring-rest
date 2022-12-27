@@ -37,13 +37,13 @@ public class MovieSessionController {
             @RequestParam("date") @DateTimeFormat(pattern = "dd.MM.yyyy")
             LocalDate localDate) {
         return movieSessionService.findAvailableSessions(movieId, localDate).stream()
-                .map(dtoMapper::parse)
+                .map(dtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        return dtoMapper.parse(movieSessionService.add(dtoMapper.toModel(movieSessionRequestDto)));
+        return dtoMapper.toDto(movieSessionService.add(dtoMapper.toModel(movieSessionRequestDto)));
     }
 
     @PutMapping("/{id}")
@@ -52,7 +52,7 @@ public class MovieSessionController {
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession session = dtoMapper.toModel(movieSessionRequestDto);
         session.setId(id);
-        return dtoMapper.parse(movieSessionService.update(session));
+        return dtoMapper.toDto(movieSessionService.update(session));
     }
 
     @DeleteMapping("/{id}")

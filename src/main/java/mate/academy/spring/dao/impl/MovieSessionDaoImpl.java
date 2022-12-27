@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -83,22 +82,20 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(MovieSession movieSession) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            Query query = session.createQuery("DELETE FROM MovieSession ms WHERE ms.id = :id");
-            query.setParameter("id", id);
-            query.executeUpdate();
+            session.delete(movieSession);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't delete a movie session by id "
-                    + id, e);
+            throw new DataProcessingException("Can't delete a movie session "
+                    + movieSession, e);
         } finally {
             if (session != null) {
                 session.close();
