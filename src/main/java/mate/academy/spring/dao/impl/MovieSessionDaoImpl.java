@@ -93,6 +93,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             Query<MovieSession> query =
                     session.createQuery("from MovieSession m where m.id =: id", MovieSession.class);
             query.setParameter("id", id).executeUpdate();
+            session.delete(id);
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) {
