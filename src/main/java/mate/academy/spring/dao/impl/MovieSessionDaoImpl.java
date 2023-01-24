@@ -3,6 +3,7 @@ package mate.academy.spring.dao.impl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -14,6 +15,7 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -34,7 +36,9 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             Predicate moviePredicate = criteriaBuilder.equal(root.get("movie"), movieId);
             Predicate datePredicate = criteriaBuilder.between(root.get("showTime"),
                     date.atStartOfDay(), date.atTime(END_OF_DAY));
-            Predicate allConditions = criteriaBuilder.and(moviePredicate, datePredicate);
+            Predicate isDeletedPredicate = criteriaBuilder.equal(root.get("isDeleted"), false);
+            Predicate allConditions = criteriaBuilder.and(
+                    moviePredicate, datePredicate, isDeletedPredicate);
             criteriaQuery.select(root).where(allConditions);
             root.fetch("movie");
             root.fetch("cinemaHall");
@@ -51,10 +55,59 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             return session.createQuery("FROM MovieSession ms "
                             + "JOIN FETCH ms.movie "
                             + "JOIN FETCH ms.cinemaHall "
-                            + "WHERE ms.id = :id", MovieSession.class).setParameter("id", id)
+                            + "WHERE ms.id = :id AND ms.isDeleted = FALSE ",
+                            MovieSession.class).setParameter("id", id)
                     .uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
+        }
+    }
+
+    @Override
+    public void update(MovieSession movieSession) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.update(movieSession);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Cannot update movie session " + movieSession, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    @Override
+    public void delete(Long id) {
+        MovieSession movieSession = get(id).orElseThrow(
+                () -> new NoSuchElementException(
+                        "Can't get a movie session to delete it by id: " + id)
+        );
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            movieSession.setIsDeleted(true);
+            session.update(movieSession);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            movieSession.setIsDeleted(false);
+            throw new DataProcessingException("Cannot delete movie session by id: " + id, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 }

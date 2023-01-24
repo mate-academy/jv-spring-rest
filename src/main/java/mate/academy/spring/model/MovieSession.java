@@ -1,6 +1,7 @@
 package mate.academy.spring.model;
 
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name = "movie_sessions")
@@ -19,7 +21,11 @@ public class MovieSession {
     private Movie movie;
     @ManyToOne(fetch = FetchType.LAZY)
     private CinemaHall cinemaHall;
+    @Column(name = "show_time")
     private LocalDateTime showTime;
+    @Column(name = "is_deleted")
+    @ColumnDefault("false")
+    private boolean isDeleted;
 
     public Long getId() {
         return id;
@@ -51,6 +57,14 @@ public class MovieSession {
 
     public void setShowTime(LocalDateTime showTime) {
         this.showTime = showTime;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
     @Override
