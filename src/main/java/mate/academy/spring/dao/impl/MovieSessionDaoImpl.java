@@ -59,7 +59,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         }
     }
 
-
     @Override
     public MovieSession update(MovieSession movieSession) {
         Transaction transaction = null;

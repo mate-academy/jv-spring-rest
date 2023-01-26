@@ -40,7 +40,7 @@ public class MovieSessionController {
 
     @GetMapping("/available")
     public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
-                                                               @RequestParam @DateTimeFormat(pattern = DATE_FORMAT) LocalDate date) {
+                @RequestParam @DateTimeFormat(pattern = DATE_FORMAT) LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date)
                 .stream()
                 .map(movieSessionMapper::toDto)
