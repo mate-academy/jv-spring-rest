@@ -20,8 +20,8 @@ public class MovieController {
     private final MovieService movieService;
     private final MovieMapper movieMapper;
 
-    public MovieController(@Autowired MovieService movieService,
-                           @Autowired MovieMapper movieMapperImpl) {
+    @Autowired
+    public MovieController(MovieService movieService, MovieMapper movieMapperImpl) {
         this.movieService = movieService;
         this.movieMapper = movieMapperImpl;
     }

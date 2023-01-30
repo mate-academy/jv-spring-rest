@@ -20,9 +20,9 @@ public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
     private final CinemaHallMapper cinemaHallMapper;
 
-@Autowired
+    @Autowired
     public CinemaHallController(CinemaHallService cinemaHallService,
-                                 CinemaHallMapper cinemaHallMapper) {
+                                CinemaHallMapper cinemaHallMapper) {
         this.cinemaHallService = cinemaHallService;
         this.cinemaHallMapper = cinemaHallMapper;
     }

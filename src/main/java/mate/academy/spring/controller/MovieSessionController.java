@@ -26,8 +26,9 @@ public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper movieSessionMapper;
 
-    public MovieSessionController(@Autowired MovieSessionService movieSessionService,
-                                  @Autowired MovieSessionMapper movieSessionMapper) {
+    @Autowired
+    public MovieSessionController(MovieSessionService movieSessionService,
+                                  MovieSessionMapper movieSessionMapper) {
         this.movieSessionService = movieSessionService;
         this.movieSessionMapper = movieSessionMapper;
     }
