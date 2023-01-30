@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
     private final MovieMapper movieMapper;
@@ -24,12 +26,12 @@ public class MovieController {
         this.movieMapper = movieMapper;
     }
 
-    @PostMapping("/movies")
+    @PostMapping
     public MovieResponseDto add(@RequestBody MovieRequestDto movie) {
         return movieMapper.toDto(movieService.add(movieMapper.toModel(movie)));
     }
 
-    @GetMapping("/movies")
+    @GetMapping
     public List<MovieResponseDto> getAll() {
         return movieService
                 .getAll()
@@ -38,4 +40,3 @@ public class MovieController {
                 .collect(Collectors.toList());
     }
 }
-

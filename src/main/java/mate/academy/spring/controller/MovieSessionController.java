@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper movieSessionMapper;
@@ -31,7 +33,7 @@ public class MovieSessionController {
         this.movieSessionMapper = movieSessionMapper;
     }
 
-    @PostMapping("/movie-sessions")
+    @PostMapping
     public MovieSessionResponseDto add(@RequestBody
                                        MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionMapper.toDto(
@@ -41,7 +43,7 @@ public class MovieSessionController {
         );
     }
 
-    @GetMapping("/movie-sessions/available")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> getAvailableSessions(
             @RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")
@@ -53,7 +55,7 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("/movie-sessions/{movieSessionId}")
+    @PutMapping("/{movieSessionId}")
     public MovieSessionResponseDto update(@PathVariable
                                           Long movieSessionId,
                                           @RequestBody
@@ -64,7 +66,7 @@ public class MovieSessionController {
         return movieSessionMapper.toDto(updatedMovieSession);
     }
 
-    @DeleteMapping("/movie-sessions/{movieSessionId}")
+    @DeleteMapping("/{movieSessionId}")
     public void delete(@PathVariable Long movieSessionId) {
         movieSessionService.delete(movieSessionId);
     }
