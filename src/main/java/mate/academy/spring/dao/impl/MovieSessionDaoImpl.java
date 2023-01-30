@@ -35,9 +35,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             Predicate moviePredicate = criteriaBuilder.equal(root.get("movie"), movieId);
             Predicate datePredicate = criteriaBuilder.between(root.get("showTime"),
                     date.atStartOfDay(), date.atTime(END_OF_DAY));
-            Predicate isDeletedPredicate = criteriaBuilder.equal(root.get("isDeleted"), false);
             Predicate allConditions = criteriaBuilder.and(
-                    moviePredicate, datePredicate, isDeletedPredicate);
+                    moviePredicate, datePredicate);
             criteriaQuery.select(root).where(allConditions);
             root.fetch("movie");
             root.fetch("cinemaHall");
@@ -54,7 +53,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             return session.createQuery("FROM MovieSession ms "
                             + "JOIN FETCH ms.movie "
                             + "JOIN FETCH ms.cinemaHall "
-                            + "WHERE ms.id = :id AND ms.isDeleted = FALSE ",
+                            + "WHERE ms.id = :id ",
                             MovieSession.class).setParameter("id", id)
                     .uniqueResultOptional();
         } catch (Exception e) {
