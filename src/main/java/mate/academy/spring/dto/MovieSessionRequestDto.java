@@ -1,9 +1,7 @@
 package mate.academy.spring.dto;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDateTime;
 
 public class MovieSessionRequestDto {
     private Long movieId;

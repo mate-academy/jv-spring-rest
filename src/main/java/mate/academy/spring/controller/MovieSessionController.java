@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MovieSessionController {
-    MovieSessionService movieSessionService;
-    MovieSessionMapper movieSessionMapper;
+    private final MovieSessionService movieSessionService;
+    private final MovieSessionMapper movieSessionMapper;
 
     @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
@@ -42,9 +42,10 @@ public class MovieSessionController {
     }
 
     @GetMapping("/movie-sessions/available")
-    public List<MovieSessionResponseDto> getAvailableSessions(@RequestParam Long movieId,
-                                                              @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")
-                                                              LocalDate date) {
+    public List<MovieSessionResponseDto> getAvailableSessions(
+            @RequestParam Long movieId,
+            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")
+            LocalDate date) {
         return movieSessionService
                 .findAvailableSessions(movieId, date)
                 .stream()
@@ -53,8 +54,10 @@ public class MovieSessionController {
     }
 
     @PutMapping("/movie-sessions/{movieSessionId}")
-    public MovieSessionResponseDto update(@PathVariable Long movieSessionId,
-                                          @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSessionResponseDto update(@PathVariable
+                                          Long movieSessionId,
+                                          @RequestBody
+                                          MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
         movieSession.setId(movieSessionId);
         MovieSession updatedMovieSession = movieSessionService.update(movieSession);

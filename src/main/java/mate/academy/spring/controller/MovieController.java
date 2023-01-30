@@ -7,11 +7,9 @@ import mate.academy.spring.dto.MovieResponseDto;
 import mate.academy.spring.mapper.MovieMapper;
 import mate.academy.spring.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -32,7 +30,7 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    public List<MovieResponseDto> getAll(){
+    public List<MovieResponseDto> getAll() {
         return movieService
                 .getAll()
                 .stream()

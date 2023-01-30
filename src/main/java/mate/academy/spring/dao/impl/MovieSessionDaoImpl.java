@@ -15,7 +15,6 @@ import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -67,7 +66,9 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.createQuery("DELETE MovieSession WHERE id = :id").setParameter("id", id).executeUpdate();
+            session.createQuery("DELETE MovieSession WHERE id = :id")
+                    .setParameter("id", id)
+                    .executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -95,7 +96,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't update a movie session with id: " + movieSession, e);
+            throw new DataProcessingException("Can't update a movie session with id: "
+                    + movieSession, e);
         } finally {
             if (session != null) {
                 session.close();
