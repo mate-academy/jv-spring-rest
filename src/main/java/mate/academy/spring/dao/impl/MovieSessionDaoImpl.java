@@ -3,7 +3,6 @@ package mate.academy.spring.dao.impl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -86,23 +85,18 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
 
     @Override
     public void delete(Long id) {
-        MovieSession movieSession = get(id).orElseThrow(
-                () -> new NoSuchElementException(
-                        "Can't get a movie session to delete it by id: " + id)
-        );
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            movieSession.setIsDeleted(true);
-            session.update(movieSession);
+            MovieSession movieSession = session.get(MovieSession.class, id);
+            session.delete(movieSession);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            movieSession.setIsDeleted(false);
             throw new DataProcessingException("Cannot delete movie session by id: " + id, e);
         } finally {
             if (session != null) {
