@@ -19,7 +19,7 @@ public class CinemaHallMapper {
     public CinemaHall toModel(CinemaHallRequest cinemaHallResponse) {
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setCapacity(cinemaHallResponse.getCapacity());
-        cinemaHall.setDescription(cinemaHall.getDescription());
+        cinemaHall.setDescription(cinemaHallResponse.getDescription());
         return cinemaHall;
     }
 }

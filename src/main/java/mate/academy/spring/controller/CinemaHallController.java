@@ -4,7 +4,11 @@ import mate.academy.spring.model.dto.CinemaHallRequest;
 import mate.academy.spring.model.dto.CinemaHallResponse;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.maper.CinemaHallMapper;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
