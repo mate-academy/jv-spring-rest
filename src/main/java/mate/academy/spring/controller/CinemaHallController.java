@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/cinema_hall")
+@RequestMapping("/cinema-hall")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
 
@@ -24,14 +24,14 @@ public class CinemaHallController {
 
     @PostMapping
     public CinemaHallResponse create(@RequestBody CinemaHallRequest cinemaHallRequest) {
-        return cinemaHallMapper.pars(cinemaHallService
-                .add(cinemaHallMapper.toCinemaHall(cinemaHallRequest)));
+        return cinemaHallMapper.toDto(cinemaHallService
+                .add(cinemaHallMapper.toModel(cinemaHallRequest)));
     }
 
     @GetMapping
     public List<CinemaHallResponse> getAll() {
         return cinemaHallService.getAll().stream()
-                .map(cinemaHallMapper::pars)
+                .map(cinemaHallMapper::toDto)
                 .collect(Collectors.toList());
     }
 }
