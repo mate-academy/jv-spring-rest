@@ -1,5 +1,8 @@
 package mate.academy.spring.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.model.dto.MovieSessionRequest;
 import mate.academy.spring.model.dto.MovieSessionResponse;
 import mate.academy.spring.service.MovieSessionService;
@@ -15,16 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/movie-session")
 public class MovieSessionController {
-    public final MovieSessionService movieSessionService;
+    private static final String DATE_FORMAT = "dd.MM.yyyy";
 
-    public final MovieSessionMapper movieSessionMapper;
+    private final MovieSessionService movieSessionService;
+
+    private final MovieSessionMapper movieSessionMapper;
 
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionMapper movieSessionMapper) {
@@ -40,15 +41,16 @@ public class MovieSessionController {
 
     @GetMapping("/available")
     public List<MovieSessionResponse> getAllAvailable(
-            @RequestBody Long id,
-            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate localDate) {
+            @RequestParam Long id,
+            @RequestParam @DateTimeFormat(pattern = DATE_FORMAT) LocalDate localDate) {
         return movieSessionService.findAvailableSessions(id, localDate).stream()
                 .map(movieSessionMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody MovieSessionRequest movieSessionRequest) {
+    public void update(@PathVariable Long id,
+                       @RequestBody MovieSessionRequest movieSessionRequest) {
         movieSessionService.update(id, movieSessionMapper.toModel(movieSessionRequest));
     }
 

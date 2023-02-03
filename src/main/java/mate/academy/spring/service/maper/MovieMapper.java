@@ -12,7 +12,7 @@ public class MovieMapper {
         movieResponse.setId(movie.getId());
         movieResponse.setDescription(movie.getDescription());
         movieResponse.setTitle(movie.getTitle());
-        return  movieResponse;
+        return movieResponse;
     }
 
     public Movie toModel(MovieRequest movieRequest) {

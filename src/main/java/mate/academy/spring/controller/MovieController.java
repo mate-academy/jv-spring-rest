@@ -1,5 +1,7 @@
 package mate.academy.spring.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.model.dto.MovieRequest;
 import mate.academy.spring.model.dto.MovieResponse;
 import mate.academy.spring.service.MovieService;
@@ -10,14 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/movie")
 public class MovieController {
-    public final MovieService movieService;
-    public final MovieMapper movieMapper;
+    private final MovieService movieService;
+    private final MovieMapper movieMapper;
 
     public MovieController(MovieService movieService, MovieMapper movieMapper) {
         this.movieService = movieService;
