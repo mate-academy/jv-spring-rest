@@ -62,8 +62,8 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     @Override
     public void delete(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            session.createQuery("DELETE FROM MovieSession ms " +
-                            "WHERE ms.id =: id", MovieSession.class)
+            session.createQuery("DELETE FROM MovieSession ms "
+                            + "WHERE ms.id =: id", MovieSession.class)
                     .setParameter("id", id);
         } catch (Exception e) {
             throw new DataProcessingException("Can't delete a movie session by id: " + id, e);
