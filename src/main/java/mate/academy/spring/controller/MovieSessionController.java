@@ -3,6 +3,8 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequest;
 import mate.academy.spring.model.dto.MovieSessionResponse;
 import mate.academy.spring.service.MovieSessionService;
@@ -19,12 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/movie-session")
+@RequestMapping("/movie-sessions")
 public class MovieSessionController {
     private static final String DATE_FORMAT = "dd.MM.yyyy";
-
     private final MovieSessionService movieSessionService;
-
     private final MovieSessionMapper movieSessionMapper;
 
     public MovieSessionController(MovieSessionService movieSessionService,
@@ -51,7 +51,9 @@ public class MovieSessionController {
     @PutMapping("/{id}")
     public void update(@PathVariable Long id,
                        @RequestBody MovieSessionRequest movieSessionRequest) {
-        movieSessionService.update(id, movieSessionMapper.toModel(movieSessionRequest));
+        MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequest);
+        movieSession.setId(id);
+        movieSessionService.update(movieSession);
     }
 
     @DeleteMapping("/{id}")
