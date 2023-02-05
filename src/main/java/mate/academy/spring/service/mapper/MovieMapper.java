@@ -22,7 +22,7 @@ public class MovieMapper {
         return responseDto;
     }
 
-    public Movie toModel(MovieRequestDto movieRequestDto)  {
+    public Movie toModel(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
         movie.setDescription(movieRequestDto.getDescription());
         movie.setTitle(movieRequestDto.getTitle());

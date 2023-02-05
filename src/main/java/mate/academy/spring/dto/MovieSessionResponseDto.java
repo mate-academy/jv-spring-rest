@@ -1,7 +1,5 @@
 package mate.academy.spring.dto;
 
-import mate.academy.spring.model.CinemaHall;
-
 import java.time.LocalDateTime;
 
 public class MovieSessionResponseDto {
