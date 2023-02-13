@@ -20,6 +20,7 @@ public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements Cinema
     @Override
     public Optional<CinemaHall> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
+            session.setDefaultReadOnly(true);
             return Optional.ofNullable(session.get(CinemaHall.class, id));
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a cinema hall by id: " + id, e);
@@ -29,6 +30,7 @@ public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements Cinema
     @Override
     public List<CinemaHall> getAll() {
         try (Session session = sessionFactory.openSession()) {
+            session.setDefaultReadOnly(true);
             CriteriaQuery<CinemaHall> criteriaQuery = session.getCriteriaBuilder()
                     .createQuery(CinemaHall.class);
             criteriaQuery.from(CinemaHall.class);

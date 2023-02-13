@@ -6,13 +6,19 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @PropertySource("classpath:db.properties")
-@ComponentScan(basePackages = "mate.academy.spring")
+@ComponentScan(basePackages = "mate.academy.spring", excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class),
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class)
+})
 public class AppConfig {
     private final Environment env;
 
@@ -37,6 +43,7 @@ public class AppConfig {
 
         Properties properties = new Properties();
         properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        properties.put("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
         properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
         properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 
