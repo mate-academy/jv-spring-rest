@@ -24,7 +24,7 @@ public class CinemaHallController {
     }
 
     @GetMapping
-    public List<CinemaHallResponseDto> getAllCinemaHalls() {
+    public List<CinemaHallResponseDto> getAll() {
         return service.getAll().stream().map(mapper::toDto).collect(Collectors.toList());
     }
 
