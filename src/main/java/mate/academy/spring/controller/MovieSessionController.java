@@ -31,12 +31,6 @@ public class MovieSessionController {
         this.movieSessionMapper = movieSessionMapper;
     }
 
-    @GetMapping
-    public MovieSessionResponseDto createMovieSession(
-            @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        return null;
-    }
-
     @GetMapping("/available-sessions")
     public List<MovieSessionResponseDto> getAll(
             @RequestParam Long movieId,
@@ -64,7 +58,8 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public MovieSessionResponseDto delete(@PathVariable Long id) {
         movieSessionService.delete(id);
+        return movieSessionMapper.toDto(movieSessionService.get(id));
     }
 }
