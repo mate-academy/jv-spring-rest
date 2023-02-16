@@ -8,7 +8,6 @@ import mate.academy.spring.model.Movie;
 import mate.academy.spring.service.DtoMapper;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.mapper.MovieMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +21,6 @@ public class MovieController {
     private final DtoMapper<Movie, MovieRequestDto, MovieResponseDto> dtoMapper;
 
     public MovieController(MovieService movieService,
-                           @Qualifier("movieMapper")
                            MovieMapper movieMapper) {
         this.movieService = movieService;
         this.dtoMapper = movieMapper;
