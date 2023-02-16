@@ -4,9 +4,9 @@ import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallMapper;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class CinemaHallMapperImpl implements CinemaHallMapper {
     public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
         CinemaHallResponseDto cinemaHallResponseDto = new CinemaHallResponseDto();

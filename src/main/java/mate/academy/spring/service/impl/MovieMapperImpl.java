@@ -4,9 +4,9 @@ import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieMapper;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class MovieMapperImpl implements MovieMapper {
     @Override
     public MovieResponseDto toDto(Movie movie) {
