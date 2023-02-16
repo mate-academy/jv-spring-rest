@@ -25,9 +25,10 @@ public class MovieController {
     }
 
     @PostMapping
-    public MovieResponseDto createMovie(@RequestBody MovieRequestDto movieRequestDto) {
+    public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
+        Movie movie = movieMapper.toModel(movieRequestDto);
         return movieMapper
-                .toDto(movieService.add(new Movie()));
+                .toDto(movieService.add(movie));
     }
 
     @GetMapping

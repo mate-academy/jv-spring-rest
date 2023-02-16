@@ -5,7 +5,7 @@ import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
 
 public interface MovieMapper {
-    public MovieResponseDto toDto(Movie movie);
+    MovieResponseDto toDto(Movie movie);
 
-    public Movie toModel(MovieRequestDto movieRequestDto);
+    Movie toModel(MovieRequestDto movieRequestDto);
 }
