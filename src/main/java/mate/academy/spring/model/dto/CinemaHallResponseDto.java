@@ -11,9 +11,6 @@ public class CinemaHallResponseDto {
         this.description = description;
     }
 
-    public CinemaHallResponseDto() {
-    }
-
     public Long getId() {
         return id;
     }
