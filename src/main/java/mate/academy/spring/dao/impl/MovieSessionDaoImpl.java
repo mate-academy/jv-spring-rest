@@ -60,16 +60,11 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(MovieSession movieSession) {
         try (Session session = sessionFactory.openSession()) {
-            MovieSession movieSession = session.createQuery("FROM MovieSession ms "
-                            + "JOIN FETCH ms.movie "
-                            + "JOIN FETCH ms.cinemaHall "
-                            + "WHERE ms.id = :id", MovieSession.class).setParameter("id", id)
-                    .uniqueResult();
             session.delete(movieSession);
         } catch (Exception e) {
-            throw new DataProcessingException("Can't delete MovieSession with ID: " + id, e);
+            throw new DataProcessingException("Can't delete movie session: " + movieSession, e);
         }
     }
 
@@ -86,34 +81,12 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't update MovieSession: " + movieSession, e);
+            throw new DataProcessingException("Can't update movie session: " + movieSession, e);
         } finally {
             if (session != null) {
                 session.close();
             }
         }
         return movieSession;
-    }
-
-    @Override
-    public MovieSession add(MovieSession entity) {
-        Session session = null;
-        Transaction transaction = null;
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.save(entity);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can't add a new MovieSession: " + entity, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return entity;
     }
 }

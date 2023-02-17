@@ -38,26 +38,4 @@ public class MovieDaoImpl extends AbstractDao<Movie> implements MovieDao {
             throw new DataProcessingException("Can't get all movies", e);
         }
     }
-
-    @Override
-    public Movie add(Movie entity) {
-        Session session = null;
-        Transaction transaction = null;
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.save(entity);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can't add a new Movie: " + entity, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return entity;
-    }
 }
