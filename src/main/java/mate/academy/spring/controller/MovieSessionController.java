@@ -39,7 +39,7 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> getAllByDate(@RequestParam Long movieId,
+    public List<MovieSessionResponseDto> findAvailableSessions(@RequestParam Long movieId,
                                                       @RequestParam @DateTimeFormat(pattern
                                                               = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService
