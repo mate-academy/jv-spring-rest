@@ -9,7 +9,6 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Movie;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
