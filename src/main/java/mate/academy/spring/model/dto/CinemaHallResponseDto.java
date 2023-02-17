@@ -1,26 +1,17 @@
-package mate.academy.spring.model;
+package mate.academy.spring.model.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "cinema_halls")
-public class CinemaHall {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CinemaHallResponseDto {
     private Long id;
     private int capacity;
     private String description;
 
-    public CinemaHall() {
-    }
-
-    public CinemaHall(int capacity, String description) {
+    public CinemaHallResponseDto(Long id, int capacity, String description) {
+        this.id = id;
         this.capacity = capacity;
         this.description = description;
+    }
+
+    public CinemaHallResponseDto() {
     }
 
     public Long getId() {

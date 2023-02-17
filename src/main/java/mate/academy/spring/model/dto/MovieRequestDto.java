@@ -1,34 +1,15 @@
-package mate.academy.spring.model;
+package mate.academy.spring.model.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "movies")
-public class Movie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class MovieRequestDto {
     private String title;
     private String description;
 
-    public Movie() {
+    public MovieRequestDto() {
     }
 
-    public Movie(String title, String description) {
+    public MovieRequestDto(String title, String description) {
         this.title = title;
         this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -50,7 +31,6 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{"
-                + "id=" + id
                 + ", title='" + title + '\''
                 + ", description='" + description + '\''
                 + '}';
