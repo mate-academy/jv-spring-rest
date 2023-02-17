@@ -19,8 +19,8 @@ public class MovieMapperImpl implements MovieMapper {
     @Override
     public Movie toModel(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
-        movie.setDescription(movieRequestDto.getDescription());
         movie.setTitle(movieRequestDto.getTitle());
+        movie.setDescription(movieRequestDto.getDescription());
         return movie;
     }
 }

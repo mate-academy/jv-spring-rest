@@ -2,7 +2,6 @@ package mate.academy.spring.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
@@ -39,7 +38,7 @@ public class MovieSessionController {
                 .findAvailableSessions(movieId, date)
                 .stream()
                 .map(movieSessionMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @PostMapping
@@ -59,8 +58,7 @@ public class MovieSessionController {
     }
 
     @DeleteMapping("/{id}")
-    public MovieSessionResponseDto delete(@PathVariable MovieSession movieSession) {
-        movieSessionService.delete(movieSession);
-        return movieSessionMapper.toDto(movieSession);
+    public void delete(@PathVariable Long id) {
+        movieSessionService.delete(id);
     }
 }
