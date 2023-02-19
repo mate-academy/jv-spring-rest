@@ -24,5 +24,4 @@ public class MovieMapper implements DtoMapper<Movie, MovieRequestDto, MovieRespo
         movie.setDescription(movieRequestDto.getDescription());
         return movie;
     }
-
 }

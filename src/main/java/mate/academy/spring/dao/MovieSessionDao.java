@@ -12,5 +12,5 @@ public interface MovieSessionDao extends GenericDao<MovieSession> {
 
     MovieSession update(MovieSession movieSession);
 
-    MovieSession delete(Long id);
+    MovieSession delete(MovieSession movieSession);
 }
