@@ -5,10 +5,13 @@ import mate.academy.spring.dto.moviesession.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MovieSessionMapper {
     private MovieService movieService;
     private CinemaHallService cinemaHallService;
+
 
     public MovieSessionMapper(MovieService movieService, CinemaHallService cinemaHallService) {
         this.movieService = movieService;
