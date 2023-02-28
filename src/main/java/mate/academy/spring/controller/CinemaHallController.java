@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 @RequestMapping("//cinema_halls")
 public class CinemaHallController {
-    private CinemaHallService cinemaHallService;
-    private CinemaHallDtoMapper cinemaHallDtoMapper;
+    private final CinemaHallService cinemaHallService;
+    private final CinemaHallDtoMapper cinemaHallDtoMapper;
 
     public CinemaHallController(CinemaHallService cinemaHallService,
                                 CinemaHallDtoMapper cinemaHallDtoMapper) {
@@ -31,8 +33,9 @@ public class CinemaHallController {
 
     @PostMapping
     public CinemaHallResponseDto add(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
-        cinemaHallDtoMapper.toModel(cinemaHallRequestDto);
-        return cinemaHallDtoMapper.toDto(
-                cinemaHallService.add(cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
+        return cinemaHallDtoMapper
+                .toDto(cinemaHallService
+                        .add(cinemaHallDtoMapper
+                                .toModel(cinemaHallRequestDto)));
     }
 }

@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 @RequestMapping("/movie_sessions")
 public class MovieSessionController {
-    private MovieSessionService movieSessionService;
-    private MovieSessionDtoMapper movieSessionDtoMapper;
+    private final MovieSessionService movieSessionService;
+    private final MovieSessionDtoMapper movieSessionDtoMapper;
 
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionDtoMapper movieSessionDtoMapper) {
@@ -40,8 +42,10 @@ public class MovieSessionController {
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        return movieSessionDtoMapper.toDto(
-                movieSessionService.add(movieSessionDtoMapper.toModel(movieSessionRequestDto)));
+        return movieSessionDtoMapper
+                .toDto(movieSessionService
+                        .add(movieSessionDtoMapper
+                                .toModel(movieSessionRequestDto)));
     }
 
     @PutMapping("/{id}")
