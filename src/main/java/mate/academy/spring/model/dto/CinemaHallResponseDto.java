@@ -1,10 +1,16 @@
 package mate.academy.spring.model.dto;
 
 public class CinemaHallResponseDto {
+    private Long id;
     private int capacity;
     private String description;
 
-    public CinemaHallResponseDto() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getCapacity() {

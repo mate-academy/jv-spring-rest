@@ -7,9 +7,6 @@ public class MovieSessionRequestDto {
     private Long cinemaHallId;
     private LocalDateTime showTime;
 
-    public MovieSessionRequestDto() {
-    }
-
     public Long getMovieId() {
         return movieId;
     }
