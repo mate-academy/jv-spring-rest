@@ -31,14 +31,14 @@ public class MovieSessionController {
         this.movieSessionMapper = movieSessionMapper;
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto movieSession) {
         return movieSessionMapper.toDto(
                 movieSessionService.add(movieSessionMapper.toModel(movieSession)));
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> getAllAvailable(
+    public List<MovieSessionResponseDto> findAvailableSessions(
             @RequestParam Long movieId,
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
