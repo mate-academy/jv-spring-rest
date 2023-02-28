@@ -3,6 +3,7 @@ package mate.academy.spring.service.impl;
 import java.time.LocalDate;
 import java.util.List;
 import mate.academy.spring.dao.MovieSessionDao;
+import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,20 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     @Override
     public MovieSession add(MovieSession session) {
         return sessionDao.add(session);
+    }
+
+    @Override
+    public List<MovieSession> getAll() {
+        return sessionDao.getAll();
+    }
+
+    @Override
+    public MovieSession update(MovieSession movieSession) {
+        return sessionDao.update(movieSession);
+    }
+
+    @Override
+    public void delete(MovieSession movieSession) {
+        sessionDao.delete(movieSession);
     }
 }
