@@ -1,4 +1,4 @@
-package mate.academy.spring.service.mapper;
+package mate.academy.spring.mapper;
 
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
@@ -16,7 +16,7 @@ public class MovieSessionDtoMapper {
     @Autowired
     private CinemaHallService cinemaHallService;
 
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto responseDto = new MovieSessionResponseDto();
         responseDto.setId(movieSession.getId());
         responseDto.setMovieId(movieSession.getMovie().getId());
