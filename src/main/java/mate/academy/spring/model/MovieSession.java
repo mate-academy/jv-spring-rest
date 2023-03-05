@@ -55,7 +55,7 @@ public class MovieSession {
 
     @Override
     public String toString() {
-        return "MovieSessionResponseDto{"
+        return "MovieSession{"
                 + "id=" + id
                 + ", movie=" + movie
                 + ", cinemaHall=" + cinemaHall

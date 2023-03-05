@@ -41,7 +41,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "MovieResponseDto{"
+        return "Movie{"
                 + "id=" + id
                 + ", title='" + title + '\''
                 + ", description='" + description + '\''

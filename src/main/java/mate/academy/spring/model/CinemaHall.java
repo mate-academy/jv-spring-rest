@@ -41,7 +41,7 @@ public class CinemaHall {
 
     @Override
     public String toString() {
-        return "CinemaHallRequestDto{"
+        return "CinemaHall{"
                 + "id=" + id
                 + ", capacity=" + capacity
                 + ", description='" + description + '\''
