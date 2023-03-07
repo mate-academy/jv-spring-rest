@@ -32,7 +32,7 @@ public class CinemaHallController {
     @GetMapping()
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
-                .map(cinemaHallDtoMapper::parse)
+                .map(cinemaHallDtoMapper::toResponse)
                 .collect(Collectors.toList());
     }
 
@@ -40,11 +40,11 @@ public class CinemaHallController {
     @ResponseStatus(HttpStatus.CREATED)
     public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHall) {
         return cinemaHallDtoMapper
-                .parse(cinemaHallService.add(cinemaHallDtoMapper.toModel(cinemaHall)));
+                .toResponse(cinemaHallService.add(cinemaHallDtoMapper.toModel(cinemaHall)));
     }
 
     @GetMapping("/{id}")
     public CinemaHallResponseDto get(@PathVariable Long id) {
-        return cinemaHallDtoMapper.parse(cinemaHallService.get(id));
+        return cinemaHallDtoMapper.toResponse(cinemaHallService.get(id));
     }
 }

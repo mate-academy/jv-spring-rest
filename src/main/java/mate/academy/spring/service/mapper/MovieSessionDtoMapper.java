@@ -19,7 +19,7 @@ public class MovieSessionDtoMapper {
         this.movieService = movieService;
     }
 
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toResponse(MovieSession movieSession) {
         MovieSessionResponseDto responseDto = new MovieSessionResponseDto();
         responseDto.setMovieId(movieSession.getMovie().getId());
         responseDto.setCinemaHallId(movieSession.getCinemaHall().getId());
