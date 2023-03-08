@@ -6,17 +6,17 @@ import mate.academy.spring.dto.MovieRequestDto;
 import mate.academy.spring.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.mapper.MovieDtoMapper;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/movies")
 public class MovieController {
-    private MovieDtoMapper movieDtoMapper;
-    private MovieService movieService;
+    private final MovieDtoMapper movieDtoMapper;
+    private final MovieService movieService;
 
     public MovieController(MovieDtoMapper movieDtoMapper, MovieService movieService) {
         this.movieDtoMapper = movieDtoMapper;
