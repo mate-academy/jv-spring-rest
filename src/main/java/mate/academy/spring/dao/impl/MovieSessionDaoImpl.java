@@ -86,13 +86,14 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     public void delete(Long id) {
         Session session = null;
         Transaction transaction = null;
-        MovieSession movieSession = get(id).orElseThrow(() ->
-                new NoSuchElementException("Can't find a movie session by id: " + id));
         try {
             session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.delete(movieSession);
-            transaction.commit();
+            MovieSession movieSession = session.get(MovieSession.class, id);
+            if (movieSession != null) {
+                transaction = session.beginTransaction();
+                session.delete(movieSession);
+                transaction.commit();
+            }
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
