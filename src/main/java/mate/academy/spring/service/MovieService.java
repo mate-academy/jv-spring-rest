@@ -6,7 +6,7 @@ import mate.academy.spring.model.Movie;
 public interface MovieService {
     Movie add(Movie movie);
 
-    Movie get(Long id);
+    Movie get(java.lang.Long id);
 
     List<Movie> getAll();
 }

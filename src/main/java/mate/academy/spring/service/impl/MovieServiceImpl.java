@@ -20,7 +20,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie get(Long id) {
+    public Movie get(java.lang.Long id) {
         return movieDao.get(id).get();
     }
 

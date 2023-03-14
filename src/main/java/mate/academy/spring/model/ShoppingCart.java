@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
-    private Long id;
+    private Movie id;
     @OneToMany
     private List<Ticket> tickets;
     @OneToOne
@@ -21,11 +21,11 @@ public class ShoppingCart {
     @JoinColumn(name = "id")
     private User user;
 
-    public Long getId() {
+    public Movie getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Movie id) {
         this.id = id;
     }
 
