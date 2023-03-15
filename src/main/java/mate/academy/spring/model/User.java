@@ -12,17 +12,17 @@ import javax.persistence.Table;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Movie id;
+    private Long id;
     @Column(unique = true)
     private String email;
     private String password;
     private byte[] salt;
 
-    public Movie getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Movie id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

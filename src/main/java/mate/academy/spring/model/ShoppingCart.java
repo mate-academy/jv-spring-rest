@@ -2,6 +2,8 @@ package mate.academy.spring.model;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
@@ -13,7 +15,8 @@ import javax.persistence.Table;
 @Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
-    private Movie id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @OneToMany
     private List<Ticket> tickets;
     @OneToOne
@@ -21,11 +24,11 @@ public class ShoppingCart {
     @JoinColumn(name = "id")
     private User user;
 
-    public Movie getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Movie id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

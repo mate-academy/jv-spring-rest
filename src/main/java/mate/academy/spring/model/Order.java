@@ -16,18 +16,18 @@ import javax.persistence.Table;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Movie id;
+    private Long id;
     @OneToMany
     private List<Ticket> tickets;
     private LocalDateTime orderDate;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    public Movie getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Movie id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

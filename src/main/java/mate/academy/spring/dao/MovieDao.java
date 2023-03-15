@@ -5,7 +5,7 @@ import java.util.Optional;
 import mate.academy.spring.model.Movie;
 
 public interface MovieDao extends GenericDao<Movie> {
-    Optional<Movie> get(java.lang.Long id);
+    Optional<Movie> get(Long id);
 
     List<Movie> getAll();
 }

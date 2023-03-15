@@ -11,24 +11,24 @@ import javax.persistence.Table;
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private java.lang.Long id;
-    private String title;
+    private Long id;
+    private String tittle;
     private String description;
 
-    public java.lang.Long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(java.lang.Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTittle() {
+        return tittle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTittle(String tittle) {
+        this.tittle = tittle;
     }
 
     public String getDescription() {
@@ -43,7 +43,7 @@ public class Movie {
     public String toString() {
         return "Movie{"
                 + "id=" + id
-                + ", title='" + title + '\''
+                + ", tittle='" + tittle + '\''
                 + ", description='" + description + '\''
                 + '}';
     }
