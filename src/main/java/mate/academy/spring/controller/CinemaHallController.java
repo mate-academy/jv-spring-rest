@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallDtoMapper cinemaHallDtoMapper;
     private final CinemaHallService cinemaHallService;
@@ -26,13 +26,13 @@ public class CinemaHallController {
         this.cinemaHallService = cinemaHallService;
     }
 
-    @PostMapping("/cinema-halls")
+    @PostMapping("/")
     public CinemaHallResponseDto add(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallDtoMapper
                 .toDto(cinemaHallService.add(cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
     }
 
-    @GetMapping("/cinema-halls")
+    @GetMapping("/")
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallDtoMapper::toDto)

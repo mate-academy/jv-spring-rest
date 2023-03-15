@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MovieSessionServiceImpl implements MovieSessionService {
-    private final MovieSessionDao sessionDao;
+    private final MovieSessionDao
+            sessionDao;
 
     public MovieSessionServiceImpl(MovieSessionDao sessionDao) {
         this.sessionDao = sessionDao;
@@ -37,6 +38,7 @@ public class MovieSessionServiceImpl implements MovieSessionService {
 
     @Override
     public void delete(Long id) {
-        sessionDao.delete(id);
+        MovieSession movieSession = get(id);
+        sessionDao.delete(movieSession);
     }
 }
