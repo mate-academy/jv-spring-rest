@@ -46,7 +46,8 @@ public class MovieSessionController {
             @RequestParam Long movieId,
             @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date)
-                .stream().map(movieSessionMapper::toDto)
+                .stream()
+                .map(movieSessionMapper::toDto)
                 .collect(Collectors.toList());
     }
 

@@ -4,24 +4,24 @@ import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class MovieSessionRequestDto {
+    private Long movieId;
+    private Long cinemaHallId;
     @DateTimeFormat(pattern = "dd.MM.yyyy")
-    private int movieId;
-    private int cinemaHallId;
     private LocalDateTime showTime;
 
-    public int getMovieId() {
+    public Long getMovieId() {
         return movieId;
     }
 
-    public void setMovieId(int movieId) {
+    public void setMovieId(Long movieId) {
         this.movieId = movieId;
     }
 
-    public int getCinemaHallId() {
+    public Long getCinemaHallId() {
         return cinemaHallId;
     }
 
-    public void setCinemaHallId(int cinemaHallId) {
+    public void setCinemaHallId(Long cinemaHallId) {
         this.cinemaHallId = cinemaHallId;
     }
 
