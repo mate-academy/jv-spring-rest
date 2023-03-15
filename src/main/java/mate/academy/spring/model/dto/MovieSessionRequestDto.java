@@ -1,8 +1,10 @@
 package mate.academy.spring.model.dto;
 
 import java.time.LocalDateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class MovieSessionRequestDto {
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
