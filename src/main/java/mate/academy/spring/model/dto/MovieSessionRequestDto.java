@@ -5,23 +5,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class MovieSessionRequestDto {
     @DateTimeFormat(pattern = "dd.MM.yyyy")
-    private Long movieId;
-    private Long cinemaHallId;
+    private int movieId;
+    private int cinemaHallId;
     private LocalDateTime showTime;
 
-    public Long getMovieId() {
+    public int getMovieId() {
         return movieId;
     }
 
-    public void setMovieId(Long movieId) {
+    public void setMovieId(int movieId) {
         this.movieId = movieId;
     }
 
-    public Long getCinemaHallId() {
+    public int getCinemaHallId() {
         return cinemaHallId;
     }
 
-    public void setCinemaHallId(Long cinemaHallId) {
+    public void setCinemaHallId(int cinemaHallId) {
         this.cinemaHallId = cinemaHallId;
     }
 
