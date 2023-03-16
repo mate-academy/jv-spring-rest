@@ -30,7 +30,7 @@ public class CinemaHallController {
         this.cinemaHallDtoMapper = cinemaHallDtoMapper;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll()
                 .stream()
@@ -47,7 +47,7 @@ public class CinemaHallController {
     public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallDtoMapper
                 .toDto(cinemaHallService.add(cinemaHallDtoMapper
-                        .toModelRequest(cinemaHallRequestDto)));
+                        .toModel(cinemaHallRequestDto)));
     }
 
     @DeleteMapping("/{id}")
@@ -58,7 +58,7 @@ public class CinemaHallController {
     @PutMapping("/{id}")
     public CinemaHallResponseDto update(@PathVariable Long id,
                                    @RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
-        CinemaHall cinemaHall = cinemaHallDtoMapper.toModelRequest(cinemaHallRequestDto);
+        CinemaHall cinemaHall = cinemaHallDtoMapper.toModel(cinemaHallRequestDto);
         cinemaHall.setId(id);
         CinemaHall updatedCinemaHall = cinemaHallService.update(cinemaHall);
         return cinemaHallDtoMapper.toDto(updatedCinemaHall);

@@ -42,7 +42,7 @@ public class MovieSessionController {
         this.movieSessionDtoMapper = movieSessionDtoMapper;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<MovieSessionResponseDto> getAll() {
         return movieSessionService.getAll()
                 .stream()
@@ -60,7 +60,7 @@ public class MovieSessionController {
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionDtoMapper
                 .toDto(movieSessionService
-                        .add(movieSessionDtoMapper.toModelRequest(movieSessionRequestDto)));
+                        .add(movieSessionDtoMapper.toModel(movieSessionRequestDto)));
     }
 
     @DeleteMapping("/{id}")
@@ -72,7 +72,7 @@ public class MovieSessionController {
     public MovieSessionResponseDto update(
             @PathVariable Long id,
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
-        MovieSession movieSession = movieSessionDtoMapper.toModelRequest(movieSessionRequestDto);
+        MovieSession movieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
         MovieSession updatedMovie = movieSessionService.update(movieSession);
         return movieSessionDtoMapper.toDto(updatedMovie);

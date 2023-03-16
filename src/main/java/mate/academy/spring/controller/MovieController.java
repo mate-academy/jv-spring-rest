@@ -35,7 +35,7 @@ public class MovieController {
         return movieDtoMapper.toDto(movieService.get(id));
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<MovieResponseDto> getAll() {
         return movieService.getAll()
                 .stream()
@@ -46,7 +46,7 @@ public class MovieController {
     @PostMapping
     public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
         return movieDtoMapper.toDto(movieService
-                .add(movieDtoMapper.toModelRequest(movieRequestDto)));
+                .add(movieDtoMapper.toModel(movieRequestDto)));
 
     }
 
@@ -58,7 +58,7 @@ public class MovieController {
     @PutMapping("/{id}")
     public MovieResponseDto update(@PathVariable Long id,
                                    @RequestBody MovieRequestDto movieRequestDto) {
-        Movie movie = movieDtoMapper.toModelRequest(movieRequestDto);
+        Movie movie = movieDtoMapper.toModel(movieRequestDto);
         movie.setId(id);
         Movie updatedMovie = movieService.update(movie);
         return movieDtoMapper.toDto(updatedMovie);

@@ -34,7 +34,7 @@ public class MovieSessionDtoMapper {
         return movieSession;
     }
 
-    public MovieSession toModelRequest(MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
         movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));

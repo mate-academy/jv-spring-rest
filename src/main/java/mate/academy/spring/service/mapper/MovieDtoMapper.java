@@ -15,7 +15,7 @@ public class MovieDtoMapper {
         return movieResponseDto;
     }
 
-    public Movie toModelResponse(MovieResponseDto movieResponseDto) {
+    public Movie toModel(MovieResponseDto movieResponseDto) {
         Movie movie = new Movie();
         movie.setId(movieResponseDto.getId());
         movie.setTitle(movieResponseDto.getTitle());
@@ -23,7 +23,7 @@ public class MovieDtoMapper {
         return movie;
     }
 
-    public Movie toModelRequest(MovieRequestDto movieRequestDto) {
+    public Movie toModel(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
         movie.setTitle(movieRequestDto.getTitle());
         movie.setDescription(movieRequestDto.getDescription());
