@@ -1,0 +1,32 @@
+package mate.academy.spring.service.mapper;
+
+import mate.academy.spring.model.CinemaHall;
+import mate.academy.spring.model.dto.CinemaHallRequestDto;
+import mate.academy.spring.model.dto.CinemaHallResponseDto;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CinemaHallDtoMapper {
+    public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
+        CinemaHallResponseDto cinemaHallResponseDto = new CinemaHallResponseDto();
+        cinemaHallResponseDto.setId(cinemaHall.getId());
+        cinemaHallResponseDto.setCapacity(cinemaHall.getCapacity());
+        cinemaHallResponseDto.setDescription(cinemaHall.getDescription());
+        return cinemaHallResponseDto;
+    }
+
+    public CinemaHall toModelResponse(CinemaHallResponseDto cinemaHallResponseDto) {
+        CinemaHall cinemaHall = new CinemaHall();
+        cinemaHall.setId(cinemaHallResponseDto.getId());
+        cinemaHall.setCapacity(cinemaHallResponseDto.getCapacity());
+        cinemaHall.setDescription(cinemaHallResponseDto.getDescription());
+        return cinemaHall;
+    }
+
+    public CinemaHall toModelRequest(CinemaHallRequestDto cinemaHallRequestDto) {
+        CinemaHall cinemaHall = new CinemaHall();
+        cinemaHall.setCapacity(cinemaHallRequestDto.getCapacity());
+        cinemaHall.setDescription(cinemaHallRequestDto.getDescription());
+        return cinemaHall;
+    }
+}

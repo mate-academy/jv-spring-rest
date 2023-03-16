@@ -9,12 +9,35 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.CinemaHall;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements CinemaHallDao {
     public CinemaHallDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
+    }
+
+    @Override
+    public CinemaHall add(CinemaHall cinemaHall) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(cinemaHall);
+            transaction.commit();
+            return cinemaHall;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't insert cinema hall: " + cinemaHall, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override
@@ -34,7 +57,50 @@ public class CinemaHallDaoImpl extends AbstractDao<CinemaHall> implements Cinema
             criteriaQuery.from(CinemaHall.class);
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException("Can't get all cinema halls", e);
+            throw new DataProcessingException("Can't get all cinemaHalls ", e);
+        }
+    }
+
+    @Override
+    public void delete(CinemaHall cinemaHall) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.delete(cinemaHall);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can not delete cinemaHall " + cinemaHall, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    @Override
+    public CinemaHall update(CinemaHall cinemaHall) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.update(cinemaHall);
+            transaction.commit();
+            return cinemaHall;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Cannot update shopping cart " + cinemaHall, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 }
