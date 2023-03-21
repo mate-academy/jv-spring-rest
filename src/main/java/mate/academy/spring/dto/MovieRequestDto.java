@@ -1,7 +1,5 @@
 package mate.academy.spring.dto;
 
-import org.springframework.stereotype.Component;
-
 public class MovieRequestDto {
     private String title;
     private String description;
