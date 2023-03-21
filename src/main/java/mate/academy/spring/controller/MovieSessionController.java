@@ -59,7 +59,7 @@ public class MovieSessionController {
         return movieSessionMapper.toDto(updateMovieSession);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         movieSessionService.delete(id);
     }
