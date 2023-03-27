@@ -18,7 +18,8 @@ Create controllers:
 
 Hints:
 1. Do not pass Entity as a `@RequestBody`. Use DTO projection instead.
-1. When you need to take LocalDate variable as input you may use this approach: `@RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date`.
+1. When you need to take LocalDate variable as input you may use this approach: 
+2. `@RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date`.
 1. Feel free to pass `movieId` and `cinemaHallId` in MovieSessionRequestDto.
 1. Implement mappers for each entity. Mark your mappers as `@Component`.
 
