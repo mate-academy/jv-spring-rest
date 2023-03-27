@@ -1,9 +1,9 @@
 package mate.academy.spring.controller;
 
-import dto.MovieRequestDto;
-import dto.MovieResponseDto;
 import java.util.List;
 import java.util.stream.Collectors;
+import mate.academy.spring.model.dto.MovieRequestDto;
+import mate.academy.spring.model.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.mapper.MovieMapper;
 import org.springframework.beans.factory.annotation.Autowired;

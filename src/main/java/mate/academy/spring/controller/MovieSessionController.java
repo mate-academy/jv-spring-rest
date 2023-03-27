@@ -1,11 +1,11 @@
 package mate.academy.spring.controller;
 
-import dto.MovieSessionRequestDto;
-import dto.MovieSessionResponseDto;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.model.MovieSession;
+import mate.academy.spring.model.dto.MovieSessionRequestDto;
+import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionMapper;
 import org.springframework.beans.factory.annotation.Autowired;

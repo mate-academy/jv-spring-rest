@@ -1,4 +1,4 @@
-package dto;
+package mate.academy.spring.model.dto;
 
 public class MovieResponseDto {
     private Long id;
