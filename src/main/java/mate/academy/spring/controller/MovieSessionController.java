@@ -39,7 +39,7 @@ public class MovieSessionController {
                 .toList();
     }
 
-    @PostMapping("")
+    @PostMapping
     public MovieSessionResponseDto create(
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionDtoMapper
