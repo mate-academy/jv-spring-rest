@@ -15,14 +15,12 @@ import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements MovieSessionDao {
     private static final LocalTime END_OF_DAY = LocalTime.of(23, 59, 59);
 
-    @Autowired
     public MovieSessionDaoImpl(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
