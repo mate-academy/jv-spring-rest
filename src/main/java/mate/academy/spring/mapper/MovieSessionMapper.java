@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDo(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto =
                 new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());

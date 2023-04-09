@@ -8,7 +8,6 @@ import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.mapper.MovieSessionMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,6 @@ public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper movieSessionMapper;
 
-    @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
                                   MovieSessionMapper movieSessionMapper) {
         this.movieSessionService = movieSessionService;
@@ -35,7 +33,7 @@ public class MovieSessionController {
     @PostMapping
     public MovieSessionResponseDto add(@RequestParam MovieSessionRequestDto
                                                    movieSessionRequestDto) {
-        return movieSessionMapper.parse(movieSessionService.add(
+        return movieSessionMapper.toDo(movieSessionService.add(
                 movieSessionMapper.toModel(movieSessionRequestDto)));
     }
 
@@ -45,7 +43,7 @@ public class MovieSessionController {
             @DateTimeFormat(pattern = "dd.MM.yyyy")
             LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(movieSessionMapper::parse)
+                .map(movieSessionMapper::toDo)
                 .collect(Collectors.toList());
     }
 
@@ -60,6 +58,6 @@ public class MovieSessionController {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
         MovieSession movieSessionUpdate = movieSessionService.update(movieSession);
-        return movieSessionMapper.parse(movieSessionUpdate);
+        return movieSessionMapper.toDo(movieSessionUpdate);
     }
 }
