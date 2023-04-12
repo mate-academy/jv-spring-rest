@@ -23,10 +23,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
+    private final MovieSessionService movieSessionService;
+    private final MovieSessionMapper movieSessionMapper;
+
     @Autowired
-    private MovieSessionService movieSessionService;
-    @Autowired
-    private MovieSessionMapper movieSessionMapper;
+    public MovieSessionController(MovieSessionService movieSessionService,
+                                  MovieSessionMapper movieSessionMapper) {
+        this.movieSessionService = movieSessionService;
+        this.movieSessionMapper = movieSessionMapper;
+    }
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto movieSessionRequestDto) {
@@ -39,7 +44,7 @@ public class MovieSessionController {
             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date,
             @RequestParam Long movieId) {
         return movieSessionService.findAvailableSessions(movieId,date).stream()
-                .map(m -> movieSessionMapper.toDto(m)).collect(Collectors.toList());
+                .map(movieSessionMapper::toDto).collect(Collectors.toList());
     }
 
     @DeleteMapping("/{id}")
