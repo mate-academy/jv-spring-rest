@@ -19,6 +19,7 @@ public class MovieSession {
     private Movie movie;
     @ManyToOne(fetch = FetchType.LAZY)
     private CinemaHall cinemaHall;
+
     private LocalDateTime showTime;
 
     public Long getId() {
