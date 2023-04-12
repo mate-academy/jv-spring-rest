@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
-
     public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
         Movie movie = new Movie();
