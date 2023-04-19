@@ -3,10 +3,12 @@ package mate.academy.spring.model.dto;
 import java.time.LocalDateTime;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class MovieSessionRequestDto {
     private Movie movie;
     private CinemaHall cinemaHall;
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDateTime showTime;
 
     public Movie getMovie() {
