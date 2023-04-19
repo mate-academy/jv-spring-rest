@@ -3,7 +3,7 @@ package mate.academy.spring.dto;
 import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class MovieSessionRequest {
+public class MovieSessionRequestDto {
     private Long movieId;
     private Long cinemaHallId;
     @DateTimeFormat(pattern = "dd.MM.yyyy")

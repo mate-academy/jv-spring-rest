@@ -1,24 +1,24 @@
 package mate.academy.spring.mapper;
 
-import mate.academy.spring.dto.MovieRequest;
-import mate.academy.spring.dto.MovieResponse;
+import mate.academy.spring.dto.MovieRequestDto;
+import mate.academy.spring.dto.MovieResponseDto;
 import mate.academy.spring.model.Movie;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieMapper {
-    public MovieResponse parse(Movie movie) {
-        MovieResponse movieResponse = new MovieResponse();
-        movieResponse.setId(movie.getId());
-        movieResponse.setDescription(movie.getDescription());
-        movieResponse.setTitle(movie.getTitle());
-        return movieResponse;
+    public MovieResponseDto toDto(Movie movie) {
+        MovieResponseDto movieResponseDto = new MovieResponseDto();
+        movieResponseDto.setId(movie.getId());
+        movieResponseDto.setDescription(movie.getDescription());
+        movieResponseDto.setTitle(movie.getTitle());
+        return movieResponseDto;
     }
 
-    public Movie toModel(MovieRequest movieRequest) {
+    public Movie toModel(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
-        movie.setDescription(movieRequest.getDescription());
-        movie.setTitle(movieRequest.getTitle());
+        movie.setDescription(movieRequestDto.getDescription());
+        movie.setTitle(movieRequestDto.getTitle());
         return movie;
     }
 }

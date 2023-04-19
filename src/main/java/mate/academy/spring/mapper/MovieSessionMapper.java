@@ -1,7 +1,7 @@
 package mate.academy.spring.mapper;
 
-import mate.academy.spring.dto.MovieSessionRequest;
-import mate.academy.spring.dto.MovieSessionResponse;
+import mate.academy.spring.dto.MovieSessionRequestDto;
+import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
@@ -20,20 +20,20 @@ public class MovieSessionMapper {
         this.cinemaHallService = cinemaHallService;
     }
 
-    public MovieSessionResponse parse(MovieSession movieSession) {
-        MovieSessionResponse movieSessionResponse = new MovieSessionResponse();
-        movieSessionResponse.setId(movieSession.getId());
-        movieSessionResponse.setMovieId(movieSession.getMovie().getId());
-        movieSessionResponse.setCinemaHallId(movieSession.getCinemaHall().getId());
-        movieSessionResponse.setShowTime(movieSession.getShowTime());
-        return movieSessionResponse;
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
+        MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
+        movieSessionResponseDto.setId(movieSession.getId());
+        movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
+        movieSessionResponseDto.setCinemaHallId(movieSession.getCinemaHall().getId());
+        movieSessionResponseDto.setShowTime(movieSession.getShowTime());
+        return movieSessionResponseDto;
     }
 
-    public MovieSession toModel(MovieSessionRequest movieSessionRequest) {
+    public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
-        movieSession.setMovie(movieService.get(movieSessionRequest.getMovieId()));
-        movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequest.getCinemaHallId()));
-        movieSession.setShowTime(movieSessionRequest.getShowTime());
+        movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
+        movieSession.setCinemaHall(cinemaHallService.get(movieSessionRequestDto.getCinemaHallId()));
+        movieSession.setShowTime(movieSessionRequestDto.getShowTime());
         return movieSession;
     }
 }
