@@ -3,7 +3,7 @@ package mate.academy.spring.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.spring.mapper.CinemaHallDtoMapper;
-import mate.academy.spring.mapper.CinemaHallRequestDto;
+import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
 import org.springframework.beans.factory.annotation.Autowired;
