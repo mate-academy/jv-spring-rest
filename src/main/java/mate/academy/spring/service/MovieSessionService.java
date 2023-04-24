@@ -5,6 +5,10 @@ import java.util.List;
 import mate.academy.spring.model.MovieSession;
 
 public interface MovieSessionService {
+    MovieSession update(MovieSession movieSession);
+
+    void delete(Long id);
+
     List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
 
     MovieSession get(Long id);
