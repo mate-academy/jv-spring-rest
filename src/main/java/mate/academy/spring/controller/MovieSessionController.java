@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
-    private MovieSessionService movieSessionService;
-    private MovieSessionDtoMapper movieSessionDtoMapper;
+    private final MovieSessionService movieSessionService;
+    private final MovieSessionDtoMapper movieSessionDtoMapper;
 
     @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,

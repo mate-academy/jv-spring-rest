@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html>
 <head>
@@ -13,7 +13,7 @@
 <hr id="Line">
 <div id="wb_Heading2" style="position:absolute;left:54px;top:305px;width:221px;height:32px;z-index:2;">
     <h5 id="Heading2">
-        <a href="${pageContext.request.contextPath}/index">Return to start page</a>
+        <a href="${pageContext.request.contextPath}index">Return to start page</a>
     </h5>
 </div>
 </body>

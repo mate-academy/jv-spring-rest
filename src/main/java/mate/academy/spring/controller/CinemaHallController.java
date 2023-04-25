@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
-    private CinemaHallService cinemaHallService;
-    private CinemaHallDtoMapper cinemaHallDtoMapper;
+    private final CinemaHallService cinemaHallService;
+    private final CinemaHallDtoMapper cinemaHallDtoMapper;
 
     @Autowired
     public CinemaHallController(CinemaHallService cinemaHallService,
