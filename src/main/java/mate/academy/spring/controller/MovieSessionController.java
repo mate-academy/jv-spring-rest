@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
-import mate.academy.spring.service.CinemaHallService;
-import mate.academy.spring.service.MovieService;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +26,8 @@ public class MovieSessionController {
     private final MovieSessionService movieSessionService;
     private final MovieSessionDtoMapper mapper;
 
-    @Autowired
     public MovieSessionController(MovieSessionService movieSessionService,
-                                  MovieSessionDtoMapper mapper, MovieService movieService,
-                                  CinemaHallService cinemaHallService) {
+                                  MovieSessionDtoMapper mapper) {
         this.movieSessionService = movieSessionService;
         this.mapper = mapper;
     }
