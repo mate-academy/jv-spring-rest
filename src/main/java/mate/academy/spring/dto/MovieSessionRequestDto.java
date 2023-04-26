@@ -1,16 +1,11 @@
 package mate.academy.spring.dto;
 
 import java.time.LocalDateTime;
-import org.springframework.stereotype.Service;
 
-@Service
 public class MovieSessionRequestDto {
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
-
-    public MovieSessionRequestDto() {
-    }
 
     public Long getMovieId() {
         return movieId;

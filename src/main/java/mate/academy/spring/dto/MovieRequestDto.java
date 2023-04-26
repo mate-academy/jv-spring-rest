@@ -1,14 +1,8 @@
 package mate.academy.spring.dto;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public class MovieRequestDto {
     private String title;
     private String description;
-
-    public MovieRequestDto() {
-    }
 
     public String getTitle() {
         return title;

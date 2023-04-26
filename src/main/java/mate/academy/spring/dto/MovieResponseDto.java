@@ -1,15 +1,9 @@
 package mate.academy.spring.dto;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public class MovieResponseDto {
     private Long id;
     private String title;
     private String description;
-
-    public MovieResponseDto() {
-    }
 
     public Long getId() {
         return id;

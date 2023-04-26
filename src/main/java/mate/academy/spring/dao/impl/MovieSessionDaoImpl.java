@@ -61,7 +61,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         MovieSession movieSession = get(id).orElseThrow(
                 () -> new NoSuchElementException("There is no movie session with this id!"));
         Transaction transaction = null;
@@ -71,9 +71,11 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             transaction = session.beginTransaction();
             session.delete(movieSession);
             transaction.commit();
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
+                return false;
             }
             throw new RuntimeException("Can't delete a movie session " + movieSession, e);
         } finally {
@@ -84,7 +86,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public Optional<MovieSession> update(MovieSession movieSession) {
+    public MovieSession update(MovieSession movieSession) {
         Transaction transaction = null;
         Session session = null;
         try {
@@ -102,6 +104,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                 session.close();
             }
         }
-        return Optional.of(movieSession);
+        return movieSession;
     }
 }

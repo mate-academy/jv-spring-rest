@@ -1,8 +1,5 @@
 package mate.academy.spring.dto;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public class CinemaHallRequestDto {
     private int capacity;
     private String description;
