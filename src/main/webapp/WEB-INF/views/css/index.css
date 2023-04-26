@@ -65,7 +65,7 @@ h5, .h5
    margin-right:0;
    text-align:left;
 }
-#ingbtn
+#viewbtn
 {
    background-color: #20B2AA;
    background-image: none;
@@ -100,7 +100,7 @@ h5, .h5
 }
 #Heading
 {
-   color: #8B0000;
+   color: #e88b26;
    font-family: Arial;
    font-weight: bold;
    font-style: normal;

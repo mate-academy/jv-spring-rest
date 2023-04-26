@@ -31,7 +31,7 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     }
 
     @Override
-    public MovieSession update(MovieSession movieSession) {
+    public boolean update(MovieSession movieSession) {
         return sessionDao.update(movieSession);
     }
 
