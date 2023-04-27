@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cinema_halls")
@@ -14,6 +15,13 @@ public class CinemaHall {
     private Long id;
     private int capacity;
     private String description;
+
+    public CinemaHall(Long id) {
+        this.id = id;
+    }
+
+    public CinemaHall() {
+    }
 
     public Long getId() {
         return id;
@@ -37,6 +45,24 @@ public class CinemaHall {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CinemaHall that = (CinemaHall) o;
+        return capacity == that.capacity && Objects.equals(id, that.id)
+                && Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, capacity, description);
     }
 
     @Override
