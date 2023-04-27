@@ -33,20 +33,6 @@ public class MovieSessionRequestDto {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MovieSessionRequestDto that = (MovieSessionRequestDto) o;
-        return Objects.equals(movieId, that.movieId)
-                && Objects.equals(cinemaHallId, that.cinemaHallId)
-                && Objects.equals(showTime, that.showTime);
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(movieId, cinemaHallId, showTime);
     }

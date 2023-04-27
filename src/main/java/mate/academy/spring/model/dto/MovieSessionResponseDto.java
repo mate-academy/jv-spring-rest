@@ -42,26 +42,6 @@ public class MovieSessionResponseDto {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MovieSessionResponseDto that = (MovieSessionResponseDto) o;
-        return Objects.equals(id, that.id)
-                && Objects.equals(movieId, that.movieId)
-                && Objects.equals(cinemaHallId, that.cinemaHallId)
-                && Objects.equals(showTime, that.showTime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, movieId, cinemaHallId, showTime);
-    }
-
-    @Override
     public String toString() {
         return "MovieSessionResponseDto{" + "id=" + id
                 + ", movieId=" + movieId

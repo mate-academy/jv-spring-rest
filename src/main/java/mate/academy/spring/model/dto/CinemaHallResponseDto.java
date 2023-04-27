@@ -32,24 +32,6 @@ public class CinemaHallResponseDto {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CinemaHallResponseDto that = (CinemaHallResponseDto) o;
-        return capacity == that.capacity && Objects.equals(id, that.id)
-                && Objects.equals(description, that.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, capacity, description);
-    }
-
-    @Override
     public String toString() {
         return "CinemaHallResponseDto{" + "id=" + id
                 + ", capacity=" + capacity

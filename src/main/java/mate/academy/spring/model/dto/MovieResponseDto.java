@@ -32,24 +32,6 @@ public class MovieResponseDto {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MovieResponseDto that = (MovieResponseDto) o;
-        return Objects.equals(id, that.id) && Objects.equals(title, that.title)
-                && Objects.equals(description, that.description);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, description);
-    }
-
-    @Override
     public String toString() {
         return "MovieResponseDto{" + "id=" + id
                 + ", title='" + title + '\''
