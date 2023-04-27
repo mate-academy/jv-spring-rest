@@ -1,7 +1,5 @@
 package mate.academy.spring.model.dto;
 
-import java.util.Objects;
-
 public class CinemaHallResponseDto {
     private Long id;
     private int capacity;
