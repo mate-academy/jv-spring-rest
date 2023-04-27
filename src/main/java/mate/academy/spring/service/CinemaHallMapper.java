@@ -10,8 +10,8 @@ public class CinemaHallMapper {
     public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
         CinemaHallResponseDto responseDto = new CinemaHallResponseDto();
         responseDto.setId(cinemaHall.getId());
-        responseDto.setCapacity(responseDto.getCapacity());
-        responseDto.setDescription(responseDto.getDescription());
+        responseDto.setCapacity(cinemaHall.getCapacity());
+        responseDto.setDescription(cinemaHall.getDescription());
         return responseDto;
     }
 
