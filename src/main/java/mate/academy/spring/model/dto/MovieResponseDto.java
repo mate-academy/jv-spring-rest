@@ -1,6 +1,7 @@
 package mate.academy.spring.model.dto;
 
 public class MovieResponseDto {
+    private Long id;
     private String title;
     private String description;
 
@@ -18,5 +19,13 @@ public class MovieResponseDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

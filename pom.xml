@@ -18,7 +18,6 @@
             https://raw.githubusercontent.com/mate-academy/style-guides/master/java/checkstyle.xml
         </maven.checkstyle.plugin.configLocation>
         <spring.version>5.3.17</spring.version>
-        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
@@ -101,7 +100,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.15.0-rc2</version>
+            <version>2.15.0</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
