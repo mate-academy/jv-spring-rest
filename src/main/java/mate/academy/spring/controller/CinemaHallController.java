@@ -26,7 +26,7 @@ public class CinemaHallController {
     @GetMapping
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
-                .map(mapper::parse)
+                .map(mapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -34,6 +34,6 @@ public class CinemaHallController {
     public CinemaHallResponseDto add(@RequestBody
                                      CinemaHallRequestDto cinemaHallRequestDto) {
         System.out.println(cinemaHallRequestDto.getDescription());
-        return mapper.parse(cinemaHallService.add(mapper.parse(cinemaHallRequestDto)));
+        return mapper.toDto(cinemaHallService.add(mapper.toModel(cinemaHallRequestDto)));
     }
 }
