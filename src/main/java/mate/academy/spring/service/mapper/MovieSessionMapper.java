@@ -25,5 +25,4 @@ public class MovieSessionMapper {
         movieSession.setShowTime(requestDto.getShowTime());
         return movieSession;
     }
-
 }
