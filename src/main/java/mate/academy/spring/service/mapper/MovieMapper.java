@@ -10,6 +10,7 @@ public class MovieMapper {
 
     public MovieResponseDto toDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
+        movieResponseDto.setId(movie.getId());
         movieResponseDto.setDescription(movie.getDescription());
         movieResponseDto.setTitle(movie.getTitle());
         return movieResponseDto;
@@ -17,7 +18,6 @@ public class MovieMapper {
 
     public Movie toModel(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
-        movie.setId(movieRequestDto.getId());
         movie.setDescription(movieRequestDto.getDescription());
         movie.setTitle(movieRequestDto.getTitle());
         return movie;
