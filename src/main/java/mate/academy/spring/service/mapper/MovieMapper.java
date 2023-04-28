@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieMapper {
-    public Movie parse(MovieRequestDto dto) {
+    public Movie toDto(MovieRequestDto dto) {
         Movie movie = new Movie();
         movie.setTitle(dto.getTitle());
         movie.setDescription(dto.getDescription());
         return movie;
     }
 
-    public MovieResponseDto parse(Movie movie) {
+    public MovieResponseDto toModel(Movie movie) {
         MovieResponseDto dto = new MovieResponseDto();
         dto.setId(movie.getId());
         dto.setTitle(movie.getTitle());
