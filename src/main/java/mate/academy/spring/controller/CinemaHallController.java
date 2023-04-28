@@ -33,7 +33,6 @@ public class CinemaHallController {
     @PostMapping
     public CinemaHallResponseDto add(@RequestBody
                                      CinemaHallRequestDto cinemaHallRequestDto) {
-        System.out.println(cinemaHallRequestDto.getDescription());
         return mapper.toDto(cinemaHallService.add(mapper.toModel(cinemaHallRequestDto)));
     }
 }
