@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,11 @@ public class MovieSessionController {
                                   MovieSessionService sessionService) {
         this.sessionMapper = sessionMapper;
         this.sessionService = sessionService;
+    }
+
+    @PostMapping
+    public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto requestDto) {
+        return sessionMapper.toDto(sessionService.add(sessionMapper.toModel(requestDto)));
     }
 
     @DeleteMapping("/{id}")
