@@ -38,5 +38,6 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     @Override
     public boolean delete(MovieSession movieSession) {
         sessionDao.delete(movieSession);
+        return true;
     }
 }

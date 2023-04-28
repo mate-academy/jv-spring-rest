@@ -91,6 +91,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             transaction = session.beginTransaction();
             session.delete(movieSession);
             transaction.commit();
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
