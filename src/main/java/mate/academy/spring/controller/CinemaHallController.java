@@ -24,17 +24,17 @@ public class CinemaHallController {
         this.cinemaHallMapper = cinemaHallMapper;
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<CinemaHallResponseDto> getAllCinemaHalls() {
         return cinemaHallService.getAll().stream()
-                .map(cinemaHallMapper::parse)
+                .map(cinemaHallMapper::toDto)
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("")
+    @PostMapping
     public CinemaHallResponseDto addCinemaHall(@RequestBody
                                                    CinemaHallRequestDto cinemaHallRequestDto) {
-        return cinemaHallMapper.parse(cinemaHallService
+        return cinemaHallMapper.toDto(cinemaHallService
                 .add(cinemaHallMapper.toModel(cinemaHallRequestDto)));
     }
 }
