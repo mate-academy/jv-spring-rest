@@ -37,12 +37,4 @@ public class MovieController {
         return movieMapper.toDto(
                 movieService.add(movieMapper.toModel(requestDto)));
     }
-
-    @GetMapping("/t")
-    public String inject() {
-        Movie movie = new Movie();
-        movie.setTitle("Terminator");
-        movieService.add(movie);
-        return "Ok";
-    }
 }
