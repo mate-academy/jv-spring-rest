@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class MovieSessionResponseDto {
     private Long id;
-    private Long movie;
-    private Long cinemaHall;
+    private Long movieId;
+    private Long cinemaHallId;
     private LocalDateTime showTime;
 
     public Long getId() {
@@ -16,20 +16,20 @@ public class MovieSessionResponseDto {
         this.id = id;
     }
 
-    public Long getMovie() {
-        return movie;
+    public Long getMovieId() {
+        return movieId;
     }
 
-    public void setMovie(Long movie) {
-        this.movie = movie;
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
     }
 
-    public Long getCinemaHall() {
-        return cinemaHall;
+    public Long getCinemaHallId() {
+        return cinemaHallId;
     }
 
-    public void setCinemaHall(Long cinemaHall) {
-        this.cinemaHall = cinemaHall;
+    public void setCinemaHallId(Long cinemaHallId) {
+        this.cinemaHallId = cinemaHallId;
     }
 
     public LocalDateTime getShowTime() {
