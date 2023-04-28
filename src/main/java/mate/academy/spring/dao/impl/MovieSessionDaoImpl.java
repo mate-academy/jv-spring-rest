@@ -82,7 +82,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -91,6 +91,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             session.createQuery("DELETE FROM MovieSession WHERE id = :id", MovieSession.class)
                     .setParameter("id", id).executeUpdate();
             transaction.commit();
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
