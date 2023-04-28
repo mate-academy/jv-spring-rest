@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 public class MovieSessionResponseDto {
     private Long id;
-    private String movieTitle;
+    private Long movieId;
+    private Long cinemaHallId;
     private LocalDateTime showTime;
-    private int cinemaHallCapacity;
 
     public Long getId() {
         return id;
@@ -16,12 +16,20 @@ public class MovieSessionResponseDto {
         this.id = id;
     }
 
-    public String getMovieTitle() {
-        return movieTitle;
+    public Long getMovieId() {
+        return movieId;
     }
 
-    public void setMovieTitle(String movieTitle) {
-        this.movieTitle = movieTitle;
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
+    }
+
+    public Long getCinemaHallId() {
+        return cinemaHallId;
+    }
+
+    public void setCinemaHallId(Long cinemaHallId) {
+        this.cinemaHallId = cinemaHallId;
     }
 
     public LocalDateTime getShowTime() {
@@ -30,13 +38,5 @@ public class MovieSessionResponseDto {
 
     public void setShowTime(LocalDateTime showTime) {
         this.showTime = showTime;
-    }
-
-    public int getCinemaHallCapacity() {
-        return cinemaHallCapacity;
-    }
-
-    public void setCinemaHallCapacity(int cinemaHallCapacity) {
-        this.cinemaHallCapacity = cinemaHallCapacity;
     }
 }

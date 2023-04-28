@@ -62,8 +62,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     @Override
     public MovieSession update(MovieSession movieSession) {
         try (Session session = sessionFactory.openSession()) {
-            session.persist(movieSession);
-            return movieSession;
+            return (MovieSession) session.merge(movieSession);
         } catch (Exception e) {
             throw new DataProcessingException(
                     "Could not update a movie session: " + movieSession, e);
