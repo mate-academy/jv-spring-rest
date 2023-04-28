@@ -18,7 +18,8 @@ public class CinemaHallController {
     private CinemaHallService cinemaHallService;
     private CinemaHallMapper cinemaHallMapper;
 
-    public CinemaHallController(CinemaHallService cinemaHallService, CinemaHallMapper cinemaHallMapper) {
+    public CinemaHallController(CinemaHallService cinemaHallService,
+                                CinemaHallMapper cinemaHallMapper) {
         this.cinemaHallService = cinemaHallService;
         this.cinemaHallMapper = cinemaHallMapper;
     }
@@ -34,6 +35,7 @@ public class CinemaHallController {
     @PostMapping
     public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto
                                                     cinemaHallRequestDto) {
-        return cinemaHallMapper.parse(cinemaHallService.add(cinemaHallMapper.toModel(cinemaHallRequestDto)));
+        return cinemaHallMapper.parse(cinemaHallService
+                .add(cinemaHallMapper.toModel(cinemaHallRequestDto)));
     }
 }
