@@ -82,7 +82,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public void delete(MovieSession movieSession) {
+    public boolean delete(MovieSession movieSession) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -90,6 +90,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             transaction = session.beginTransaction();
             session.delete(movieSession);
             transaction.commit();
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
