@@ -54,7 +54,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             return session.createQuery("FROM MovieSession ms "
                             + "JOIN FETCH ms.movie "
                             + "JOIN FETCH ms.cinemaHall "
-                            + "WHERE ms.id = :id AND ms.isDeleted = false", MovieSession.class)
+                            + "WHERE ms.id = :id AND ms.isDeleted = FALSE", MovieSession.class)
                     .setParameter("id", id)
                     .uniqueResultOptional();
         } catch (Exception e) {
