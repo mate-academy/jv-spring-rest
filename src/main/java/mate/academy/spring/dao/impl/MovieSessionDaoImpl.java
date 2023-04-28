@@ -61,25 +61,34 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
 
     @Override
     public MovieSession update(MovieSession movieSession) {
-        try (Session session = sessionFactory.openSession()) {
-            return (MovieSession) session.merge(movieSession);
-        } catch (Exception e) {
-            throw new DataProcessingException(
-                    "Could not update a movie session: " + movieSession, e);
-        }
-    }
-
-    @Override
-    public void delete(Long sessionId) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            MovieSession movieSession = session.get(MovieSession.class, sessionId);
-            if (movieSession != null) {
-                session.delete(movieSession);
-                transaction.commit();
+            return (MovieSession) session.merge(movieSession);
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
             }
+            throw new DataProcessingException(
+                    "Could not update a movie session: " + movieSession, ex);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean delete(Long sessionId) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.createQuery("delete MovieSession ms "
+                            + "WHERE ms.id = :id")
+                    .setParameter("id", sessionId)
+                    .executeUpdate();
+            transaction.commit();
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
@@ -89,5 +98,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         } finally {
             session.close();
         }
+        return false;
     }
 }

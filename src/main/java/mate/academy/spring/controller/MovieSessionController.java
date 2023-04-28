@@ -10,6 +10,7 @@ import mate.academy.spring.service.MovieSessionService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,24 +39,25 @@ public class MovieSessionController {
         return responseMapper.map(movieSessionService.add(requestMapper.map(dto)));
     }
 
-    @PutMapping("/{id}")
-    public MovieSessionResponseDto update(@RequestParam Long movieId,
+    @PutMapping("/{movieId}")
+    public MovieSessionResponseDto update(@PathVariable Long movieId,
                                           @RequestBody MovieSessionRequestDto dto) {
         MovieSession movieSession = requestMapper.map(dto);
         movieSession.setId(movieId);
         return responseMapper.map(movieSessionService.update(movieSession));
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@RequestParam Long sessionId) {
-        movieSessionService.delete(sessionId);
+    @DeleteMapping("/{sessionId}")
+    public boolean delete(@PathVariable Long sessionId) {
+        return movieSessionService.delete(sessionId);
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> getAvailable(@RequestParam
-                                             Long sessionId,
-                                             @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy")
-                                             LocalDate date) {
-        return responseMapper.mapAll(movieSessionService.findAvailableSessions(sessionId, date));
+    public List<MovieSessionResponseDto> findAvailable(@RequestParam
+                                                       Long movieId,
+                                                       @RequestParam
+                                                       @DateTimeFormat(pattern = "dd.MM.yyyy")
+                                                       LocalDate date) {
+        return responseMapper.mapAll(movieSessionService.findAvailableSessions(movieId, date));
     }
 }

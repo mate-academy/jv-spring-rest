@@ -3,7 +3,6 @@ package mate.academy.spring.dto.request;
 import java.time.LocalDateTime;
 
 public class MovieSessionRequestDto {
-
     private Long movieId;
     private Long cinemaHallID;
     private LocalDateTime showTime;

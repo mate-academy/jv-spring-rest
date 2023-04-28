@@ -34,7 +34,7 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<MovieResponseDto> get() {
+    public List<MovieResponseDto> getAll() {
         return responseMapper.mapAll(movieService.getAll());
     }
 }

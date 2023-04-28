@@ -34,7 +34,7 @@ public class CinemaHallController {
     }
 
     @GetMapping
-    public List<CinemaHallResponseDto> get() {
+    public List<CinemaHallResponseDto> getAll() {
         return responseMapper.mapAll(cinemaHallService.getAll());
     }
 }
