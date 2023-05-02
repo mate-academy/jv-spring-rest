@@ -1,6 +1,5 @@
 package mate.academy.spring.service.mapper;
 
-import mate.academy.spring.dto.CinemaHallResponseDto;
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.model.CinemaHall;
