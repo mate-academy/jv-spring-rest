@@ -1,6 +1,7 @@
 package mate.academy.spring.model;
 
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,8 @@ public class MovieSession {
     @ManyToOne(fetch = FetchType.LAZY)
     private CinemaHall cinemaHall;
     private LocalDateTime showTime;
+    @Column(columnDefinition = "boolean default false")
+    private boolean isDeleted;
 
     public Long getId() {
         return id;
