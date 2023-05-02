@@ -1,8 +1,8 @@
 package mate.academy.spring.dto;
 
 public class CinemaHallResponseDto {
-    private long id;
-    private int capacity;
+    private Long id;
+    private Integer capacity;
     private String description;
 
     public long getId() {
