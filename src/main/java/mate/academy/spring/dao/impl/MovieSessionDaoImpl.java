@@ -49,7 +49,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     @Override
     public Optional<MovieSession> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM MovieSession ms "
+            return session.createQuery(" FROM MovieSession ms "
                             + "JOIN FETCH ms.movie "
                             + "JOIN FETCH ms.cinemaHall "
                             + "WHERE ms.id = :id", MovieSession.class).setParameter("id", id)
