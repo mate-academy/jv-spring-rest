@@ -24,11 +24,11 @@ public class MovieController {
 
     @PostMapping
     public MovieResponseDto create(@RequestBody MovieRequestDto reqDto) {
-        return mapper.toRespDto(service.add(mapper.fromReqDto(reqDto)));
+        return mapper.toDto(service.add(mapper.toModel(reqDto)));
     }
 
     @GetMapping
     public List<MovieResponseDto> getAll() {
-        return service.getAll().stream().map(mapper::toRespDto).toList();
+        return service.getAll().stream().map(mapper::toDto).toList();
     }
 }

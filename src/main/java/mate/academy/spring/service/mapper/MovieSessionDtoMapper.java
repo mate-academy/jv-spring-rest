@@ -2,22 +2,14 @@ package mate.academy.spring.service.mapper;
 
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
+import mate.academy.spring.model.CinemaHall;
+import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
-import mate.academy.spring.service.CinemaHallService;
-import mate.academy.spring.service.MovieService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionDtoMapper {
-    private final MovieService movieService;
-    private final CinemaHallService cinemaHallService;
-
-    public MovieSessionDtoMapper(MovieService movieService, CinemaHallService cinemaHallService) {
-        this.movieService = movieService;
-        this.cinemaHallService = cinemaHallService;
-    }
-
-    public MovieSessionResponseDto toRespDto(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto respDto = new MovieSessionResponseDto();
         respDto.setId(movieSession.getId());
         respDto.setMovieId(movieSession.getMovie().getId());
@@ -26,10 +18,14 @@ public class MovieSessionDtoMapper {
         return respDto;
     }
 
-    public MovieSession fromReqDto(MovieSessionRequestDto reqDto) {
+    public MovieSession toModel(MovieSessionRequestDto reqDto) {
         MovieSession movieSession = new MovieSession();
-        movieSession.setMovie(movieService.get(reqDto.getMovieId()));
-        movieSession.setCinemaHall(cinemaHallService.get(reqDto.getCinemaHallId()));
+        Movie movie = new Movie();
+        movie.setId(reqDto.getMovieId());
+        movieSession.setMovie(movie);
+        CinemaHall cinemaHall = new CinemaHall();
+        cinemaHall.setId(reqDto.getCinemaHallId());
+        movieSession.setCinemaHall(cinemaHall);
         movieSession.setShowTime(reqDto.getShowTime());
         return movieSession;
     }
