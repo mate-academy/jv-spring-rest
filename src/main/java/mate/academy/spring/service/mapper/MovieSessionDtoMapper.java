@@ -2,6 +2,7 @@ package mate.academy.spring.service.mapper;
 
 import mate.academy.spring.dto.MovieSessionRequestDto;
 import mate.academy.spring.dto.MovieSessionResponseDto;
+import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
@@ -10,12 +11,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionDtoMapper {
-    @Autowired
-    private MovieService movieService;
-    @Autowired
-    private CinemaHallService cinemaHallService;
+    private final CinemaHallService cinemaHallService;
 
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    @Autowired
+    public MovieSessionDtoMapper(CinemaHallService cinemaHallService) {
+        this.cinemaHallService = cinemaHallService;
+    }
+
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto responseDto = new MovieSessionResponseDto();
         responseDto.setId(movieSession.getId());
         responseDto.setMovieId(movieSession.getMovie().getId());
@@ -26,8 +29,10 @@ public class MovieSessionDtoMapper {
 
     public MovieSession toModel(MovieSessionRequestDto requestDto) {
         MovieSession movieSession = new MovieSession();
+        Movie movie = new Movie();
+        movie.setId(requestDto.getMovieId());
         movieSession.setShowTime(requestDto.getShowTime());
-        movieSession.setMovie(movieService.get(requestDto.getMovieId()));
+        movieSession.setMovie(movie);
         movieSession.setCinemaHall(cinemaHallService
                 .get(requestDto.getCinemaId()));
         return movieSession;
