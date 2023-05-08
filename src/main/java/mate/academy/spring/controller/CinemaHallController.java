@@ -19,14 +19,16 @@ public class CinemaHallController {
     private final CinemaHallDtoMapper cinemaHallDtoMapper;
 
     @Autowired
-    public CinemaHallController(CinemaHallService cinemaHallService, CinemaHallDtoMapper cinemaHallDtoMapper) {
+    public CinemaHallController(CinemaHallService cinemaHallService, 
+            CinemaHallDtoMapper cinemaHallDtoMapper) {
         this.cinemaHallService = cinemaHallService;
         this.cinemaHallDtoMapper = cinemaHallDtoMapper;
     }
 
     @PostMapping
     public CinemaHallResponseDto add(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
-        return cinemaHallDtoMapper.toDto(cinemaHallService.add(cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
+        return cinemaHallDtoMapper.toDto(
+                cinemaHallService.add(cinemaHallDtoMapper.toModel(cinemaHallRequestDto)));
     }
 
     @GetMapping
