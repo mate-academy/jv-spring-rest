@@ -14,6 +14,7 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -55,6 +56,50 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                     .uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
+        }
+    }
+
+    @Override
+    public MovieSession update(MovieSession movieSession) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            MovieSession result = (MovieSession) session.merge(movieSession);
+            transaction.commit();
+            return result;
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException(
+                    "Could not update a movie session: " + movieSession, ex);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean delete(Long sessionId) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.createQuery("DELETE FROM MovieSession ms "
+                            + "WHERE ms.id = :id")
+                    .setParameter("id", sessionId)
+                    .executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException(
+                    "Error deleting movie session with Id: " + sessionId, ex);
+        } finally {
+            session.close();
         }
     }
 }
