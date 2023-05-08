@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
-
     private final MovieSessionService movieSessionService;
     private final Mapper<MovieSessionRequestDto, MovieSession> requestMapper;
     private final Mapper<MovieSession, MovieSessionResponseDto> responseMapper;
@@ -39,11 +38,11 @@ public class MovieSessionController {
         return responseMapper.map(movieSessionService.add(requestMapper.map(dto)));
     }
 
-    @PutMapping("/{movieId}")
-    public MovieSessionResponseDto update(@PathVariable Long movieId,
+    @PutMapping("/{sessionId}")
+    public MovieSessionResponseDto update(@PathVariable Long sessionId,
                                           @RequestBody MovieSessionRequestDto dto) {
         MovieSession movieSession = requestMapper.map(dto);
-        movieSession.setId(movieId);
+        movieSession.setId(sessionId);
         return responseMapper.map(movieSessionService.update(movieSession));
     }
 

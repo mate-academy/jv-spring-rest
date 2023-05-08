@@ -65,7 +65,9 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            return (MovieSession) session.merge(movieSession);
+            MovieSession result = (MovieSession) session.merge(movieSession);
+            transaction.commit();
+            return result;
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
@@ -84,11 +86,12 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.createQuery("delete MovieSession ms "
+            session.createQuery("DELETE FROM MovieSession ms "
                             + "WHERE ms.id = :id")
                     .setParameter("id", sessionId)
                     .executeUpdate();
             transaction.commit();
+            return true;
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
@@ -98,6 +101,5 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         } finally {
             session.close();
         }
-        return false;
     }
 }

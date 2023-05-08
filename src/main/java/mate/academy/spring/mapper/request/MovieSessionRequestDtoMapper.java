@@ -9,12 +9,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionRequestDtoMapper implements Mapper<MovieSessionRequestDto, MovieSession> {
-
     @Override
     public MovieSession map(MovieSessionRequestDto input) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(new Movie(input.getMovieId()));
-        movieSession.setCinemaHall(new CinemaHall(input.getCinemaHallID()));
+        movieSession.setCinemaHall(new CinemaHall(input.getCinemaHallId()));
         movieSession.setShowTime(input.getShowTime());
         return movieSession;
     }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieRequestDtoMapper implements Mapper<MovieRequestDto, Movie> {
-
     @Override
     public Movie map(MovieRequestDto input) {
         Movie movie = new Movie();
