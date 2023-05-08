@@ -29,22 +29,20 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<MovieSession> criteriaQuery = 
+            CriteriaQuery<MovieSession> criteriaQuery =
                     criteriaBuilder.createQuery(MovieSession.class);
             Root<MovieSession> root = criteriaQuery.from(MovieSession.class);
             Predicate moviePredicate = criteriaBuilder.equal(root.get("movie"), movieId);
-            Predicate datePredicate = criteriaBuilder.between(root.get("showTime"), 
-                    date.atStartOfDay(),
-                    date.atTime(END_OF_DAY));
+            Predicate datePredicate = criteriaBuilder.between(root.get("showTime"),
+                    date.atStartOfDay(), date.atTime(END_OF_DAY));
             Predicate allConditions = criteriaBuilder.and(moviePredicate, datePredicate);
             criteriaQuery.select(root).where(allConditions);
             root.fetch("movie");
             root.fetch("cinemaHall");
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
-            throw new DataProcessingException(
-                    "Can't get available sessions for movie with id: " + movieId 
-                    + " for date: " + date, e);
+            throw new DataProcessingException("Can't get available sessions for movie with id: "
+                    + movieId + " for date: " + date, e);
         }
     }
 
