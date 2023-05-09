@@ -7,7 +7,15 @@ import mate.academy.spring.model.MovieSession;
 public interface MovieSessionService {
     List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
 
+    List<MovieSession> findAllByMovieId(Long movieId);
+
     MovieSession get(Long id);
 
     MovieSession add(MovieSession session);
+
+    MovieSession update(MovieSession session);
+
+    void delete(Long id);
+
+    List<MovieSession> getAll();
 }

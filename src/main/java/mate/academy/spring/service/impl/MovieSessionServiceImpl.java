@@ -5,12 +5,14 @@ import java.util.List;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MovieSessionServiceImpl implements MovieSessionService {
     private final MovieSessionDao sessionDao;
 
+    @Autowired
     public MovieSessionServiceImpl(MovieSessionDao sessionDao) {
         this.sessionDao = sessionDao;
     }
@@ -21,6 +23,11 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     }
 
     @Override
+    public List<MovieSession> findAllByMovieId(Long movieId) {
+        return sessionDao.findAllByMovieId(movieId);
+    }
+
+    @Override
     public MovieSession get(Long id) {
         return sessionDao.get(id).get();
     }
@@ -28,5 +35,20 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     @Override
     public MovieSession add(MovieSession session) {
         return sessionDao.add(session);
+    }
+
+    @Override
+    public MovieSession update(MovieSession session) {
+        return sessionDao.update(session);
+    }
+
+    @Override
+    public void delete(Long id) {
+        sessionDao.delete(id);
+    }
+
+    @Override
+    public List<MovieSession> getAll() {
+        return sessionDao.getAll();
     }
 }
