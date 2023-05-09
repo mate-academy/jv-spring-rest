@@ -9,7 +9,6 @@ import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +16,6 @@ public class OrderServiceImpl implements OrderService {
     private final OrderDao orderDao;
     private final ShoppingCartService shoppingCartService;
 
-    @Autowired
     public OrderServiceImpl(OrderDao orderDao, ShoppingCartService shoppingCartService) {
         this.orderDao = orderDao;
         this.shoppingCartService = shoppingCartService;
