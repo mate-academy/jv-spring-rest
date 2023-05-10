@@ -39,7 +39,9 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     }
 
     @Override
-    public void delete(MovieSession movieSession) {
-        sessionDao.delete(movieSession);
+    public void delete(Long id) {
+        sessionDao.delete(sessionDao.get(id)
+                .orElseThrow(
+                () -> new NoSuchElementException("Can't delete movie session by ID: " + id)));
     }
 }
