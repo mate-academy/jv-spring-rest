@@ -88,6 +88,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             Query<MovieSession> query = session.createQuery(
                     "DELETE FROM MovieSession WHERE id = :id", MovieSession.class);
             query.setParameter("id", id);
+            query.executeUpdate();
         } catch (Exception e) {
             throw new DataProcessingException("Can't delete movie session by id: " + id, e);
         }
