@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/movie-sessions")
-
 public class MovieSessionController {
     private MovieSessionService movieSessionService;
     private MovieSessionDtoMapper movieSessionDtoMapper;
@@ -33,7 +32,7 @@ public class MovieSessionController {
         this.movieSessionDtoMapper = movieSessionDtoMapper;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public MovieSession create(@RequestBody
                                 MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionService.add(movieSessionDtoMapper.toModel(movieSessionRequestDto));
