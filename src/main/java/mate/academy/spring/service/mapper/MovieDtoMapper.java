@@ -1,12 +1,14 @@
-package mate.academy.spring.model.dto;
+package mate.academy.spring.service.mapper;
 
 import mate.academy.spring.model.Movie;
+import mate.academy.spring.model.dto.MovieRequestDto;
+import mate.academy.spring.model.dto.MovieResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieDtoMapper {
 
-    public static MovieResponseDto parse(Movie movie) {
+    public static MovieResponseDto toDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
         movieResponseDto.setId(movie.getId());
         movieResponseDto.setTitle(movie.getTitle());
