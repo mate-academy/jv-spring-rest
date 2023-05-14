@@ -37,4 +37,5 @@ public class MovieDaoImpl extends AbstractDao<Movie> implements MovieDao {
             throw new DataProcessingException("Can't get all movies", e);
         }
     }
+
 }
