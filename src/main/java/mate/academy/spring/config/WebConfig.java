@@ -12,7 +12,6 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @ComponentScan(basePackages = "mate.academy.spring.controller")
 
-// тут ми будемо додавати якісь додаткові біни які нам треба буде для веб аплікейшина
 public class WebConfig implements WebMvcConfigurer {
     @Bean
     public InternalResourceViewResolver resolver() {
