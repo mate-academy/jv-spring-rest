@@ -1,26 +1,9 @@
-package mate.academy.spring.model;
+package mate.academy.spring.model.dto.response;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "cinema_halls")
-public class CinemaHall {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CinemaHallResponseDto {
     private Long id;
     private int capacity;
     private String description;
-
-    public CinemaHall() {
-    }
-
-    public CinemaHall(Long id) {
-        this.id = id;
-    }
 
     public Long getId() {
         return id;
@@ -48,7 +31,7 @@ public class CinemaHall {
 
     @Override
     public String toString() {
-        return "CinemaHall{"
+        return "cinemaHallResponseDto{"
                 + "id=" + id
                 + ", capacity=" + capacity
                 + ", description='" + description + '\''
