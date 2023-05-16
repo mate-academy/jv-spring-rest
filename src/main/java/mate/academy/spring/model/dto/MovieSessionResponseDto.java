@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public class MovieSessionResponseDto {
     private Long id;
     private Long movieId;
-
     private Long cinemaHallId;
     private LocalDateTime showTime;
 
