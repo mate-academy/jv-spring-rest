@@ -22,7 +22,6 @@ public class Movie {
         this.id = id;
     }
 
-
     public Long getId() {
         return id;
     }
