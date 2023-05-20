@@ -1,4 +1,4 @@
-package mate.academy.spring.dto.cinemaHall;
+package mate.academy.spring.dto.cinemahall;
 
 public class CinemaHallRequestDto {
     private int capacity;
@@ -26,13 +26,5 @@ public class CinemaHallRequestDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "CinemaHallRequestDto{" +
-                "capacity=" + capacity +
-                ", description='" + description + '\'' +
-                '}';
     }
 }
