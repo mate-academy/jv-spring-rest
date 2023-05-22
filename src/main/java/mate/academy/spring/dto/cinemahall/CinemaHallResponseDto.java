@@ -2,13 +2,13 @@ package mate.academy.spring.dto.cinemahall;
 
 public class CinemaHallResponseDto {
     private Long id;
-    private int capacity;
+    private Integer capacity;
     private String description;
 
     public CinemaHallResponseDto() {
     }
 
-    public CinemaHallResponseDto(Long id, int capacity, String description) {
+    public CinemaHallResponseDto(Long id, Integer capacity, String description) {
         this.id = id;
         this.capacity = capacity;
         this.description = description;
@@ -22,11 +22,11 @@ public class CinemaHallResponseDto {
         this.id = id;
     }
 
-    public int getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
 
@@ -36,14 +36,5 @@ public class CinemaHallResponseDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "CinemaHall{"
-                + "id=" + id
-                + ", capacity=" + capacity
-                + ", description='" + description + '\''
-                + '}';
     }
 }

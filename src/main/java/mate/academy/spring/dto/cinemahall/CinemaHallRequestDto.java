@@ -1,22 +1,22 @@
 package mate.academy.spring.dto.cinemahall;
 
 public class CinemaHallRequestDto {
-    private int capacity;
+    private Integer capacity;
     private String description;
 
     public CinemaHallRequestDto() {
     }
 
-    public CinemaHallRequestDto(int capacity, String description) {
+    public CinemaHallRequestDto(Integer capacity, String description) {
         this.capacity = capacity;
         this.description = description;
     }
 
-    public int getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
 

@@ -41,7 +41,7 @@ public class MovieSessionController {
         List<MovieSession> availableSessions = movieSessionService
                 .findAvailableSessions(id, showTime);
         return availableSessions.stream()
-                .map(movieSessionDtoMapper::parseMovieSession)
+                .map(movieSessionDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -50,7 +50,7 @@ public class MovieSessionController {
             @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSessionModel = movieSessionDtoMapper.toModel(movieSessionRequestDto);
         MovieSession movieSessionFromDb = movieSessionService.add(movieSessionModel);
-        return movieSessionDtoMapper.parseMovieSession(movieSessionFromDb);
+        return movieSessionDtoMapper.toDto(movieSessionFromDb);
     }
 
     @DeleteMapping("/{id}")
@@ -65,6 +65,6 @@ public class MovieSessionController {
         MovieSession model = movieSessionDtoMapper.toModel(movieSessionRequestDto);
         model.setId(id);
         MovieSession updatedMovieSession = movieSessionService.update(model);
-        return movieSessionDtoMapper.parseMovieSession(updatedMovieSession);
+        return movieSessionDtoMapper.toDto(updatedMovieSession);
     }
 }
