@@ -15,14 +15,14 @@ add `jackson-datatype-jsr310` dependency to be able to parse it into MovieSessio
 
 Bad example:
 ```
-public MovieResponseDto createMovie(@RequestBody MovieRequestDto movieRequestDto) { ... } 
+public MovieResponseDto createMovie(@RequestBody MovieRequestDto movieSessionRequestDto) { ... } 
 
 public List<MovieResponseDto> getAll() { ... }
 ```
 
 Good example:
 ```
-public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) { ... } 
+public MovieResponseDto create(@RequestBody MovieRequestDto movieSessionRequestDto) { ... } 
 
 public List<MovieResponseDto> getAll() { ... }
 ```
