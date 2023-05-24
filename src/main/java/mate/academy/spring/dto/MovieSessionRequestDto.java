@@ -1,7 +1,6 @@
 package mate.academy.spring.dto;
 
 import java.time.LocalDateTime;
-
 public class MovieSessionRequestDto {
 
     private Long movieId;
