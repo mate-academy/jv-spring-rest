@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import mate.academy.spring.dao.AbstractDao;
@@ -16,7 +15,6 @@ import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -68,13 +66,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaUpdate<MovieSession> update = builder.createCriteriaUpdate(MovieSession.class);
-            Root<MovieSession> root = update.from(MovieSession.class);
-            update.set(root.get("movie"), movieSession.getMovie());
-            update.set(root.get("cinemaHall"), movieSession.getCinemaHall());
-            update.set(root.get("showTime"), movieSession.getShowTime());
-            session.createQuery(update).executeUpdate();
+            session.merge(movieSession);
             transaction.commit();
             return movieSession;
         } catch (Exception e) {
@@ -97,11 +89,10 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            String deleteQuery = "DELETE FROM MovieSession ms "
-                    + "WHERE ms.id = :id";
-            Query query = session.createQuery(deleteQuery);
-            query.setParameter("id", id);
-            query.executeUpdate();
+            MovieSession movieSession = session.get(MovieSession.class, id);
+            if (movieSession != null) {
+                session.delete(movieSession);
+            }
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
