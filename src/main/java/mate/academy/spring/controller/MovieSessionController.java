@@ -33,12 +33,6 @@ public class MovieSessionController {
         this.movieSessionMapper = movieSessionMapper;
     }
 
-    @PostMapping
-    public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto requestDto) {
-        return movieSessionMapper.toDto(movieSessionService
-            .add(movieSessionMapper.toModel(requestDto)));
-    }
-
     @GetMapping("/available")
     public List<MovieSessionResponseDto> getAll(@RequestParam Long movieId,
                                                 @DateTimeFormat(pattern = "dd.MM.yyyy")
@@ -47,6 +41,12 @@ public class MovieSessionController {
             .stream()
             .map(movieSessionMapper::toDto)
             .collect(Collectors.toList());
+    }
+
+    @PostMapping
+    public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto requestDto) {
+        return movieSessionMapper.toDto(movieSessionService
+            .add(movieSessionMapper.toModel(requestDto)));
     }
 
     @PutMapping("/{id}")
