@@ -2,7 +2,7 @@ package mate.academy.spring.dto;
 
 public class CinemaHallResponseDto {
     private Long id;
-    private int capacity;
+    private Integer capacity;
     private String description;
 
     public Long getId() {

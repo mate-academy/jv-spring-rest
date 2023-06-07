@@ -6,7 +6,7 @@ import mate.academy.spring.dto.MovieRequestDto;
 import mate.academy.spring.dto.MovieResponseDto;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.service.MovieService;
-import mate.academy.spring.service.impl.MovieMapperImpl;
+import mate.academy.spring.service.impl.MovieMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
-    private final MovieMapperImpl movieMapper;
+    private final MovieMapper movieMapper;
 
-    public MovieController(MovieService movieService, MovieMapperImpl movieMapper) {
+    public MovieController(MovieService movieService, MovieMapper movieMapper) {
         this.movieService = movieService;
         this.movieMapper = movieMapper;
     }
