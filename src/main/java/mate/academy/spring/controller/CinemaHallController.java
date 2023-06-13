@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
     private final CinemaHallMapper mapper;
@@ -23,12 +25,12 @@ public class CinemaHallController {
         this.mapper = mapper;
     }
 
-    @PostMapping("/cinema-halls")
+    @PostMapping
     public CinemaHallResponseDto add(@RequestBody CinemaHallRequestDto cinemaHall) {
         return mapper.toDto(cinemaHallService.add(mapper.toModel(cinemaHall)));
     }
 
-    @GetMapping("/cinema-halls")
+    @GetMapping
     public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll().stream()
                 .map(mapper::toDto)

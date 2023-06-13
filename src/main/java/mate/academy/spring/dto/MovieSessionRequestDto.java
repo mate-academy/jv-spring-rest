@@ -3,18 +3,9 @@ package mate.academy.spring.dto;
 import java.time.LocalDateTime;
 
 public class MovieSessionRequestDto {
-    private Long id;
     private Long movieId;
     private Long cinemaHallId;
     private LocalDateTime showTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getMovieId() {
         return movieId;
@@ -42,8 +33,7 @@ public class MovieSessionRequestDto {
 
     @Override
     public String toString() {
-        return "MovieSessionResponseDto{"
-                + "id=" + id
+        return "MovieSessionRequestDto{"
                 + ", movieId=" + movieId
                 + ", cinemaHallId=" + cinemaHallId
                 + ", showTime=" + showTime
