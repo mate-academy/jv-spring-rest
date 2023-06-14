@@ -25,9 +25,9 @@ public class CinemaHallController {
     }
 
     @PostMapping
-    public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHall) {
+    public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
         return cinemaHallDtoMapper.toDto(cinemaHallService.add(cinemaHallDtoMapper
-                .toModel(cinemaHall)));
+                .toModel(cinemaHallRequestDto)));
     }
 
     @GetMapping("/")

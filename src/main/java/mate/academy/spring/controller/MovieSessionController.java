@@ -32,9 +32,10 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto movieSession) {
+    public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto
+                                  movieSessionRequestDto) {
         return movieSessionDtoMapper.toDto(movieSessionService
-                .add(movieSessionDtoMapper.toModel(movieSession)));
+                .add(movieSessionDtoMapper.toModel(movieSessionRequestDto)));
     }
 
     @GetMapping("/available")
@@ -52,7 +53,7 @@ public class MovieSessionController {
 
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
-                                @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
+                @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
         MovieSession updateMovieSession = movieSessionService.update(movieSession);
