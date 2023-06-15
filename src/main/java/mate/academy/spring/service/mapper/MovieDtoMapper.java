@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MovieDtoMapper {
 
-    public MovieResponseDto modelInDto(Movie movie) {
+    public MovieResponseDto toDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
         movieResponseDto.setId(movie.getId());
         movieResponseDto.setDescription(movie.getDescription());
@@ -16,7 +16,7 @@ public class MovieDtoMapper {
         return movieResponseDto;
     }
 
-    public Movie dtoInModel(MovieRequestDto movieRequestDto) {
+    public Movie toModel(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
         movie.setTitle(movieRequestDto.getTitle());
         movie.setDescription(movieRequestDto.getDescription());
