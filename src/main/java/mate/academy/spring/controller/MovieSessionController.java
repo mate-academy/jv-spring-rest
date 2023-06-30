@@ -7,7 +7,7 @@ import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
-import mate.academy.spring.service.impl.MovieSessionMapper;
+import mate.academy.spring.service.mapper.MovieSessionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,11 +50,11 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id,
+    public MovieSessionResponseDto update(@PathVariable Long id,
                        @RequestBody MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = movieSessionMapper.toModel(movieSessionRequestDto);
         movieSession.setId(id);
-        movieSessionService.update(movieSession);
+        return movieSessionMapper.toDto(movieSessionService.update(movieSession));
     }
 
     @DeleteMapping("/{id}")

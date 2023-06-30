@@ -1,12 +1,13 @@
 package mate.academy.spring.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
 import mate.academy.spring.service.MovieService;
-import mate.academy.spring.service.impl.MovieMapper;
+import mate.academy.spring.service.mapper.MovieMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +26,11 @@ public class MovieController {
         this.movieMapper = movieMapper;
     }
 
-    @GetMapping("/{id}")
-    public MovieResponseDto get(@PathVariable Long id) {
-        return movieMapper.toDto(movieService.get(id));
+    @GetMapping
+    public List<MovieResponseDto> get() {
+        return movieService.getAll().stream()
+                .map(movieMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping
