@@ -36,7 +36,7 @@ public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements Sh
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.update(shoppingCart);
+            session.merge(shoppingCart);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

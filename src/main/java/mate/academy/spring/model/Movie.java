@@ -1,10 +1,10 @@
 package mate.academy.spring.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "movies")
@@ -14,6 +14,13 @@ public class Movie {
     private Long id;
     private String title;
     private String description;
+
+    public Movie() {
+    }
+
+    public Movie(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;

@@ -19,7 +19,7 @@ public abstract class AbstractDao<T> implements GenericDao<T> {
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(entity);
+            session.persist(entity);
             transaction.commit();
             return entity;
         } catch (Exception e) {
