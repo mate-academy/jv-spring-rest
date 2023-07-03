@@ -42,14 +42,15 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get available sessions for movie with id: "
-                    + movieId + " for date: " + date, e);
+                                              + movieId + " for date: " + date, e);
         }
     }
 
     @Override
     public Optional<MovieSession> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM MovieSession ms "
+            return session.createQuery(
+                            "FROM MovieSession ms "
                             + "JOIN FETCH ms.movie "
                             + "JOIN FETCH ms.cinemaHall "
                             + "WHERE ms.id = :id", MovieSession.class).setParameter("id", id)
@@ -60,7 +61,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     }
 
     @Override
-    public void update(MovieSession movieSession) {
+    public MovieSession update(MovieSession movieSession) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -78,22 +79,26 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                 session.close();
             }
         }
+        return movieSession;
     }
 
     @Override
-    public void delete(MovieSession movieSession) {
+    public boolean delete(Long id) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.delete(movieSession);
+            session.createQuery("DELETE FROM MovieSession WHERE id = :id")
+                    .setParameter("id", id)
+                    .executeUpdate();
             transaction.commit();
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't delete movie session: " + movieSession, e);
+            throw new DataProcessingException("Can't delete movie session with id: " + id, e);
         } finally {
             if (session != null) {
                 session.close();

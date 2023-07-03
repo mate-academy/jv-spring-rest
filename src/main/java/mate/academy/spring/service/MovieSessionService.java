@@ -11,7 +11,7 @@ public interface MovieSessionService {
 
     MovieSession add(MovieSession session);
 
-    void update(MovieSession movieSession);
+    MovieSession update(MovieSession movieSession);
 
-    void delete(MovieSession movieSession);
+    boolean delete(Long id);
 }
