@@ -1,14 +1,12 @@
-package mate.academy.spring.service.mapper.impl;
+package mate.academy.spring.mapper;
 
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.dto.MovieRequestDto;
 import mate.academy.spring.model.dto.MovieResponseDto;
-import mate.academy.spring.service.mapper.MovieDtoMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieDtoMapperImpl implements MovieDtoMapper {
-    @Override
+public class MovieDtoMapper {
     public MovieResponseDto toDto(Movie movie) {
         MovieResponseDto movieResponseDto = new MovieResponseDto();
         movieResponseDto.setId(movie.getId());
@@ -17,7 +15,6 @@ public class MovieDtoMapperImpl implements MovieDtoMapper {
         return movieResponseDto;
     }
 
-    @Override
     public Movie toModel(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
         movie.setTitle(movieRequestDto.getTitle());

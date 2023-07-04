@@ -1,13 +1,12 @@
-package mate.academy.spring.service.mapper.impl;
+package mate.academy.spring.mapper;
 
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
-import mate.academy.spring.service.mapper.CinemaHallDtoMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CinemaHallDtoMapperImpl implements CinemaHallDtoMapper {
+public class CinemaHallDtoMapper {
     public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
         CinemaHallResponseDto cinemaHallResponseDto = new CinemaHallResponseDto();
         cinemaHallResponseDto.setId(cinemaHall.getId());

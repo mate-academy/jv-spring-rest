@@ -3,11 +3,11 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import mate.academy.spring.mapper.MovieSessionDtoMapper;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.dto.MovieSessionRequestDto;
 import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import mate.academy.spring.service.MovieSessionService;
-import mate.academy.spring.service.mapper.MovieSessionDtoMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,9 +32,8 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    public MovieSessionResponseDto create(
-            @RequestBody MovieSessionRequestDto movieSessionRequestDto
-    ) {
+    public MovieSessionResponseDto create(@RequestBody
+                                              MovieSessionRequestDto movieSessionRequestDto) {
         return movieSessionDtoMapper.toDto(
                 movieSessionService.add(movieSessionDtoMapper.toModel(movieSessionRequestDto))
         );
@@ -50,9 +49,9 @@ public class MovieSessionController {
     }
 
     @PutMapping("/{id}")
-    public MovieSessionResponseDto update(
-            @PathVariable Long id, @RequestBody MovieSessionRequestDto movieSessionRequestDto
-    ) {
+    public MovieSessionResponseDto update(@PathVariable Long id,
+                                          @RequestBody
+                                          MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession newMovieSession = movieSessionDtoMapper.toModel(movieSessionRequestDto);
         newMovieSession.setId(id);
         return movieSessionDtoMapper.toDto(movieSessionService.update(newMovieSession));
