@@ -12,8 +12,8 @@ public class MovieMapperImpl implements MovieMapper {
     public MovieResponseDto toDto(Movie movie) {
         MovieResponseDto dto = new MovieResponseDto();
         dto.setId(movie.getId());
-        dto.setTitle(dto.getTitle());
-        dto.setDescription(dto.getDescription());
+        dto.setTitle(movie.getTitle());
+        dto.setDescription(movie.getDescription());
         return dto;
     }
 
@@ -21,7 +21,7 @@ public class MovieMapperImpl implements MovieMapper {
     public Movie toModel(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
         movie.setTitle(movieRequestDto.getTitle());
-        movie.setDescription(movie.getDescription());
+        movie.setDescription(movieRequestDto.getDescription());
         return movie;
     }
 }
