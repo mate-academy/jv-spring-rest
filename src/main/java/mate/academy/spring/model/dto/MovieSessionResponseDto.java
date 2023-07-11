@@ -1,16 +1,15 @@
 package mate.academy.spring.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDateTime;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.LocalDateTime;
 
 public class MovieSessionResponseDto {
     private Long id;
     private Movie movie;
     private CinemaHall cinemaHall;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime showTime;
 
     public Long getId() {
