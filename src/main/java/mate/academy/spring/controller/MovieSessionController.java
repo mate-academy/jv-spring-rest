@@ -55,12 +55,9 @@ public class MovieSessionController {
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
                                           @RequestBody MovieSessionRequestDto requestDto) {
-        MovieSession movieSession = movieSessionService.get(id);
         MovieSession model = movieSessionMapper.toModel(requestDto);
-        movieSession.setMovie(model.getMovie());
-        movieSession.setCinemaHall(model.getCinemaHall());
-        movieSession.setShowTime(model.getShowTime());
-        movieSessionService.update(movieSession);
-        return movieSessionMapper.toDto(movieSession);
+        model.setId(id);
+        movieSessionService.update(model);
+        return movieSessionMapper.toDto(model);
     }
 }
