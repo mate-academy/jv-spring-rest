@@ -25,7 +25,7 @@ public class MovieController {
         this.movieDtoMapper = movieDtoMapper;
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MovieResponseDto create(@RequestBody MovieRequestDto movieRequestDto) {
         return movieDtoMapper
@@ -33,7 +33,7 @@ public class MovieController {
                         .add(movieDtoMapper.toModel(movieRequestDto)));
     }
 
-    @GetMapping("/")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()

@@ -68,6 +68,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             transaction = session.beginTransaction();
             session.update(movieSession);
             transaction.commit();
+            return movieSession;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -78,7 +79,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                 session.close();
             }
         }
-        return movieSession;
     }
 
     @Override
