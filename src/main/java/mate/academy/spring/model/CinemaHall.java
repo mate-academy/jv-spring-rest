@@ -18,9 +18,8 @@ public class CinemaHall {
     public CinemaHall() {
     }
 
-    public CinemaHall(int capacity, String description) {
-        this.capacity = capacity;
-        this.description = description;
+    public CinemaHall(Long cinemaHallId) {
+        id = cinemaHallId;
     }
 
     public Long getId() {

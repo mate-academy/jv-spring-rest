@@ -11,18 +11,18 @@ import org.springframework.stereotype.Component;
 public class MovieSessionDtoMapper {
     public MovieSession toModel(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
-        Movie movie = new Movie();
-        movie.setId(movieSessionRequestDto.getMovieId());
-        movieSession.setMovie(movie);
-        CinemaHall cinemaHall = new CinemaHall();
-        cinemaHall.setId(movieSessionRequestDto.getCinemaHallId());
-        movieSession.setCinemaHall(cinemaHall);
+        movieSession.setMovie(new Movie(movieSessionRequestDto.getMovieId()));
+        movieSession.setCinemaHall(new CinemaHall(movieSessionRequestDto.getCinemaHallId()));
         movieSession.setShowTime(movieSessionRequestDto.getShowTime());
         return movieSession;
     }
 
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
-        return new MovieSessionResponseDto(movieSession.getId(), movieSession.getMovie().getId(),
-                movieSession.getCinemaHall().getId(), movieSession.getShowTime());
+        MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
+        movieSessionResponseDto.setId(movieSession.getId());
+        movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
+        movieSessionResponseDto.setCinemaHallId(movieSession.getCinemaHall().getId());
+        movieSessionResponseDto.setShowTime(movieSession.getShowTime());
+        return movieSessionResponseDto;
     }
 }
