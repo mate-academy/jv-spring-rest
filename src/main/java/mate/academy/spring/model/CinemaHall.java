@@ -20,7 +20,6 @@ public class CinemaHall {
     }
 
     public CinemaHall() {
-
     }
 
     public Long getId() {
