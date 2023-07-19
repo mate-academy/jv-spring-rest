@@ -28,5 +28,3 @@ public class CinemaHallRequestDto {
         this.description = description;
     }
 }
-
-

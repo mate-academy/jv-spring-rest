@@ -42,7 +42,8 @@ public class MovieSessionController {
                                                             @DateTimeFormat(pattern = "dd.MM.yyyy")
                                                             LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(mapper::toDto).collect(Collectors.toList());
+                .map(mapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
