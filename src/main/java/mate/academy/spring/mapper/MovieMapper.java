@@ -16,5 +16,4 @@ public class MovieMapper {
         return new Movie(movieRequestDto.getTitle(),
                 movieRequestDto.getDescription());
     }
-
 }
