@@ -29,11 +29,11 @@ public class MovieSessionController {
         return MovieSessionDtoMapper.parse(movieSessionFromDb);
     }
 
-    @GetMapping("/available?{movieId}&{localDate}")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto>
-    getByParameters(@PathVariable @RequestBody Long movieId,
-                    @PathVariable @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate localDate) {
-        return movieSessionService.findAvailableSessions(movieId, localDate).stream()
+    getByParameters(@RequestParam Long movieId,
+                    @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
+        return movieSessionService.findAvailableSessions(movieId, date).stream()
                 .map(MovieSessionDtoMapper::parse)
                 .collect(Collectors.toList());
     }
