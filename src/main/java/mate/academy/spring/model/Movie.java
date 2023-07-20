@@ -15,6 +15,12 @@ public class Movie {
     private String title;
     private String description;
 
+    public Movie() {
+    }
+
+    public Movie(Long movieId) {
+    }
+
     public Long getId() {
         return id;
     }
@@ -43,8 +49,8 @@ public class Movie {
     public String toString() {
         return "Movie{"
                 + "id=" + id
-                + ", title='" + title + '\''
-                + ", description='" + description + '\''
+                + ", title='" + title
+                + ", description='" + description
                 + '}';
     }
 }
