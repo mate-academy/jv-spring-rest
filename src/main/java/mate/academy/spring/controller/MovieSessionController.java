@@ -1,6 +1,5 @@
 package mate.academy.spring.controller;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,17 +32,16 @@ public class MovieSessionController {
     }
 
     @PostMapping
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     public MovieSessionResponseDto create(@RequestBody MovieSessionRequestDto movieSession) {
         MovieSession model = mapper.toModel(movieSession);
-        return mapper.parse(movieSessionService.add(model));
+        return mapper.toDto(movieSessionService.add(model));
     }
 
     @GetMapping
     public List<MovieSessionResponseDto> getAllSessionsByIdAndDate(
             @RequestParam Long movieId, @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(mapper::parse)
+                .map(mapper::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -58,7 +56,7 @@ public class MovieSessionController {
         MovieSession model = mapper.toModel(requestDto);
         model.setId(id);
         MovieSession updated = movieSessionService.update(model);
-        return mapper.parse(updated);
+        return mapper.toDto(updated);
     }
 
 }
