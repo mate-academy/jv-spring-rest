@@ -16,7 +16,10 @@ public class MovieMapper {
         return dto;
     }
 
-    public MovieRequestDto parseToReq(Movie movie) {
-
+    public Movie parseToModel(MovieRequestDto dto) {
+        Movie movie = new Movie();
+        movie.setTitle(dto.getTitle());
+        movie.setDescription(dto.getDescription());
+        return movie;
     }
 }
