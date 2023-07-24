@@ -59,6 +59,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
         }
     }
+
     @Override
     public MovieSession update(MovieSession movieSession) {
         Session session = null;
