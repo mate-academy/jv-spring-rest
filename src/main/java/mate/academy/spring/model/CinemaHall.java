@@ -19,7 +19,7 @@ public class CinemaHall {
     }
 
     public CinemaHall(Long cinemaHallId) {
-
+        this.id = cinemaHallId;
     }
 
     public Long getId() {

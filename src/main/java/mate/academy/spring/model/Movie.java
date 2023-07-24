@@ -19,7 +19,7 @@ public class Movie {
     }
 
     public Movie(Long movieId) {
-
+        this.id = movieId;
     }
 
     public Long getId() {
