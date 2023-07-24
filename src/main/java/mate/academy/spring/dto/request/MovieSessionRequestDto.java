@@ -1,4 +1,4 @@
-package mate.academy.spring.dto;
+package mate.academy.spring.dto.request;
 
 import java.time.LocalDateTime;
 
