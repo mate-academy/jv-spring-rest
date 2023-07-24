@@ -13,12 +13,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     public UserDaoImpl(SessionFactory sessionFactory) {
-        super(sessionFactory);
+        super(sessionFactory, User.class);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = factory.openSession()) {
             Query<User> query = session.createQuery("FROM User u "
                     + "WHERE u.email = :email", User.class);
             query.setParameter("email", email);

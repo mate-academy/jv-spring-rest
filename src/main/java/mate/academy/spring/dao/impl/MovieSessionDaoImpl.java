@@ -3,7 +3,6 @@ package mate.academy.spring.dao.impl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -21,12 +20,12 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     private static final LocalTime END_OF_DAY = LocalTime.of(23, 59, 59);
 
     public MovieSessionDaoImpl(SessionFactory sessionFactory) {
-        super(sessionFactory);
+        super(sessionFactory, MovieSession.class);
     }
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = factory.openSession()) {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<MovieSession> criteriaQuery =
                     criteriaBuilder.createQuery(MovieSession.class);
@@ -45,16 +44,4 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         }
     }
 
-    @Override
-    public Optional<MovieSession> get(Long id) {
-        try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM MovieSession ms "
-                            + "JOIN FETCH ms.movie "
-                            + "JOIN FETCH ms.cinemaHall "
-                            + "WHERE ms.id = :id", MovieSession.class).setParameter("id", id)
-                    .uniqueResultOptional();
-        } catch (Exception e) {
-            throw new DataProcessingException("Can't get a movie session by id: " + id, e);
-        }
-    }
 }

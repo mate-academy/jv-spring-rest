@@ -14,12 +14,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     public OrderDaoImpl(SessionFactory sessionFactory) {
-        super(sessionFactory);
+        super(sessionFactory, Order.class);
     }
 
     @Override
     public List<Order> getOrdersHistory(User user) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = factory.openSession()) {
             Query<Order> query = session.createQuery("select distinct o "
                     + "from Order o "
                     + "join fetch o.tickets "
