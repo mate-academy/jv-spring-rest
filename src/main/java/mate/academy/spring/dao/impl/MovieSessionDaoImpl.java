@@ -101,6 +101,6 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                 session.close();
             }
         }
-        return false;
+        return true;
     }
 }
