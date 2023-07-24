@@ -3,8 +3,8 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.MovieSessionRequestDto;
-import mate.academy.spring.dto.MovieSessionResponseDto;
+import mate.academy.spring.dto.request.MovieSessionRequestDto;
+import mate.academy.spring.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import mate.academy.spring.service.mapper.MovieSessionMapper;
@@ -32,24 +32,24 @@ public class MovieSessionController {
 
     @PostMapping
     public MovieSessionResponseDto add(@RequestBody MovieSessionRequestDto dto) {
-        return movieSessionMapper.parseToResp(
-                movieSessionService.add(movieSessionMapper.parseToModel(dto)));
+        return movieSessionMapper.toDto(
+                movieSessionService.add(movieSessionMapper.toModel(dto)));
     }
 
-    @GetMapping("/available?movieId=1&date=29.02.2020")
+    @GetMapping("/available")
     public List<MovieSessionResponseDto> findAll(
             @RequestParam Long movieId, @RequestParam LocalDate date) {
         return movieSessionService.findAvailableSessions(movieId, date).stream()
-                .map(movieSessionMapper::parseToResp)
+                .map(movieSessionMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public MovieSessionResponseDto update(
             @PathVariable Long id, @RequestBody MovieSessionRequestDto dto) {
-        MovieSession movieSession = movieSessionMapper.parseToModel(dto);
+        MovieSession movieSession = movieSessionMapper.toModel(dto);
         movieSession.setId(id);
-        return movieSessionMapper.parseToResp(movieSessionService.update(movieSession));
+        return movieSessionMapper.toDto(movieSessionService.update(movieSession));
     }
 
     @DeleteMapping("/{id}")
