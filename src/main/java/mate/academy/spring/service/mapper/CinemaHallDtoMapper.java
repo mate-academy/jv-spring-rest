@@ -18,7 +18,7 @@ public class CinemaHallDtoMapper {
     public CinemaHall dtoToEntity(CinemaHallRequestDto cinemaHallRequestDto) {
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setCapacity(cinemaHallRequestDto.getCapacity());
-        cinemaHall.setDescription(cinemaHall.getDescription());
+        cinemaHall.setDescription(cinemaHallRequestDto.getDescription());
         return cinemaHall;
     }
 }
