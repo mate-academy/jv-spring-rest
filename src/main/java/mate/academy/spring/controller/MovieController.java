@@ -2,8 +2,8 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.MovieRequestDto;
-import mate.academy.spring.dto.MovieResponseDto;
+import mate.academy.spring.dto.request.MovieRequestDto;
+import mate.academy.spring.dto.response.MovieResponseDto;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.security.mapper.MovieDtoMapper;
 import mate.academy.spring.service.MovieService;
@@ -24,7 +24,7 @@ public class MovieController {
         this.mapper = mapper;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<MovieResponseDto> getAll() {
         return movieService.getAll().stream()
                 .map(mapper::toDto)

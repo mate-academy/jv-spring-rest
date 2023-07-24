@@ -3,8 +3,8 @@ package mate.academy.spring.controller;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.dto.MovieSessionRequestDto;
-import mate.academy.spring.dto.MovieSessionResponseDto;
+import mate.academy.spring.dto.request.MovieSessionRequestDto;
+import mate.academy.spring.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.security.mapper.MovieSessionDtoMapper;
 import mate.academy.spring.service.MovieSessionService;
@@ -58,5 +58,4 @@ public class MovieSessionController {
         MovieSession updated = movieSessionService.update(model);
         return mapper.toDto(updated);
     }
-
 }

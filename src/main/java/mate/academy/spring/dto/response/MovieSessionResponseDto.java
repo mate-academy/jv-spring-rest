@@ -1,4 +1,4 @@
-package mate.academy.spring.dto;
+package mate.academy.spring.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
