@@ -5,18 +5,11 @@ import mate.academy.spring.dto.MovieSessionResponseDto;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
-import mate.academy.spring.service.MovieSessionService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionDtoMapper {
-    private MovieSessionService movieSessionService;
-
-    public MovieSessionDtoMapper(MovieSessionService movieSessionService) {
-        this.movieSessionService = movieSessionService;
-    }
-
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
         movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
