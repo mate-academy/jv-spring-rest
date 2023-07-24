@@ -1,14 +1,14 @@
 package mate.academy.spring.service.mapper;
 
 import mate.academy.spring.model.CinemaHall;
-import mate.academy.spring.model.dto.CinemaHallRequestDto;
-import mate.academy.spring.model.dto.CinemaHallResponseDto;
+import mate.academy.spring.model.dto.request.CinemaHallRequestDto;
+import mate.academy.spring.model.dto.response.CinemaHallResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CinemaHallDtoMapper {
 
-    public CinemaHallResponseDto parse(CinemaHall cinemaHall) {
+    public CinemaHallResponseDto toDto(CinemaHall cinemaHall) {
         CinemaHallResponseDto responseDto = new CinemaHallResponseDto();
         responseDto.setId(cinemaHall.getId());
         responseDto.setDescription(cinemaHall.getDescription());

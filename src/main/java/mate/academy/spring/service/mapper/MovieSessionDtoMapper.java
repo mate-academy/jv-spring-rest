@@ -3,13 +3,13 @@ package mate.academy.spring.service.mapper;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
-import mate.academy.spring.model.dto.MovieSessionRequestDto;
-import mate.academy.spring.model.dto.MovieSessionResponseDto;
+import mate.academy.spring.model.dto.request.MovieSessionRequestDto;
+import mate.academy.spring.model.dto.response.MovieSessionResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionDtoMapper {
-    public MovieSessionResponseDto parse(MovieSession movieSession) {
+    public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto responseDto = new MovieSessionResponseDto();
         responseDto.setId(movieSession.getId());
         responseDto.setMovieId(movieSession.getMovie().getId());
