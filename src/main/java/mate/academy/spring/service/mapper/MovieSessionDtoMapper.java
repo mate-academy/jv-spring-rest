@@ -2,6 +2,8 @@ package mate.academy.spring.service.mapper;
 
 import mate.academy.spring.dto.request.MovieSessionRequestDto;
 import mate.academy.spring.dto.response.MovieSessionResponseDto;
+import mate.academy.spring.model.CinemaHall;
+import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.MovieService;
@@ -29,8 +31,8 @@ public class MovieSessionDtoMapper {
     public MovieSession toModel(MovieSessionRequestDto requestDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setShowTime(requestDto.getShowTime());
-        movieSession.setMovie(movieService.get(requestDto.getMovieId()));
-        movieSession.setCinemaHall(cinemaHallService.get(requestDto.getCinemaHallId()));
+        movieSession.setMovie(new Movie(requestDto.getMovieId()));
+        movieSession.setCinemaHall(new CinemaHall(requestDto.getCinemaHallId()));
         return movieSession;
     }
 }

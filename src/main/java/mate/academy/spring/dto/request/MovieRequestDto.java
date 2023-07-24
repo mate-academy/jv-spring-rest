@@ -1,7 +1,6 @@
 package mate.academy.spring.dto.request;
 
 public class MovieRequestDto {
-
     private String title;
     private String description;
 
