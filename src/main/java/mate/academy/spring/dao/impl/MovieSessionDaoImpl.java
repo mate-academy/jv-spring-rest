@@ -14,6 +14,7 @@ import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -41,7 +42,7 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             return session.createQuery(criteriaQuery).getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get available sessions for movie with id: "
-                    + movieId + " for date: " + date, e);
+                                              + movieId + " for date: " + date, e);
         }
     }
 
@@ -49,12 +50,57 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
     public Optional<MovieSession> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM MovieSession ms "
-                            + "JOIN FETCH ms.movie "
-                            + "JOIN FETCH ms.cinemaHall "
-                            + "WHERE ms.id = :id", MovieSession.class).setParameter("id", id)
+                                       + "JOIN FETCH ms.movie "
+                                       + "JOIN FETCH ms.cinemaHall "
+                                       + "WHERE ms.id = :id", MovieSession.class)
+                    .setParameter("id", id)
                     .uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
+        }
+    }
+
+    @Override
+    public MovieSession update(MovieSession movieSession) {
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.update(movieSession);
+            transaction.commit();
+            return movieSession;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't update movie session: " + movieSession, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    @Override
+    public boolean remove(MovieSession movieSession) {
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.delete(movieSession);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't remove movie session: " + movieSession, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 }
