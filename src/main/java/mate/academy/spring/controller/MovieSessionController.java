@@ -45,12 +45,12 @@ public class MovieSessionController {
                 .collect(Collectors.toList());
     }
 
-    @DeleteMapping("/{Id}")
+    @DeleteMapping("/{id}")
     public boolean delete(@PathVariable Long id) {
         return movieSessionService.delete(id);
     }
 
-    @PutMapping("/{Id}")
+    @PutMapping("/{id}")
     public MovieSessionResponseDto update(@PathVariable Long id,
             @RequestParam MovieSessionRequestDto requestDto) {
         MovieSession movieSession = movieSessionMapper.toModel(requestDto);
