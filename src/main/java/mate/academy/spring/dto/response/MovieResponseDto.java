@@ -1,7 +1,6 @@
 package mate.academy.spring.dto.response;
 
 public class MovieResponseDto {
-
     private Long id;
     private String title;
     private String description;

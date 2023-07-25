@@ -5,19 +5,10 @@ import mate.academy.spring.dto.response.MovieSessionResponseDto;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
-import mate.academy.spring.service.CinemaHallService;
-import mate.academy.spring.service.MovieService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionDtoMapper {
-    private final MovieService movieService;
-    private final CinemaHallService cinemaHallService;
-
-    public MovieSessionDtoMapper(MovieService movieService, CinemaHallService cinemaHallService) {
-        this.movieService = movieService;
-        this.cinemaHallService = cinemaHallService;
-    }
 
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto responseDto = new MovieSessionResponseDto();
