@@ -2,7 +2,8 @@ package mate.academy.spring.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import mate.academy.spring.mapper.CinemaHallMapper;
+import mate.academy.spring.mapper.CinemaHallDtoMapper;
+import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.model.dto.CinemaHallRequestDto;
 import mate.academy.spring.model.dto.CinemaHallResponseDto;
 import mate.academy.spring.service.CinemaHallService;
@@ -16,25 +17,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
-    private final CinemaHallMapper cinemaHallMapper;
+    private final CinemaHallDtoMapper cinemaHallDtoMapper;
 
     public CinemaHallController(CinemaHallService cinemaHallService,
-                                CinemaHallMapper cinemaHallMapper) {
+                                CinemaHallDtoMapper cinemaHallDtoMapper) {
         this.cinemaHallService = cinemaHallService;
-        this.cinemaHallMapper = cinemaHallMapper;
+        this.cinemaHallDtoMapper = cinemaHallDtoMapper;
     }
 
     @PostMapping
     public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto cinemaHallRequestDto) {
-        return cinemaHallMapper.toDto(cinemaHallService.add(
-                cinemaHallMapper.toModel(cinemaHallRequestDto)));
+        CinemaHall cinemaHall = cinemaHallDtoMapper.toModel(cinemaHallRequestDto);
+        return cinemaHallDtoMapper.toDto(cinemaHallService.add(cinemaHall));
     }
 
     @GetMapping
     public List<CinemaHallResponseDto> findAll() {
         return cinemaHallService.getAll()
                 .stream()
-                .map(cinemaHallMapper::toDto)
+                .map(cinemaHallDtoMapper::toDto)
                 .collect(Collectors.toList());
     }
 }

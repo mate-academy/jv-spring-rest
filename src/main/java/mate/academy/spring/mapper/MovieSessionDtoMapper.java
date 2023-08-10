@@ -8,7 +8,7 @@ import mate.academy.spring.model.dto.MovieSessionResponseDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieSessionMapper {
+public class MovieSessionDtoMapper {
     public MovieSessionResponseDto toDto(MovieSession movieSession) {
         MovieSessionResponseDto dto = new MovieSessionResponseDto();
         dto.setId(movieSession.getId());
