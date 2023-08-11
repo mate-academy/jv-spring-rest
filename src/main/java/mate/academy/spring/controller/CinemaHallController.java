@@ -9,9 +9,11 @@ import mate.academy.spring.service.CinemaHallService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallService cinemaHallService;
     private final CinemaHallMapper cinemaHallMapper;
@@ -22,13 +24,13 @@ public class CinemaHallController {
         this.cinemaHallMapper = cinemaHallMapper;
     }
 
-    @PostMapping("/cinema-halls")
+    @PostMapping
     public CinemaHallResponseDto create(@RequestBody CinemaHallRequestDto requestDto) {
         return cinemaHallMapper.toDto(cinemaHallService.add(cinemaHallMapper.toModel(requestDto)));
     }
 
-    @GetMapping("/cinema-halls")
-    public List<CinemaHallResponseDto> getAllCinemaHalls() {
+    @GetMapping
+    public List<CinemaHallResponseDto> getAll() {
         return cinemaHallService.getAll()
                 .stream()
                 .map(cinemaHallMapper::toDto).collect(Collectors.toList());
