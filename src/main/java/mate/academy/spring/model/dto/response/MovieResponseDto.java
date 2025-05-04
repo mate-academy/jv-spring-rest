@@ -1,26 +1,9 @@
-package mate.academy.spring.model;
+package mate.academy.spring.model.dto.response;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "movies")
-public class Movie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class MovieResponseDto {
     private Long id;
     private String title;
     private String description;
-
-    public Movie() {
-    }
-
-    public Movie(Long id) {
-        this.id = id;
-    }
 
     public Long getId() {
         return id;
@@ -48,7 +31,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie{"
+        return "MovieResponseDto{"
                 + "id=" + id
                 + ", title='" + title + '\''
                 + ", description='" + description + '\''
