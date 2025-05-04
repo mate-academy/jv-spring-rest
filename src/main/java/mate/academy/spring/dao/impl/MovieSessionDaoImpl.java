@@ -11,9 +11,12 @@ import javax.persistence.criteria.Root;
 import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.exception.DataProcessingException;
+import mate.academy.spring.model.CinemaHall;
+import mate.academy.spring.model.Movie;
 import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -55,6 +58,49 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                     .uniqueResultOptional();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get a movie session by id: " + id, e);
+        }
+    }
+
+    @Override
+    public Optional<Movie> getMovie(Long id) {
+        return Optional.ofNullable(sessionFactory.openSession().get(Movie.class, id));
+    }
+
+    @Override
+    public Optional<CinemaHall> getCinemaHall(Long id) {
+        return Optional.ofNullable(sessionFactory.openSession().get(CinemaHall.class, id));
+    }
+
+    @Override
+    public MovieSession update(MovieSession movieSession) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.update(movieSession);
+            transaction.commit();
+            return movieSession;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can not update movie session " + movieSession, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            session.delete(get(id));
+            session.flush();
+            return true;
+        } catch (Exception e) {
+            throw new DataProcessingException("Can not delete movie session " + id, e);
         }
     }
 }
