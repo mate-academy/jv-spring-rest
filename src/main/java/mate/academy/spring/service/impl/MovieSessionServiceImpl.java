@@ -29,4 +29,26 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     public MovieSession add(MovieSession session) {
         return sessionDao.add(session);
     }
+
+    @Override
+    public void delete(Long id) {
+        sessionDao.delete(sessionDao.get(id).get());
+    }
+
+    @Override
+    public MovieSession update(Long id, MovieSession receivedMovieSession) {
+        MovieSession updatedMovieSession = sessionDao.get(id).get();
+        if (receivedMovieSession.getMovie() != null) {
+            updatedMovieSession.setMovie(receivedMovieSession.getMovie());
+        }
+        if (receivedMovieSession.getCinemaHall() != null) {
+            updatedMovieSession.setCinemaHall(receivedMovieSession.getCinemaHall());
+        }
+        if (receivedMovieSession.getShowTime() != null) {
+            updatedMovieSession.setShowTime(receivedMovieSession.getShowTime());
+        }
+
+        sessionDao.update(updatedMovieSession);
+        return updatedMovieSession;
+    }
 }
